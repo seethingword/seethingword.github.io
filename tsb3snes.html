@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title>Techno Super Bowl 3</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<!-- <body bgcolor="#660000"; style="color:white;"> !-->
+
+<body background="img/bg.jpg">
+<p style="text-align:center; font-size:150%;"><a href="https://seethingword.github.io/">Click here to return to game selection!</a></p>
+<div>
+	<div id="emulator">
+		<p>To play this game, please, download the latest Flash player!</p>
+		<br>
+		<a href="http://www.adobe.com/go/getflashplayer">
+			<img src="//www.adobe.com/images/shared/download_buttons/get_adobe_flash_player.png" alt="Get Adobe Flash player"/>
+		</a>
+	</div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+
+<script type="text/javascript">
+	var resizeOwnEmulator = function(width, height)
+	{
+		var emulator = $('#emulator');
+		emulator.css('width', width);
+		emulator.css('height', height);
+	}
+	$(function()
+	{
+		function embed()
+		{
+			var emulator = $('#emulator');
+			if(emulator)
+			{
+				var flashvars = 
+				{
+					system : 'snes',
+					url : '/flash/ROM/tsb3snes.sfc'
+				};
+				var params = {};
+				var attributes = {};
+				
+				params.allowscriptaccess = 'sameDomain';
+				params.allowFullScreen = 'true';
+				params.allowFullScreenInteractive = 'true';
+				
+				swfobject.embedSWF('flash/Nesbox.swf', 'emulator', '640', '480', '11.2.0', 'flash/expressInstall.swf', flashvars, params, attributes);
+			}
+		}
+		
+		embed();
+	});
+	
+</script>
+<div class="info">
+<p><b>Controls are as follows:</b></p>
+<p>A - "z"</p>
+<p>B - "x"</p>
+<p>Y - "a"</p>
+<p>X - "s"</p>
+<p>Up - "Arrow Up"</p>
+<p>Down - "Arrow Down"</p>
+<p>Left - "Arrow Left"</p>
+<p>Right - "Arrow Right"</p>
+<p>Start - "Enter"</p>
+<p>Select - "Space"</p>
+</div>
+</body>
+</html>

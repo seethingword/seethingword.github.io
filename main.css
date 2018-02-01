@@ -1,0 +1,36 @@
+a:link {
+  text-decoration: none;
+  font-weight: bold;
+  color: lightblue;
+}
+
+a:visited {
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #ddd;
+  color: #400080;
+}
+
+a:hover   {
+  text-decoration: underline;
+  font-weight: bold;
+  color: #fff;
+} 
+
+.main-links {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px; 
+  width: 400px;
+}
+
+.info {
+  border-radius: 15px 50px;
+  border: 2px solid #73AD21;
+  padding: 20px; 
+  width: 180vh;
+}
+
+body {
+    background-size: cover;
+}
