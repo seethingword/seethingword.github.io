@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<body>
+ <div id="test2"></div>
+
+<script>
+ 
+// ID of html element where emulator will be inserted
+ 
+var NepEmu = "psx";         
+// Platform select
+ 
+var NepLang = "en";
+// Option "en,rus,ptBR,ja"
+// Interface language of emulator. EN by default
+ 
+var gameUrl = "https://download1319.mediafire.com/5zeezvh570tg/rrpavvlxoiefpuk/Tekken3.PBP"; // Game Url
+ 
+var NepEmuAR = "auto";
+//Aspect ratio options: "4:3" , "8:7"
+ 
+var NepZoom = "enable";     
+// Add extra button on toolbar to scale up emulator to 100% width. Disabled by default
+ 
+var NepMaxWidth = "960px"; 
+// Maximum width size of emulator. 960px by default
+ 
+var NepColor = "#0489ff";
+//Color UI elements.Blue by default
+
+var psxSkipBios = "false";    // ( only for psx ) false by default
+ 
+var psxBios = "http://download1319.mediafire.com/79mn11dnducg/1itz8db9m6wmwc1/Bois.zip";
+// By default will use HLE bios but it's a lot of bugs !
+// support bios:
+// scph5500.bin (MD5 sum: 8dd7d5296a650fac7319bce665a6a53c)
+// scph5501.bin (MD5 sum: 490f666e1afb15b7362b406ed1cea246)
+// scph5502.bin (MD5 sum: 32736f17079d0b2b7024407c39bd3050)
+// Important !!! all 3 bios files must bee in one zip archive!
+
+ </script>
+<script src="https://mem.neptunjs.com/njs/njsLoader.js" type="text/javascript"> //NeptunJS lib
+</script>
+</body>
+</html>
