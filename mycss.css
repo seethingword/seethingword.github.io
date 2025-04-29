@@ -11,6 +11,13 @@ summary {
   padding: 0.5em; 
 }
 
+summary2 {
+  font-weight: bold;
+  font-size: 20px;
+  margin: -0.5em -0.5em 0;
+  padding: 0.5em; 
+}
+
 details[open] {
   padding: 0.5em;
 }
