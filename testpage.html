@@ -11,16 +11,134 @@
     <div id="container">
         <h1 style="text-align:center">Welcome to the Moderator Commands page!</h1>
 		<body>
+		<br>
+		<h2 style="color:rgb(128, 0, 0);text-align:left;">Stream Control Commands</h2>
+		<br>
 		<details>
-		  <summary>!yt</summary>
-			Check out my youtube channel by clicking here ---> <a href="https://www.youtube.com/channel/UCr2H8QnhQf_a6vD3lyqYJ8A">Youtube</a>
+		  <summary>!status (message)</summary>
+			Changes the title for the stream
 		</details>
 		<br>
 		<details>
-		  <summary>!uplay</summary>
-			Add me on Uplay by searching for seethingword
+		  <summary>!game (game)</summary>
+			Changes the game category for the stream
 		</details>
-		
+		<br>
+		<h2 style="color:rgb(128, 0, 0);text-align:left;">Command Control Commands</h2>
+		<br>
+		<details>
+		  <summary>!command add (command) (permlevel) (response)</summary>
+			Creates a new command with a set permission level & response.
+		</details>
+		<br>
+		<details>
+		  <summary>!command edit (command) (permlevel) and/or (response)</summary>
+			Edits a command with a new permission level and/or response.
+		</details>
+		<br>
+		<details>
+		  <summary>!command remove (command)</summary>
+			Completely removes a command.
+		</details>
+		<br>
+		<details>
+		  <summary>!enable (command) (true/false)</summary>
+			Enables or disables a command.
+		</details>
+		<br>
+		<details>
+		  <summary>!command cooldown (command) (minutes)</summary>
+			Sets a cooldown on a command in minutes.
+		</details>
+		<br>
+		<details>
+		  <summary>!command usercooldown (command) (minutes)</summary>
+			Sets a cooldown on a command for normal users in minutes.
+		</details>
+		<br>
+<!-- 		<h2 style="color:rgb(128, 0, 0);text-align:left;">Timed Command Control Commands</h2>
+		<br>
+		<details>
+		  <summary>!timer add (commandName) (commandResponse)</summary>
+			Creates a timed command to 
+		</details>
+		<br> -->
+		<h2 style="color:rgb(128, 0, 0);text-align:left;">Quote Commands</h2>
+		<br>
+		<details>
+		  <summary>!quote add (text)</summary>
+			Creates a quote with the given text.
+		</details>
+		<br>
+		<details>
+		  <summary>!quote edit (id) (text)</summary>
+			Edits the quote of the id given with the new given text.
+		</details>
+		<br>
+		<details>
+		  <summary>!quote remove (id)</summary>
+			Removes a quote entirely.
+		</details>
+		<br>
+		<details>
+		  <summary>!quote</summary>
+			Gives a random saved quote as a response.
+		</details>
+		<br>
+		<details>
+		  <summary>!quote (id)</summary>
+			Gives a specific saved quote as a response depending on the id given.
+		</details>
+		<br>
+		<h2 style="color:rgb(128, 0, 0);text-align:left;">Currency Commands</h2>
+		<br>
+		<details>
+		  <summary>!points add (name) (amount)</summary>
+			Gives the specified amount of points to the specified user.
+		</details>
+		<br>
+		<details>
+		  <summary>!points remove (name) (amount)</summary>
+			Removes the specified amount of points to the specified user.
+		</details>
+		<br>
+		<details>
+		  <summary>!points add +active (amount)</summary>
+			Gives the specified amount of points to all active users in chat.
+		</details>
+		<br>
+		<details>
+		  <summary>!points add +viewers (amount)</summary>
+			Gives the specified amount of points to all viewers in chat. (active and inactive)
+		</details>
+		<br>
+		<details>
+		  <summary>!transfer (fromUser) (toUser)</summary>
+			Transfers all points from a user to another user.
+		</details>
+		<br>
+		<h2 style="color:rgb(128, 0, 0);text-align:left;">Song Request Commands</h2>
+		<br>
+		<details>
+		  <summary>!songblacklist add (url/token)</summary>
+			Adds a YouTube video to the blacklist using url or token.
+		</details>
+		<br>
+		<details>
+		  <summary>!songblacklist remove (url/token)</summary>
+			Removes a YouTube video to the blacklist using url or token.
+		</details>
+		<br>
+		<details>
+		  <summary>!skip</summary>
+			Allows an immediate skip of the current song.
+		</details>
+		<br>
+		<details>
+		  <summary>!volume (0-100)</summary>
+			Allows user to set a new song volume between 0 & 100.
+		</details>
+		<br>
 		</body>
     </div>
     <script>
