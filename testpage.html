@@ -28,9 +28,8 @@
         (function passcodeprotect() {
             let passcode = prompt("Enter PassCode");
             while (passcode !== password) {
-                //alert("Incorrect Passcode. Are you sure you're supposed to be here?");
-				window.location="http://seethingword.github.io/";
-                //return passcodeprotect();
+                alert("Incorrect Passcode. Are you sure you're supposed to be here?");
+                return passcodeprotect();
             }
         }());
         alert('Welcome To The Neofox Moderator Page!');
