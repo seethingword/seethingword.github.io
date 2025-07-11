@@ -1,131 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MySQL Data Display</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles for Inter font and general body styling */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Light gray background */
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align to top to prevent table from being too high */
-            min-height: 100vh;
-            padding: 2rem; /* Add some padding around the content */
-            box-sizing: border-box; /* Include padding in element's total width and height */
-        }
-        .loading-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #3b82f6; /* Blue color */
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+  <title>Twitch Commands</title>
+<link rel="stylesheet" href="mycss.css">
 </head>
-<body>
-    <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg max-w-4xl w-full">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">User Data from MySQL</h1>
+<body style="background-color:rgb(75, 0, 130)">
+<h1 style="color:rgb(0, 255, 0);text-align:center;">Commands</h1>
+<br>
+<h2 style="color:rgb(0, 255, 0);text-align:left;">Custom Commands</h2>
+<br>
+<details>
+  <summary>!yt</summary>
+  Check out my youtube channel by clicking here ---> <a href="https://www.youtube.com/channel/UCr2H8QnhQf_a6vD3lyqYJ8A">Youtube</a>
+</details>
+<br>
+<details>
+  <summary>!uplay</summary>
+  	Add me on Uplay by searching for seethingword
+</details>
+<br>
+<details>
+  <summary>!steamwl</summary>
+  	Check out my steam wishlist by clicking here -----> <a href="https://steamcommunity.com/id/seethingword/wishlist">Steam Wishlist</a>
+</details>
+<br>
+<details>
+  <summary>!steam</summary>
+  	If you want to play a game with me, add me on steam by clicking this link ----> <a href="https://steamcommunity.com/id/seethingword">Steam Profile</a>
+</details>
+<br>
+<details>
+  <summary>!sc</summary>
+  	FIGHT. TRADE. EXPLORE. A UNIVERSE AWAITS.  Join the fight! ~~ <a href="https://robertsspaceindustries.com/enlist?referral=STAR-9CZ6-345X">Star Citizen</a> ~~
+</details>
+<br>
+<details>
+  <summary>!donate</summary>
+  	Want to help me with getting better PC components so i can stream better games at better quality? You can support my stream by clicking here ---> <a href="https://streamlabs.com/seethingword66">Donate</a>
+</details>
+<br>
+<details>
+  <summary>!discord</summary>
+  	Wanna add me on discord? Add me by searching for seethingword
+</details>
+<br>
+<details>
+  <summary>!bsg or !eft</summary>
+  	Escape from Tarkov is a hardcore and realistic online first-person action RPG/Simulator with MMO features and a story-driven walkthrough.  Get it Here! ~~ <a href="https://www.escapefromtarkov.com/">Escape From Tarkov</a> ~~
+</details>
+<br>
+<details>
+  <summary>!amazonwl</summary>
+  	Wanna check my amazon wishlist? click here ----> <a href="http://a.co/aMQ4fI4">Amazon Wishlist</a>
+</details>
+<br>
+<details>
+  <summary>!uptime</summary>
+  	Shows how long stream has been live for.
+</details>
+<br>
+<br>
+<br>
+<h2 style="color:rgb(0, 255, 0);text-align:left;">General Commands</h2>
+<br>
+<details>
+  <summary>!points</summary>
+  Displays the amount of points the user has.
+</details>
+<br>
+<details>
+  <summary>!top</summary>
+  Displays a list of Top users based on points.
+</details>
+<br>
+<details>
+  <summary>!tophours</summary>
+  Displays a list of Top users based on hours.
+</details>
+<br>
+<details>
+  <summary>!give (name) (amount)</summary>
+  Give points from a user to another user.
+</details>
+<br>
+<details>
+  <summary>!heist</summary>
+  Allows viewers to start a heist!
+</details>
+<br>
+<details>
+  <summary>!gamble (amount)</summary>
+  Allows viewers to gamble using their points.
+</details>
+<br>
+<details>
+  <summary>!8ball</summary>
+  Allows viewers to ask questions to eight ball.
+</details>
+<br>
+<details>
+  <summary>!slots</summary>
+  Allows viewers to gamble points on the slot machine.
+</details>
+<br>
+<details>
+  <summary>!duel (name)</summary>
+  Allows viewers to duel with each other for points.
+</details>
+<br>
+<details>
+  <summary>!accept</summary>
+  Allows viewer to accept a duel.
+</details>
+<br>
+<details>
+  <summary>!deny</summary>
+  Allows viewer to deny a duel.
+</details>
+<br>
+<details>
+  <summary>!cancel</summary>
+  Allows viewer to cancel the initiated duel.
+</details>
+<br>
+<br>
+<br>
+<h2 style="color:rgb(0, 255, 0);text-align:left;">Song Request Commands</h2>
+<br>
+<details>
+  <summary>!songrequest (url/token) or !sr (url/token)</summary>
+  Allows viewer to request a song using a YouTube video link or YouTube Video Link Token. *Full video link or anything after "watch?v="*
+</details>
+<br>
+<details>
+  <summary>!veto</summary>
+  Allows viewer to vote to veto a song request. (Costs 150 points to vote)
+</details>
+<br>
+<details>
+  <summary>!wrongsong</summary>
+  Allows viewer to cancel last song request placed if used the wrong link/token.
+</details>
+<br>
 
-        <div id="loadingMessage" class="text-center text-gray-600 mb-4 hidden">
-            <div class="loading-spinner"></div>
-            <p>Loading data...</p>
-        </div>
 
-        <div id="errorMessage" class="text-center text-red-600 mb-4 hidden">
-            <p>Error loading data. Please try again later.</p>
-        </div>
 
-        <div class="overflow-x-auto rounded-lg border border-gray-200">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">ID</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">Role</th>
-                    </tr>
-                </thead>
-                <tbody id="dataTableBody" class="bg-white divide-y divide-gray-200">
-                    <!-- Data will be inserted here by JavaScript -->
-                </tbody>
-            </table>
-        </div>
-    </div>
 
-    <script>
-        // The URL of your backend API endpoint
-        const API_URL = 'http://localhost:3000/api/player_stats';
 
-        // Get elements
-        const dataTableBody = document.getElementById('dataTableBody');
-        const loadingMessage = document.getElementById('loadingMessage');
-        const errorMessage = document.getElementById('errorMessage');
 
-        /**
-         * Fetches data from the backend API and populates the table.
-         */
-        async function fetchAndPopulateTable() {
-            loadingMessage.classList.remove('hidden'); // Show loading spinner
-            errorMessage.classList.add('hidden');     // Hide error message
-            dataTableBody.innerHTML = '';             // Clear existing data
 
-            try {
-                const response = await fetch(API_URL); // Make the API call
-                if (!response.ok) {
-                    // If the HTTP response status is not 2xx, throw an error
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json(); // Parse the JSON response
 
-                // Populate the table with the fetched data
-                data.forEach(rowData => {
-                    const row = document.createElement('tr');
-                    row.classList.add('hover:bg-gray-100'); // Add hover effect to rows
 
-                    const idCell = document.createElement('td');
-                    idCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'font-medium', 'text-gray-900');
-                    idCell.textContent = rowData.id;
-                    row.appendChild(idCell);
 
-                    const handleCell = document.createElement('td');
-                    handleCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-900');
-                    handleCell.textContent = rowData.name;
-                    row.appendChild(handleCell);
-
-                    const killsCell = document.createElement('td');
-                    killsCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
-                    killsCell.textContent = rowData.email;
-                    row.appendChild(killsCell);
-
-                    const deathsCell = document.createElement('td');
-                    deathsCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
-                    deathsCell.textContent = rowData.role;
-                    row.appendChild(deathsCell);
-
-                    dataTableBody.appendChild(row);
-                });
-
-            } catch (error) {
-                console.error('Failed to fetch data:', error);
-                errorMessage.classList.remove('hidden'); // Show error message
-            } finally {
-                loadingMessage.classList.add('hidden'); // Hide loading spinner
-            }
-        }
-
-        // Call the function to fetch and populate the table when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', fetchAndPopulateTable);
-    </script>
+<footer><h3 style="text-align:center;border:1px solid #aaa;padding:0.5em 0.5em 0.5em;background-color:rgb(255, 250, 240);"><a href="http://seethingword.github.io/modpage.html">Moderator Page</a></footer>
 </body>
 </html>
