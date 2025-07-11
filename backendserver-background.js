@@ -31,8 +31,8 @@ pool.getConnection((err, connection) => {
 });
 
 // API endpoint to get user data
-app.get('/api/users', (req, res) => {
-    const query = 'SELECT id, name, email, role FROM users'; // SQL query to fetch data
+app.get('/api/player_stats', (req, res) => {
+    const query = 'SELECT id, handle, kills, deaths FROM player_stats'; // SQL query to fetch data
 
     pool.query(query, (error, results) => {
         if (error) {
