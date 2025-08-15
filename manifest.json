@@ -1,0 +1,31 @@
+{
+  "version": "0.4.0.7",
+  "release_date": "2025-08-14T19:59:32.849577Z",
+  "minimum_launcher_version": "0.1.0",
+  "download_url": "https://www.mediafire.com/file/e7o148haaat1r0k/CFCMonitor_v0.4.0.7.zip/file",
+  "filename": "CFCMonitor_v0.4.0.7.zip",
+  "download_size": 22,
+  "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+  "changelog": [
+    "Updated to version 0.4.0.7",
+    "Bug fixes and improvements"
+  ],
+  "critical_update": false,
+  "auto_restart": true,
+  "backup_before_update": true,
+  "files": {},
+  "requirements": {
+    "minimum_windows_version": "10.0",
+    "minimum_free_space_mb": 100,
+    "required_permissions": [
+      "file_write",
+      "registry_write"
+    ]
+  },
+  "post_install": {
+    "restart_required": false,
+    "clear_cache": true,
+    "update_shortcuts": true,
+    "migrate_config": true
+  }
+}
