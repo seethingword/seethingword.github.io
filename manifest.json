@@ -1,19 +1,38 @@
 {
   "version": "0.4.0.7",
-  "release_date": "2025-08-14T19:59:32.849577Z",
+  "release_date": "2025-08-14T20:38:01.379569Z",
   "minimum_launcher_version": "0.1.0",
-  "download_url": "https://www.mediafire.com/file/e7o148haaat1r0k/CFCMonitor_v0.4.0.7.zip/file",
+  "download_url": "https://www.mediafire.com/file/efp2jqbf0ldb481/CFCMonitor_v0.4.0.7.zip/file",
   "filename": "CFCMonitor_v0.4.0.7.zip",
-  "download_size": 40,
-  "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+  "download_size": 41612569,
+  "sha256": "3cb3e9a7bba438c288a2849f44e5735288a16b8a34912a629f8af375b29e7374",
   "changelog": [
     "Updated to version 0.4.0.7",
     "Bug fixes and improvements"
   ],
-  "critical_update": true,
+  "critical_update": false,
   "auto_restart": true,
   "backup_before_update": true,
-  "files": {},
+  "files": {
+    "CFC_Kill_Logger_V0.4.0.7.exe": {
+      "size": 41934432,
+      "sha256": "71fb8b3ea3a9b6d53fd4d365277de92d22db4fa048fc8d5267c07cc085b6f147",
+      "critical": true,
+      "description": "Application file: CFC_Kill_Logger_V0.4.0.7.exe"
+    },
+    "launcher.py": {
+      "size": 32162,
+      "sha256": "ab3f104bf238a1c632685f4d1c60f094772673aa845675ba26950d4bc1efba99",
+      "critical": false,
+      "description": "Launcher source code"
+    },
+    "UpdateEngine.py": {
+      "size": 6436,
+      "sha256": "32592beb09bb2c60e340835bec9dcc15a9692c437a5a40841b5b8ce0e6da76df",
+      "critical": false,
+      "description": "Application file: UpdateEngine.py"
+    }
+  },
   "requirements": {
     "minimum_windows_version": "10.0",
     "minimum_free_space_mb": 100,
@@ -28,5 +47,4 @@
     "update_shortcuts": true,
     "migrate_config": true
   }
-
 }
