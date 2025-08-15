@@ -4,13 +4,13 @@
   "minimum_launcher_version": "0.1.0",
   "download_url": "https://www.mediafire.com/file/e7o148haaat1r0k/CFCMonitor_v0.4.0.7.zip/file",
   "filename": "CFCMonitor_v0.4.0.7.zip",
-  "download_size": 22,
+  "download_size": 40,
   "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
   "changelog": [
     "Updated to version 0.4.0.7",
     "Bug fixes and improvements"
   ],
-  "critical_update": false,
+  "critical_update": true,
   "auto_restart": true,
   "backup_before_update": true,
   "files": {},
@@ -28,4 +28,5 @@
     "update_shortcuts": true,
     "migrate_config": true
   }
+
 }
