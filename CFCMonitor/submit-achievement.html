@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFCMonitor - Submit Achievement</title>
+    <link rel="stylesheet" href="cfcmonitor-styles.css">
+    <link rel="icon" href="cfc.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="header" style="position: relative;">
+            <img src="Logo.png" alt="CFCMonitor Logo" style="height: 8em; position: absolute; left: 50px; top: 50%; transform: translateY(-50%);">
+            <div style="text-align: center; width: 100%;">
+                <h1>Submit Achievement</h1>
+                <p>Submit your Star Citizen achievements for review and inclusion</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="documentation.html">🏠 Home</a>
+            <a href="CFC-achievement-guide.html">🏆 Achievement Guide</a>
+            <a href="FAQ.html">❓ FAQ</a>
+            <a href="submit-achievement.html">📝 Submit Achievement</a>
+            <a href="documentation.html#installation">📦 Installation</a>
+            <a href="documentation.html#usage">🎮 Usage</a>
+            <a href="documentation.html#support">🆘 Support</a>
+            <a href="https://discord.gg/neofox" target="_blank">💬 Discord</a>
+        </nav>
+
+        <main>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">📝</span>
+                    <h2 class="section-title">Achievement Submission Form</h2>
+                </div>
+                <div class="section-content">
+                    <p>Use this form to submit achievements for review. Please provide as much detail as possible to help us process your submission quickly.</p>
+                </div>
+                <!-- Google Forms Iframe -->
+            <div style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px;">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdqQmiAM76KM_ijJv3O0MGkFSuwKxoKd3jsOzSaMfCw6k6qrg/viewform?embedded=true" 
+                    width="100%" 
+                    height="1200" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0"
+                    background="var(--background-color)">
+                    Loading…
+                </iframe>
+            </div>
+            </div>
+        </main>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            ▲
+        </button>
+
+        <script>
+            // Back to top button functionality
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
