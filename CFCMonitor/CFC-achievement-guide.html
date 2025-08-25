@@ -541,8 +541,12 @@
 
                         <div class="toc-section">
                             <div class="toc-main-item" onclick="toggleTocSection(this)">
-                                <a href="#combination-achievements">🔄 Combination Achievements</a>
+                                <a href="#combination-achievements">🔗 Combination Achievements</a>
                                 <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#weapon-location-combinations" class="toc-sub-item">Weapon + Location Combinations</a></div>
+                                <div class="toc-sub-item"><a href="#location-damage-type-combinations" class="toc-sub-item">Location + Damage Type Combinations</a></div>
                             </div>
                         </div>
 
@@ -551,6 +555,15 @@
                                 <a href="#custom-criteria-advanced">🔧 Custom Criteria (Advanced)</a>
                                 <span class="toc-toggle">▼</span>
                             </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#what-custom-criteria-does" class="toc-sub-item">What Custom Criteria Does</a></div>
+                                <div class="toc-sub-item"><a href="#how-it-works-internally" class="toc-sub-item">How It Works Internally</a></div>
+                                <div class="toc-sub-item"><a href="#basic-structure" class="toc-sub-item">Basic Structure</a></div>
+                                <div class="toc-sub-item"><a href="#how-to-construct-custom-criteria-objects" class="toc-sub-item">How to Construct CUSTOM_CRITERIA Objects</a></div>
+                                <div class="toc-sub-item"><a href="#available-conditions-explained" class="toc-sub-item">Available Conditions Explained</a></div>
+                                <div class="toc-sub-item"><a href="#logic-options" class="toc-sub-item">Logic Options</a></div>
+                                <a href="#advanced-examples-with-explanations" class="toc-sub-item">Advanced Examples with Explanations</a>
+                            </div>
                         </div>
 
                         <div class="toc-section">
@@ -558,12 +571,34 @@
                                 <a href="#vehicle-and-weapon-count-achievements-advanced-tracking">🚁 Vehicle and Weapon Count Achievements</a>
                                 <span class="toc-toggle">▼</span>
                             </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#how-the-tracking-system-works" class="toc-sub-item">How the Tracking System Works</a></div>
+                                <div class="toc-sub-item"><a href="#count-based-achievement-conditions" class="toc-sub-item">Count-Based Achievement Conditions</a></div>
+                                <div class="toc-sub-item"><a href="#advanced-count-achievement-examples" class="toc-sub-item">Advanced Count Achievement Examples</a></div>
+                                <div class="toc-sub-item"><a href="#converting-existing-achievements" class="toc-sub-item">Converting Existing Achievements</a></div>
+                                <div class="toc-sub-item"><a href="#important-notes" class="toc-sub-item">Important Notes</a></div>
+                            </div>
                         </div>
 
                         <div class="toc-section">
                             <div class="toc-main-item" onclick="toggleTocSection(this)">
                                 <a href="#asset-names-reference">📚 Asset Names Reference</a>
                                 <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#damage-types" class="toc-sub-item">Damage Types</a></div>
+                                <div class="toc-sub-item"><a href="#important-notes-asset" class="toc-sub-item">Important Notes</a></div>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#quick-reference">⚡ Quick Reference</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#most-common-achievement-types" class="toc-sub-item">Most Common Achievement Types</a></div>
+                                <div class="toc-sub-item"><a href="#common-custom-criteria-patterns" class="toc-sub-item">Common CUSTOM_CRITERIA Patterns</a></div>
                             </div>
                         </div>
                     </div>
@@ -1056,6 +1091,8 @@
   "criteria_type": "SUFFOCATION_DEATH_EVENT",
   "criteria_value": ""
 }</code></pre>
+                </div>
+            </div>
 
             <div class="content-section">
                 <div class="section-header">
@@ -1063,7 +1100,7 @@
                     <h2 class="section-title" id="combination-achievements">Combination Achievements</h2>
                 </div>
                 <div class="section-content">
-                    <p>These advanced achievement types combine multiple criteria into a single achievement, allowing for very specific and challenging unlock conditions.</p><h3>Weapon + Location Combinations</h3>
+                    <p>These advanced achievement types combine multiple criteria into a single achievement, allowing for very specific and challenging unlock conditions.</p><h3 id="weapon-location-combinations">Weapon + Location Combinations</h3>
 
 <p>These achievements require both a specific weapon AND a specific location to be used together.</p>
 
@@ -1107,7 +1144,7 @@
   "criteria_value": "{"weapon": "klaus_p4-ar_pistol", "location": "bunker_facility"}"
 }</code></pre>
 
-<h3>Location + Damage Type Combinations</h3>
+<h3 id="location-damage-type-combinations">Location + Damage Type Combinations</h3>
 
 <p>These achievements combine specific locations with specific damage types, creating unique scenario-based challenges.</p>
 
@@ -1148,13 +1185,13 @@
                     <h2 class="section-title" id="custom-criteria-advanced">Custom Criteria (Advanced)</h2>
                 </div>
                 <div class="section-content">
-                    <p>The most powerful and flexible achievement system that allows you to create complex achievements with multiple conditions, custom logic, and advanced matching rules.</p><h3>What Custom Criteria Does</h3>
+                    <p>The most powerful and flexible achievement system that allows you to create complex achievements with multiple conditions, custom logic, and advanced matching rules.</p><h3 id="what-custom-criteria-does">What Custom Criteria Does</h3>
 <p><strong>Purpose</strong>: Create achievements with any combination of conditions that aren't possible with standard criteria types<br>
 <strong>Flexibility</strong>: Supports multiple conditions, array matching, AND/OR logic, and complex scenarios<br>
 <strong>Power</strong>: Can create achievements like "Kill any Hornet variant with explosive damage at Port Olisar while the victim is a specific player"<br>
 <strong>Use Cases</strong>: Advanced challenges, specific scenario rewards, complex tactical achievements</p>
 
-<h3>How It Works Internally</h3>
+<h3 id="how-it-works-internally">How It Works Internally</h3>
 <ol>
     <li><strong>Event Processing</strong>: When any relevant event occurs, the system checks all CUSTOM_CRITERIA achievements</li>
     <li><strong>Condition Matching</strong>: Each condition in the criteria is evaluated against the event data</li>
@@ -1163,7 +1200,7 @@
     <li><strong>Array Support</strong>: Can match against multiple values using array notation</li>
 </ol>
 
-<h3>Basic Structure</h3>
+<h3 id="basic-structure">Basic Structure</h3>
 <pre><code>{
   "criteria_type": "CUSTOM_CRITERIA",
   "criteria_value": "{"event_types": ["KILL_EVENT", "DEATH_EVENT"], "conditions": {"killer": "player_handle", "victim_type": "npc", "weapon": "specific_weapon_name", "location": "specific_location_name", "damage_type": "explosion"}, "all_conditions_required": true}"
@@ -1171,7 +1208,7 @@
 
 <p><strong>Important</strong>: The criteria_value should be a JSON object. AppWrite will handle the proper formatting automatically.</p>
 
-<h3>How to Construct CUSTOM_CRITERIA Objects</h3>
+<h3 id="how-to-construct-custom-criteria-objects">How to Construct CUSTOM_CRITERIA Objects</h3>
 
 <p>The criteria_value for CUSTOM_CRITERIA should be a JSON object. Here's how to build them:</p>
 
@@ -1195,7 +1232,7 @@
   "criteria_value": "{"event_types": ["KILL_EVENT"], "conditions": {"killer": "player_handle", "victim_ship_id": "ANVL_Hornet_F7C", "damage_type": "vehicle destruction"}, "all_conditions_required": true}"
 }</code></pre>
 
-<h3>Available Conditions Explained</h3>
+<h3 id="available-conditions-explained">Available Conditions Explained</h3>
 
 <h4>Player/Target Conditions</h4>
 <ul>
@@ -1263,14 +1300,14 @@
     </li>
 </ul>
 
-<h3>Logic Options</h3>
+<h3 id="logic-options">Logic Options</h3>
 
 <ul>
     <li><strong>all_conditions_required</strong>: true (AND logic) or false (OR logic)</li>
     <li><strong>event_types</strong>: Array of valid event types</li>
 </ul>
 
-<h3>Advanced Examples with Explanations</h3>
+<h3 id="advanced-examples-with-explanations">Advanced Examples with Explanations</h3>
 
 <h4>Kill any Hornet variant with vehicle destruction damage</h4>
 <pre><code>{
@@ -1350,24 +1387,7 @@
     <li><code>count_weapon_deaths</code> - Track deaths caused by specific weapons <em>(NEW)</em></li>
 </ul>
 
-<h3>Database Setup Required</h3>
-
-<p>Before using count-based achievements, you must add the tracking attribute to your Appwrite database:</p>
-
-<ol>
-    <li><strong>Navigate to</strong>: Appwrite Console → Databases → Your Database → player_stats Collection</li>
-    <li><strong>Add New Attribute</strong>:
-        <ul>
-            <li><strong>Attribute Name</strong>: <code>tracker_weapons_ships</code></li>
-            <li><strong>Type</strong>: <code>object</code> (JSON)</li>
-            <li><strong>Required</strong>: <code>false</code> (unchecked)</li>
-            <li><strong>Default Value</strong>: <code>{}</code> (empty object)</li>
-        </ul>
-    </li>
-    <li><strong>Save</strong> the attribute</li>
-</ol>
-
-<h3>How the Tracking System Works</h3>
+<h3 id="how-the-tracking-system-works">How the Tracking System Works</h3>
 
 <p>The system automatically tracks kill/death statistics for every vehicle and weapon interaction:</p>
 
@@ -1392,7 +1412,7 @@
     <li><strong>Weapon Deaths</strong>: When you die, the weapon that killed you is recorded</li>
 </ul>
 
-<h3>Count-Based Achievement Conditions</h3>
+<h3 id="count-based-achievement-conditions">Count-Based Achievement Conditions</h3>
 
 <h4>count_vehicle_kills</h4>
 <p><strong>Purpose</strong>: Track kills against players flying specific vehicles<br>
@@ -1442,7 +1462,7 @@
   "criteria_value": "{"event_types": ["DEATH_EVENT"], "conditions": {"count_weapon_deaths": {"weapon_id": "KLWE_LaserRepeater_S3", "count": 5}, "victim": "player_handle"}, "all_conditions_required": true}"
 }</code></pre>
 
-<h3>Advanced Count Achievement Examples</h3>
+<h3 id="advanced-count-achievement-examples">Advanced Count Achievement Examples</h3>
 
 <h4>Hornets Nest Series Achievement</h4>
 <p><em>Perfect for the example from your CSV file</em></p>
@@ -1508,7 +1528,7 @@
   "criteria_value": "{"event_types": ["KILL_EVENT", "DEATH_EVENT"], "conditions": {"count_vehicle_deaths": {"vehicle_id": "ANVL_HORNET_F7_MK2_COLLECTOR_MOD", "count": 10}, "count_vehicle_kills": {"vehicle_id": "ANVL_HORNET_F7_MK2_COLLECTOR_MOD", "count": 20}}, "all_conditions_required": true}"
 }</code></pre>
 
-<h3>Important Notes</h3>
+<h3 id="important-notes">Important Notes</h3>
 
 <ol>
     <li><strong>Automatic Tracking</strong>: The system automatically tracks all kills/deaths with vehicles and weapons - no additional setup needed beyond the database attribute.</li>
@@ -1523,13 +1543,9 @@
             <li>Mix event types for complex achievements requiring both kills and deaths</li>
         </ul>
     </li>
-    <li><strong>Debugging</strong>: Enable debug logging to see count checking in action:
-        <pre><code>[DEBUG] count_vehicle_kills check: vehicle=ANVL_HORNET_F7_MK2_COLLECTOR_MOD, required=10, actual=7, met=false
-[DEBUG] count_weapon_deaths check: weapon=KLWE_LaserRepeater_S3, required=5, actual=3, met=false</code></pre>
-    </li>
 </ol>
 
-<h3>Converting Existing Achievements</h3>
+<h3 id="converting-existing-achievements">Converting Existing Achievements</h3>
 
 <p>If you have existing single-kill achievements that you want to convert to count-based:</p>
 
@@ -1550,12 +1566,17 @@
   "criteria_type": "CUSTOM_CRITERIA",
   "criteria_value": "{"event_types": ["DEATH_EVENT"], "conditions": {"count_vehicle_deaths": {"vehicle_id": "ANVL_HORNET_F7_MK2_COLLECTOR_MOD", "count": 1}, "victim": "player_handle"}}"
 }</code></pre>
+                </div>
+            </div>
 
-<hr>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">📚</span>
+                    <h2 class="section-title" id="asset-names-reference">Asset Names Reference</h2>
+                </div>
+                <div class="section-content">
 
-<h2 id="asset-names-reference">Asset Names Reference</h2>
-
-<h3>Damage Types</h3>
+<h3 id="damage-types">Damage Types</h3>
 <p>Use these processed damage type names:</p>
 
 <ul>
@@ -1573,19 +1594,24 @@
     <li><strong>blunt force</strong> - Blunt force trauma damage</li>
 </ul>
 
-<h3>Important Notes</h3>
+<h3 id="important-notes-asset">Important Notes</h3>
 <ul>
     <li>All asset names use <strong>internal_key</strong> values from your Assets Collection</li>
     <li>Damage type comparisons are case-insensitive</li>
     <li>System automatically strips numerical suffixes (e.g., "_1654651")</li>
     <li>For CUSTOM_CRITERIA, use internal_key values, not display names</li>
 </ul>
+                </div>
+            </div>
 
-<hr>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">⚡</span>
+                    <h2 class="section-title" id="quick-reference">Quick Reference</h2>
+                </div>
+                <div class="section-content">
 
-<h2 id="quick-reference">Quick Reference</h2>
-
-<h3>Most Common Achievement Types</h3>
+<h3 id="most-common-achievement-types">Most Common Achievement Types</h3>
 
 <pre><code>// Simple kill count
 {"criteria_type": "TOTAL_KILLS", "criteria_value": 10}
@@ -1604,7 +1630,7 @@
   "description": "{"before": "Mysterious locked description", "after": "Revealed unlocked description"}"
 }</code></pre>
 
-<h3>Common CUSTOM_CRITERIA Patterns</h3>
+<h3 id="common-custom-criteria-patterns">Common CUSTOM_CRITERIA Patterns</h3>
 
 <pre><code>// Kill any specific ship type
 {"criteria_type": "CUSTOM_CRITERIA", "criteria_value": "{"event_types": ["KILL_EVENT"], "conditions": {"killer": "player_handle", "victim_ship_id": "HORNET"}, "all_conditions_required": true}"}
@@ -1622,6 +1648,8 @@
 {"criteria_type": "CUSTOM_CRITERIA", "criteria_value": "{"event_types": ["KILL_EVENT", "DEATH_EVENT"], "conditions": {"victim_type": "npc", "damage_type": "explosion"}, "all_conditions_required": false}"}</code></pre>
 
 <p>This guide provides everything you need to create achievements for your CFCMonitor system. Start with simple achievements and gradually work up to more complex custom criteria as you become familiar with the system.</p>
+                </div>
+            </div>
 
         </main>
 
@@ -1755,9 +1783,10 @@
                     if (!sectionContent) return;
                     
                     const title = original.title.toLowerCase();
-                    const content = sectionContent.textContent.toLowerCase();
+                    // Get text content excluding h3 elements from original content for search matching
+                    const textToSearch = getTextContentExcludingH3FromHTML(original.content).toLowerCase();
                     
-                    if (!searchTerm || title.includes(searchTerm) || content.includes(searchTerm)) {
+                    if (!searchTerm || title.includes(searchTerm) || textToSearch.includes(searchTerm)) {
                         section.style.display = 'block';
                         
                         // Apply highlighting
@@ -1765,7 +1794,8 @@
                             if (sectionTitle) {
                                 sectionTitle.innerHTML = highlightText(original.title, searchTerm);
                             }
-                            sectionContent.innerHTML = highlightText(original.content, searchTerm);
+                            // Apply highlighting but preserve h3 structure
+                            sectionContent.innerHTML = highlightTextExcludingH3(original.content, searchTerm);
                             
                             // Re-initialize h3 structure after highlighting
                             initializeH3Structure();
@@ -1789,6 +1819,98 @@
             if (!searchTerm) return text;
             const regex = new RegExp(`(${escapeRegex(searchTerm)})`, 'gi');
             return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        function getTextContentExcludingH3(element) {
+            // Create a temporary div to parse the HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = element.innerHTML;
+            
+            // Remove all h3 elements
+            const h3Elements = tempDiv.querySelectorAll('h3');
+            h3Elements.forEach(h3 => h3.remove());
+            
+            return tempDiv.textContent || tempDiv.innerText || '';
+        }
+
+        function getTextContentExcludingH3FromHTML(htmlContent) {
+            // Create a temporary div to parse the HTML string
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            
+            // Remove all h3 elements and their content
+            const h3Elements = tempDiv.querySelectorAll('h3');
+            h3Elements.forEach(h3 => h3.remove());
+            
+            // Remove Table of Contents content to avoid false matches
+            const tocElements = tempDiv.querySelectorAll('.toc, .toc-section, .toc-main-item, .toc-sub-item');
+            tocElements.forEach(toc => toc.remove());
+            
+            return tempDiv.textContent || tempDiv.innerText || '';
+        }
+
+        function highlightTextExcludingH3(html, searchTerm) {
+            if (!searchTerm) return html;
+            
+            // Create a temporary container
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            
+            // First, check if there's actually text to highlight (excluding h3 content and TOC)
+            const textToCheck = getTextContentExcludingH3FromHTML(html);
+            if (!textToCheck.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return html; // No matches found, return original
+            }
+            
+            // Get all text nodes that are not inside h3 elements or TOC elements
+            const walker = document.createTreeWalker(
+                tempDiv,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode: function(node) {
+                        // Skip if the text node is inside an h3 element
+                        if (node.parentElement && node.parentElement.closest('h3')) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        // Skip if the text node is inside TOC elements
+                        if (node.parentElement && node.parentElement.closest('.toc, .toc-section, .toc-main-item, .toc-sub-item')) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        // Skip empty or whitespace-only text nodes
+                        if (!node.textContent.trim()) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                }
+            );
+            
+            const textNodes = [];
+            let node;
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+            }
+            
+            // Apply highlighting to text nodes that contain the search term
+            const regex = new RegExp(`(${escapeRegex(searchTerm)})`, 'gi');
+            textNodes.forEach(textNode => {
+                if (textNode.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    const parent = textNode.parentNode;
+                    const highlightedText = textNode.textContent.replace(regex, '<span class="highlight">$1</span>');
+                    
+                    // Create a temporary container to hold the highlighted content
+                    const tempContainer = document.createElement('div');
+                    tempContainer.innerHTML = highlightedText;
+                    
+                    // Replace the text node with the highlighted content
+                    while (tempContainer.firstChild) {
+                        parent.insertBefore(tempContainer.firstChild, textNode);
+                    }
+                    parent.removeChild(textNode);
+                }
+            });
+            
+            return tempDiv.innerHTML;
         }
         
         function escapeRegex(string) {
