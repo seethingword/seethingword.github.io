@@ -575,7 +575,7 @@ hr {
 }
 
 .feature-card h4 {
-    color: var(--primary-color);
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 
