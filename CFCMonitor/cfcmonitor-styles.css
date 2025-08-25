@@ -322,10 +322,48 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    padding: 0 20px; /* Add horizontal padding to prevent content from touching sides */
 }
 
 .category.expanded .category-content {
-    max-height: 2000px;
+    max-height: 10000px;
+    padding: 20px; /* Add full padding when expanded */
+}
+
+/* Category Content Styles - Same as section-content styles */
+.category-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.category-content p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.category-content ul, .category-content ol {
+    color: var(--text-muted);
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.category-content li {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.category-content strong {
+    color: var(--text-color);
+}
+
+.category-content code {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: var(--secondary-color);
 }
 
 /* FAQ Item Styles */
@@ -449,10 +487,12 @@ h3:hover {
     overflow: hidden;
     transition: max-height 0.3s ease;
     margin-top: 0;
+    padding: 0 15px; /* Add horizontal padding for collapsed state */
 }
 
 .h3-item.expanded .h3-content {
-    max-height: 2000px;
+    max-height: 5000px;
+    padding: 15px; /* Add full padding when expanded */
 }
 
 .h3-item.expanded .h3-toggle {

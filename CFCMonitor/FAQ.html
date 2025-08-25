@@ -105,6 +105,72 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do I reset my account progress and statistics?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>If you need to reset your account progress and start fresh, follow these steps:</p>
+                            <ol>
+                                <li><strong>Local Data Reset:</strong>
+                                    <ul>
+                                        <li>Close CFCMonitor completely</li>
+                                        <li>Navigate to: <code>C:\Users\[YourUsername]\AppData\Local\StarCitizenLogMonitor\</code></li>
+                                        <li>Delete or rename the <code>config.json</code> file</li>
+                                        <li>Delete any local cache files in the folder</li>
+                                    </ul>
+                                </li>
+                                <li><strong>What Gets Reset (Local Data Reset):</strong>
+                                    <ul>
+                                        <li>Application settings and preferences</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Database Progress Reset:</strong>
+                                    <ul>
+                                        <li>Contact an administrator or use <code>Help → Reset Account Progress</code></li>
+                                        <li>Request a complete account reset for your player handle</li>
+                                        <li>This will reset all kills, deaths, achievements, and statistics</li>
+                                    </ul>
+                                </li>
+                                <li><strong>What Gets Reset (Database Progress Reset):</strong>
+                                    <ul>
+                                        <li>All lifetime kill/death statistics</li>
+                                        <li>All unlocked achievements</li>
+                                        <li>Leaderboard rankings</li>
+                                        <li>Historical gameplay data</li>
+                                    </ul>
+                                </li>
+                                <li><strong>What Doesn't Get Reset:</strong>
+                                    <ul>
+                                        <li>Your organization membership status</li>
+                                        <li>Your player handle/identity</li>
+                                        <li>Access permissions to the application</li>
+                                    </ul>
+                                </li>
+                                <li><strong>After Reset:</strong>
+                                    <ul>
+                                        <li>Restart CFCMonitor</li>
+                                        <li>Reconfigure your settings and preferences</li>
+                                        <li>Re-select your Game.log file location</li>
+                                        <li>Statistics will begin tracking from zero</li>
+                                        <li>New achievements can be unlocked immediately</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Important Considerations:</strong>
+                                    <ul>
+                                        <li><strong>Permanent Action:</strong> Account resets cannot be undone</li>
+                                        <li><strong>Backup:</strong> Consider backing up your config before reset</li>
+                                        <li><strong>Timing:</strong> Reset requests may take 24-48 hours to process</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Note:</strong> Only reset your account if you're certain you want to lose all progress. This action is irreversible and will require you to rebuild all statistics and achievements from scratch.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -637,72 +703,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <h3>How do I reset my account progress and statistics?</h3>
-                        <span class="faq-toggle">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>If you need to reset your account progress and start fresh, follow these steps:</p>
-                            <ol>
-                                <li><strong>Local Data Reset:</strong>
-                                    <ul>
-                                        <li>Close CFCMonitor completely</li>
-                                        <li>Navigate to: <code>C:\Users\[YourUsername]\AppData\Local\StarCitizenLogMonitor\</code></li>
-                                        <li>Delete or rename the <code>config.json</code> file</li>
-                                        <li>Delete any local cache files in the folder</li>
-                                    </ul>
-                                </li>
-                                <li><strong>What Gets Reset (Local Data Reset):</strong>
-                                    <ul>
-                                        <li>Application settings and preferences</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Database Progress Reset:</strong>
-                                    <ul>
-                                        <li>Contact an administrator or use <code>Help → Reset Account Progress</code></li>
-                                        <li>Request a complete account reset for your player handle</li>
-                                        <li>This will reset all kills, deaths, achievements, and statistics</li>
-                                    </ul>
-                                </li>
-                                <li><strong>What Gets Reset (Database Progress Reset):</strong>
-                                    <ul>
-                                        <li>All lifetime kill/death statistics</li>
-                                        <li>All unlocked achievements</li>
-                                        <li>Leaderboard rankings</li>
-                                        <li>Historical gameplay data</li>
-                                    </ul>
-                                </li>
-                                <li><strong>What Doesn't Get Reset:</strong>
-                                    <ul>
-                                        <li>Your organization membership status</li>
-                                        <li>Your player handle/identity</li>
-                                        <li>Access permissions to the application</li>
-                                    </ul>
-                                </li>
-                                <li><strong>After Reset:</strong>
-                                    <ul>
-                                        <li>Restart CFCMonitor</li>
-                                        <li>Reconfigure your settings and preferences</li>
-                                        <li>Re-select your Game.log file location</li>
-                                        <li>Statistics will begin tracking from zero</li>
-                                        <li>New achievements can be unlocked immediately</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Important Considerations:</strong>
-                                    <ul>
-                                        <li><strong>Permanent Action:</strong> Account resets cannot be undone</li>
-                                        <li><strong>Backup:</strong> Consider backing up your config before reset</li>
-                                        <li><strong>Timing:</strong> Reset requests may take 24-48 hours to process</li>
-                                    </ul>
-                                </li>
-                            </ol>
-                            <p><strong>Note:</strong> Only reset your account if you're certain you want to lose all progress. This action is irreversible and will require you to rebuild all statistics and achievements from scratch.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -1033,7 +1033,18 @@
     <script>
         function toggleCategory(categoryId) {
             const category = document.getElementById(categoryId);
-            category.classList.toggle('expanded');
+            const isCurrentlyExpanded = category.classList.contains('expanded');
+            
+            // Close all currently open categories
+            const allCategories = document.querySelectorAll('.category');
+            allCategories.forEach(cat => {
+                cat.classList.remove('expanded');
+            });
+            
+            // If the clicked category wasn't expanded, expand it
+            if (!isCurrentlyExpanded) {
+                category.classList.add('expanded');
+            }
         }
 
         function toggleFAQ(questionElement) {

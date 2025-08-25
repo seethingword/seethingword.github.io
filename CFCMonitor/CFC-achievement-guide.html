@@ -28,12 +28,12 @@
         </div>
 
         <main>
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">📋</span>
-                    <h2 class="section-title">Table of Contents</h2>
+            <div class="category" id="table-of-contents">
+                <div class="category-header" onclick="toggleCategory('table-of-contents')">
+                    <h2 class="category-title">📋 Table of Contents</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <div class="toc">
                         <div class="toc-section">
                             <div class="toc-main-item" onclick="toggleTocSection(this)">
@@ -183,12 +183,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">📖</span>
-                    <h2 class="section-title" id="overview">Overview</h2>
+            <div class="category" id="overview">
+                <div class="category-header" onclick="toggleCategory('overview')">
+                    <h2 class="category-title">📖 Overview</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>This guide covers the complete achievement system for CFCMonitor, including all criteria types, the new before/after description feature (v0.4.0.7), and how to properly set up achievements in your AppWrite database.</p>
 
                     <p><strong>Current Compatibility</strong>: This guide is accurate for CFCMonitor v0.4.0.14 and earlier versions.</p>
@@ -197,12 +197,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">📝</span>
-                    <h2 class="section-title" id="achievement-description-types">Achievement Description Types</h2>
+            <div class="category" id="achievement-description-types">
+                <div class="category-header" onclick="toggleCategory('achievement-description-types')">
+                    <h2 class="category-title">📝 Achievement Description Types</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
 
 <h3>Simple Description</h3>
 <p>For achievements where the description remains the same whether locked or unlocked:</p>
@@ -253,12 +253,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">🎯</span>
-                    <h2 class="section-title" id="basic-achievement-criteria-types">Basic Achievement Criteria Types</h2>
+            <div class="category" id="basic-achievement-criteria-types">
+                <div class="category-header" onclick="toggleCategory('basic-achievement-criteria-types')">
+                    <h2 class="category-title">🎯 Basic Achievement Criteria Types</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>These are counter-based achievements that track cumulative statistics across all gameplay sessions.</p>
 
 <h3>TOTAL_KILLS</h3>
@@ -339,12 +339,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">🔫</span>
-                    <h2 class="section-title" id="weapon-specific-achievements">Weapon-Specific Achievements</h2>
+            <div class="category" id="weapon-specific-achievements">
+                <div class="category-header" onclick="toggleCategory('weapon-specific-achievements')">
+                    <h2 class="category-title">🔫 Weapon-Specific Achievements</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>These achievements trigger based on the specific weapon used in kill/death events. The system uses internal weapon identifiers from the Assets Collection to match weapons accurately.</p>
 
 <h3>PVP_SPECIFIC_KILL_WEAPON</h3>
@@ -426,12 +426,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">📍</span>
-                    <h2 class="section-title" id="location-specific-achievements">Location-Specific Achievements</h2>
+            <div class="category" id="location-specific-achievements">
+                <div class="category-header" onclick="toggleCategory('location-specific-achievements')">
+                    <h2 class="category-title">🌍 Location-Specific Achievements</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>These achievements trigger based on the specific location where events occur. The system uses internal location identifiers from the Assets Collection and can track events at stations, planets, moons, facilities, and other points of interest.</p>
 
 <h3>PVP_SPECIFIC_KILL_LOCATION</h3>
@@ -516,12 +516,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">💥</span>
-                    <h2 class="section-title" id="damage-type-achievements">Damage Type Achievements</h2>
+            <div class="category" id="damage-type-achievements">
+                <div class="category-header" onclick="toggleCategory('damage-type-achievements')">
+                    <h2 class="category-title">💥 Damage Type Achievements</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>These achievements track the specific type of damage that caused a kill or death. They help categorize different combat styles and environmental dangers.</p>
 
 <h3>SPECIFIC_DEATH_TYPE</h3>
@@ -584,12 +584,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">⚡</span>
-                    <h2 class="section-title" id="event-specific-achievements">Event-Specific Achievements</h2>
+            <div class="category" id="event-specific-achievements">
+                <div class="category-header" onclick="toggleCategory('event-specific-achievements')">
+                    <h2 class="category-title">⚡ Event-Specific Achievements</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>These achievements trigger on specific game events regardless of other factors like weapons or locations. They track unique gameplay moments and special circumstances.</p><h3>CRASH_EVENT</h3>
 <p><strong>What it does</strong>: Unlocks when the player experiences a game crash<br>
 <strong>When it triggers</strong>: On CRASH_EVENT where player is the client_player_name<br>
@@ -672,12 +672,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">🔗</span>
-                    <h2 class="section-title" id="combination-achievements">Combination Achievements</h2>
+            <div class="category" id="combination-achievements">
+                <div class="category-header" onclick="toggleCategory('combination-achievements')">
+                    <h2 class="category-title">🔗 Combination Achievements</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>These advanced achievement types combine multiple criteria into a single achievement, allowing for very specific and challenging unlock conditions.</p><h3 id="weapon-location-combinations">Weapon + Location Combinations</h3>
 
 <p>These achievements require both a specific weapon AND a specific location to be used together.</p>
@@ -757,12 +757,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">⚙️</span>
-                    <h2 class="section-title" id="custom-criteria-advanced">Custom Criteria (Advanced)</h2>
+            <div class="category" id="custom-criteria-advanced">
+                <div class="category-header" onclick="toggleCategory('custom-criteria-advanced')">
+                    <h2 class="category-title">🔧 Custom Criteria (Advanced)</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>The most powerful and flexible achievement system that allows you to create complex achievements with multiple conditions, custom logic, and advanced matching rules.</p><h3 id="what-custom-criteria-does">What Custom Criteria Does</h3>
 <p><strong>Purpose</strong>: Create achievements with any combination of conditions that aren't possible with standard criteria types<br>
 <strong>Flexibility</strong>: Supports multiple conditions, array matching, AND/OR logic, and complex scenarios<br>
@@ -949,12 +949,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">🚀</span>
-                    <h2 class="section-title" id="vehicle-and-weapon-count-achievements-advanced-tracking">Vehicle and Weapon Count Achievements (Advanced Tracking)</h2>
+            <div class="category" id="vehicle-and-weapon-count-achievements-advanced-tracking">
+                <div class="category-header" onclick="toggleCategory('vehicle-and-weapon-count-achievements-advanced-tracking')">
+                    <h2 class="category-title">🚁 Vehicle and Weapon Count Achievements</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
                     <p>Starting in version 0.4.0.10, CFCMonitor includes advanced tracking of kills and deaths per vehicle and weapon using the <code>tracker_weapons_ships</code> system. This enables achievements like "Get 10 kills against players in Hornet ships", "Get 5 kills with the FS9 LMG", "Die 10 times in Aurora variants", or "Get killed by energy weapons 5 times".</p>
 
 <p><strong>Available Count Criteria</strong></p>
@@ -1109,8 +1109,7 @@
 <h3 id="important-notes">Important Notes</h3>
 
 <ol>
-    <li><strong>Automatic Tracking</strong>: The system automatically tracks all kills/deaths with vehicles and weapons - no additional setup needed beyond the database attribute.</li>
-    <li><strong>Retroactive</strong>: Existing player data won't have historical vehicle/weapon stats. The tracking starts from when you implement this system.</li>
+    <li><strong>Automatic Tracking</strong>: The system automatically tracks all kills/deaths with vehicles and weapons - no additional setup needed.</li>
 
     <li><strong>Internal Key Matching</strong>: The system uses both exact matches and internal key resolution from the Assets Collection for flexible matching.</li>
     <li><strong>Performance</strong>: Count checks are performed efficiently using database queries and are cached for performance.</li>
@@ -1147,12 +1146,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">📚</span>
-                    <h2 class="section-title" id="asset-names-reference">Asset Names Reference</h2>
+            <div class="category" id="asset-names-reference">
+                <div class="category-header" onclick="toggleCategory('asset-names-reference')">
+                    <h2 class="category-title">📚 Asset Names Reference</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
 
 <h3 id="damage-types">Damage Types</h3>
 <p>Use these processed damage type names:</p>
@@ -1182,12 +1181,12 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="section-header">
-                    <span style="font-size: 2rem;">⚡</span>
-                    <h2 class="section-title" id="quick-reference">Quick Reference</h2>
+            <div class="category" id="quick-reference">
+                <div class="category-header" onclick="toggleCategory('quick-reference')">
+                    <h2 class="category-title">⚡ Quick Reference</h2>
+                    <span class="category-icon">▼</span>
                 </div>
-                <div class="section-content">
+                <div class="category-content">
 
 <h3 id="most-common-achievement-types">Most Common Achievement Types</h3>
 
@@ -1239,6 +1238,23 @@
     </div>
 
     <script>
+        // Toggle function for categories (like FAQ.html)
+        function toggleCategory(categoryId) {
+            const category = document.getElementById(categoryId);
+            const isCurrentlyExpanded = category.classList.contains('expanded');
+            
+            // Close all currently open categories
+            const allCategories = document.querySelectorAll('.category');
+            allCategories.forEach(cat => {
+                cat.classList.remove('expanded');
+            });
+            
+            // If the clicked category wasn't expanded, expand it
+            if (!isCurrentlyExpanded) {
+                category.classList.add('expanded');
+            }
+        }
+
         // Toggle function for h3 sections
         function toggleH3(element) {
             const h3Item = element.closest('.h3-item');
@@ -1246,10 +1262,10 @@
             
             const isCurrentlyExpanded = h3Item.classList.contains('expanded');
             
-            // Close all other h3 items in the same section
-            const parentSection = h3Item.closest('.content-section');
-            if (parentSection) {
-                const allH3Items = parentSection.querySelectorAll('.h3-item');
+            // Close all other h3 items in the same category
+            const parentCategory = h3Item.closest('.category-content');
+            if (parentCategory) {
+                const allH3Items = parentCategory.querySelectorAll('.h3-item');
                 allH3Items.forEach(item => {
                     item.classList.remove('expanded');
                 });
@@ -1274,10 +1290,10 @@
             const h3Elements = document.querySelectorAll('h3');
             
             h3Elements.forEach(h3 => {
-                // Skip if already processed or if it's inside a .toc or .section-title
+                // Skip if already processed or if it's inside a .toc or .category-title
                 if (h3.classList.contains('processed') || 
                     h3.closest('.toc') || 
-                    h3.classList.contains('section-title')) {
+                    h3.classList.contains('category-title')) {
                     return;
                 }
                 
@@ -1310,7 +1326,7 @@
                 // Move all following content until next h3, h2, or section end
                 let nextElement = wrapper.nextSibling;
                 while (nextElement && 
-                       !nextElement.matches?.('h2, h3, .content-section, .section-header') &&
+                       !nextElement.matches?.('h2, h3, .category, .category-header') &&
                        nextElement.nodeType !== 8) { // 8 = comment node
                     const currentElement = nextElement;
                     nextElement = nextElement.nextSibling;
@@ -1336,14 +1352,14 @@
             
             // Store original content to prevent accumulating highlights
             const originalContent = new Map();
-            const contentSections = document.querySelectorAll('.content-section');
+            const categories = document.querySelectorAll('.category');
             
-            contentSections.forEach(section => {
-                const sectionContent = section.querySelector('.section-content');
-                if (sectionContent) {
-                    originalContent.set(section, {
-                        title: section.querySelector('.section-title')?.textContent || '',
-                        content: sectionContent.innerHTML
+            categories.forEach(category => {
+                const categoryContent = category.querySelector('.category-content');
+                if (categoryContent) {
+                    originalContent.set(category, {
+                        title: category.querySelector('.category-title')?.textContent || '',
+                        content: categoryContent.innerHTML
                     });
                 }
             });
@@ -1351,43 +1367,43 @@
             searchInput.addEventListener('input', function(e) {
                 const searchTerm = e.target.value.toLowerCase().trim();
                 
-                contentSections.forEach(section => {
-                    const original = originalContent.get(section);
+                categories.forEach(category => {
+                    const original = originalContent.get(category);
                     if (!original) return;
                     
-                    const sectionTitle = section.querySelector('.section-title');
-                    const sectionContent = section.querySelector('.section-content');
+                    const categoryTitle = category.querySelector('.category-title');
+                    const categoryContent = category.querySelector('.category-content');
                     
-                    if (!sectionContent) return;
+                    if (!categoryContent) return;
                     
                     const title = original.title.toLowerCase();
                     // Get text content excluding h3 elements from original content for search matching
                     const textToSearch = getTextContentExcludingH3FromHTML(original.content).toLowerCase();
                     
                     if (!searchTerm || title.includes(searchTerm) || textToSearch.includes(searchTerm)) {
-                        section.style.display = 'block';
+                        category.style.display = 'block';
                         
                         // Apply highlighting
                         if (searchTerm) {
-                            if (sectionTitle) {
-                                sectionTitle.innerHTML = highlightText(original.title, searchTerm);
+                            if (categoryTitle) {
+                                categoryTitle.innerHTML = highlightText(original.title, searchTerm);
                             }
                             // Apply highlighting but preserve h3 structure
-                            sectionContent.innerHTML = highlightTextExcludingH3(original.content, searchTerm);
+                            categoryContent.innerHTML = highlightTextExcludingH3(original.content, searchTerm);
                             
                             // Re-initialize h3 structure after highlighting
                             initializeH3Structure();
                         } else {
-                            if (sectionTitle) {
-                                sectionTitle.textContent = original.title;
+                            if (categoryTitle) {
+                                categoryTitle.textContent = original.title;
                             }
-                            sectionContent.innerHTML = original.content;
+                            categoryContent.innerHTML = original.content;
                             
                             // Re-initialize h3 structure after restoring content
                             initializeH3Structure();
                         }
                     } else {
-                        section.style.display = 'none';
+                        category.style.display = 'none';
                     }
                 });
             });
