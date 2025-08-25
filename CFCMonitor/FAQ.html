@@ -56,6 +56,34 @@
             opacity: 0.9;
         }
 
+        .nav {
+            margin-bottom: 30px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            background: linear-gradient(90deg, #1557b0, #2d8f47);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
         .search-box {
             margin-bottom: 30px;
             position: relative;
@@ -230,6 +258,15 @@
             <h1>🚀 CFCMonitor FAQ</h1>
             <p>Your complete guide to the Star Citizen Log Monitor</p>
         </div>
+
+        <nav class="nav">
+            <a href="documentation.html">🏠 Home</a>
+            <a href="CFC-achievement-guide.html">🏆 Achievement Guide</a>
+            <a href="FAQ.html">❓ FAQ</a>
+            <a href="documentation.html#installation">📦 Installation</a>
+            <a href="documentation.html#usage">🎮 Usage</a>
+            <a href="documentation.html#support">🆘 Support</a>
+        </nav>
 
         <div class="search-box">
             <input type="text" class="search-input" placeholder="Search for questions..." id="searchInput">
