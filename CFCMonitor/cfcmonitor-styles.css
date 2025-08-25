@@ -1,15 +1,19 @@
 /* CFCMonitor CSS Variables */
 :root {
-    --primary-color: #1a73e8;
-    --secondary-color: #34a853;
+    --primary-color: #10216b;
+    --secondary-color: #c57916;
     --background-color: #1a1a1a;
     --surface-color: #2d2d2d;
     --text-color: #e8eaed;
     --text-muted: #9aa0a6;
     --border-color: #3c4043;
     --hover-color: #323639;
+    --h3-bg-color: #965c10;
+    --h3-hover-bg-color: #613c0b;
+    --section-title-color: #e8eaed;
+    --category-header-btt-nav-hover-left-color: #0b174d;
+    --category-header-btt-nav-hover-right-color: #965c10;
 }
-
 /* Global Styles */
 * {
     margin: 0;
@@ -59,7 +63,7 @@ body {
     background-color: var(--surface-color);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px var(--box-shadow);
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -77,7 +81,7 @@ body {
 }
 
 .nav a:hover {
-    background: linear-gradient(90deg, #1557b0, #2d8f47);
+    background: linear-gradient(90deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
@@ -140,7 +144,7 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
-    color: #e8eaed;
+    color: var(--section-title-color);
 }
 
 .section-content {
@@ -300,7 +304,7 @@ body {
 }
 
 .category-header:hover {
-    background: linear-gradient(90deg, #1557b0, #2d8f47);
+    background: linear-gradient(90deg, #0b174d, #965c10);
 }
 
 .category-title {
@@ -463,7 +467,7 @@ h3 {
     font-size: 1.2rem;
     cursor: pointer;
     padding: 15px;
-    background-color: rgba(52, 168, 83, 0.1);
+    background-color: var(--h3-bg-color);
     border-radius: 8px;
     border-left: 4px solid var(--secondary-color);
     display: flex;
@@ -473,7 +477,7 @@ h3 {
 }
 
 h3:hover {
-    background-color: rgba(52, 168, 83, 0.2);
+    background-color: var(--h3-hover-bg-color);
 }
 
 .h3-toggle {
@@ -619,7 +623,7 @@ hr {
 }
 
 .back-to-top:hover {
-    background: linear-gradient(135deg, #1557b0, #2d8f47);
+    background: linear-gradient(135deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
