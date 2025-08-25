@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFCMonitor - Frequently Asked Questions</title>
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34a853;
+            --background-color: #1a1a1a;
+            --surface-color: #2d2d2d;
+            --text-color: #e8eaed;
+            --text-muted: #9aa0a6;
+            --border-color: #3c4043;
+            --hover-color: #323639;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background-color: var(--surface-color);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            color: var(--text-color);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .category {
+            margin-bottom: 30px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-header {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-header:hover {
+            background: linear-gradient(90deg, #1557b0, #2d8f47);
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .category-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category.expanded .category-icon {
+            transform: rotate(180deg);
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .category.expanded .category-content {
+            max-height: 2000px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background-color: var(--hover-color);
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.expanded .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item.expanded .faq-answer {
+            max-height: 1000px;
+        }
+
+        .faq-answer-content {
+            padding: 20px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .faq-answer-content code {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--secondary-color);
+        }
+
+        .faq-answer-content ul, .faq-answer-content ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .faq-answer-content li {
+            margin: 5px 0;
+        }
+
+        .highlight {
+            background-color: rgba(26, 115, 232, 0.2);
+            border-radius: 4px;
+            padding: 2px 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .category-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 CFCMonitor FAQ</h1>
+            <p>Your complete guide to the Star Citizen Log Monitor</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search for questions..." id="searchInput">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <!-- Getting Started Category -->
+        <div class="category" id="getting-started">
+            <div class="category-header" onclick="toggleCategory('getting-started')">
+                <h2 class="category-title">🌟 Getting Started</h2>
+                <span class="category-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What is CFCMonitor and what does it do?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>CFCMonitor is a comprehensive log monitoring application specifically designed for Star Citizen. It tracks your gameplay activities, including:</p>
+                            <ul>
+                                <li><strong>Kill/Death Tracking:</strong> Monitors PvP and PvE combat statistics</li>
+                                <li><strong>Achievement System:</strong> Unlock achievements based on your gameplay milestones</li>
+                                <li><strong>Player Statistics:</strong> View detailed lifetime and session statistics</li>
+                                <li><strong>Leaderboards:</strong> Compare your performance with other players</li>
+                                <li><strong>Discord Integration:</strong> Automatic notifications for significant events</li>
+                                <li><strong>Real-time Monitoring:</strong> Live tracking of your Star Citizen game logs</li>
+                            </ul>
+                            <p>The application runs in the background while you play Star Citizen and automatically processes your game log files to provide insights into your gameplay performance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do I install and set up CFCMonitor for the first time?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Follow these steps to get CFCMonitor up and running:</p>
+                            <ol>
+                                <li><strong>Download:</strong> Get the latest version from the official source</li>
+                                <li><strong>Run the Application:</strong> Launch <code>CFCMonitor_V(#).exe</code></li>
+                                <li><strong>First-time Setup:</strong>
+                                    <ul>
+                                        <li>The app will prompt you to locate your Star Citizen game log file</li>
+                                        <li>Navigate to: <code>C:\Program Files\Roberts Space Industries\StarCitizen\LIVE\Game.log</code></li>
+                                        <li>Select the <code>Game.log</code> file</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Authentication:</strong> The app will verify your CFC organization membership</li>
+                                <li><strong>Configuration:</strong> Choose your preferred settings in the Settings menu</li>
+                            </ol>
+                            <p><strong>Note:</strong> Make sure Star Citizen is not running during the initial setup for best results.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Why can't I find my Game.log file?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>The Game.log file location can vary. Try these steps:</p>
+                            <ol>
+                                <li><strong>Default Location:</strong> <code>C:\Program Files\Roberts Space Industries\StarCitizen\LIVE\Game.log</code></li>
+                                <li><strong>Show Hidden Files:</strong> Enable "Show hidden files" in Windows Explorer (View → Hidden items)</li>
+                                <li><strong>Alternative Locations:</strong>
+                                    <ul>
+                                        <li><code>C:\Users\[YourUsername]\AppData\Local\StarCitizen\Game.log</code></li>
+                                        <li>Check your custom Star Citizen installation directory</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Create the File:</strong> If missing, launch Star Citizen once to generate the log file</li>
+                                <li><strong>Search Method:</strong> Use Windows search for "Game.log" in File Explorer</li>
+                            </ol>
+                            <p><strong>Tip:</strong> The log file is only created after you launch Star Citizen at least once.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Features Category -->
+        <div class="category" id="application-features">
+            <div class="category-header" onclick="toggleCategory('application-features')">
+                <h2 class="category-title">⚙️ Application Features</h2>
+                <span class="category-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do I change the application theme?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>CFCMonitor offers multiple themes to customize your experience:</p>
+                            <ol>
+                                <li><strong>Access Themes:</strong> Go to <code>File → Themes</code> in the menu bar</li>
+                                <li><strong>Theme Categories:</strong>
+                                    <ul>
+                                        <li><strong>Modern/Professional:</strong> Dark, Light, Midnight Blue, Charcoal, High Contrast</li>
+                                        <li><strong>Space/Sci-Fi:</strong> Star Citizen, Neon Blue, Neon Green, Deep Space</li>
+                                        <li><strong>Gaming:</strong> Retro Amber, Hacker Green, Military Green</li>
+                                        <li><strong>Colorful:</strong> Purple Haze, Ocean Depths, Sunset</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Apply Theme:</strong> Click on your preferred theme - changes apply immediately</li>
+                                <li><strong>Current Theme:</strong> Active themes are marked with a ★ symbol</li>
+                            </ol>
+                            <p><strong>Tip:</strong> The Star Citizen theme is specifically designed to match the game's aesthetic!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What information is shown in the Player Stats tab?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>The Player Stats tab provides comprehensive gameplay analytics:</p>
+                            <ul>
+                                <li><strong>Lifetime Statistics:</strong>
+                                    <ul>
+                                        <li>Total PvP Kills and Deaths with K/D ratio</li>
+                                        <li>Total PvE Kills and Deaths with K/D ratio</li>
+                                        <li>Achievement progress (unlocked/total)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Current Session Stats:</strong>
+                                    <ul>
+                                        <li>Session-specific kill/death counts</li>
+                                        <li>Session K/D performance</li>
+                                        <li>Time tracking for current play session</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Leaderboard Rankings:</strong>
+                                    <ul>
+                                        <li>Top 20 players by total kills</li>
+                                        <li>Your position highlighted if you're in top 20</li>
+                                        <li>K/D ratios for all ranked players</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Achievement Progress:</strong>
+                                    <ul>
+                                        <li>Total unlocked achievements out of the total achievements available</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do I access and configure settings?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Access the comprehensive settings through <code>File → Settings</code>:</p>
+                            <ul>
+                                <li><strong>General Settings:</strong>
+                                    <ul>
+                                        <li>Font size adjustment for console text</li>
+                                        <li>Application behavior on close (minimize to tray or exit)</li>
+                                        <li>Game log backup options and location</li>
+                                        <li>Debug logging toggle</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Theme Customization:</strong>
+                                    <ul>
+                                        <li>Custom console text and background colors</li>
+                                        <li>Live color preview</li>
+                                        <li>Hex color code input</li>
+                                        <li>Reset to theme defaults</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Notification Settings:</strong>
+                                    <ul>
+                                        <li>Kill notification sounds (requires pygame)</li>
+                                        <li>Achievement unlock notifications</li>
+                                        <li>System tray notifications</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What does the Feed tab show and how do I use it?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>The Feed tab is your real-time activity monitor showing:</p>
+                            <ul>
+                                <li><strong>Live Events:</strong>
+                                    <ul>
+                                        <li>Kill and death notifications with details</li>
+                                        <li>Achievement unlocks with descriptions</li>
+                                        <li>Application status messages</li>
+                                        <li>Debug information (if enabled)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Event Details Include:</strong>
+                                    <ul>
+                                        <li>Player names (killer/victim)</li>
+                                        <li>Weapon used in combat</li>
+                                        <li>Location/ship where event occurred</li>
+                                        <li>Timestamp for each event</li>
+                                        <li>PvP vs PvE classification</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Feed Management:</strong>
+                                    <ul>
+                                        <li><strong>Right-click</strong> in feed area for context menu</li>
+                                        <li><strong>Clear Feed:</strong> Remove all current entries</li>
+                                        <li><strong>Clear Debug Log:</strong> Remove debug messages only</li>
+                                        <li><strong>Copy:</strong> Copy selected text to clipboard</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Auto-scroll:</strong> Feed automatically scrolls to show latest events</li>
+                            </ul>
+                            <p><strong>Tip:</strong> The feed uses color coding to distinguish between different event types!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How does the system tray functionality work?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>CFCMonitor can minimize to the system tray for background operation:</p>
+                            <ul>
+                                <li><strong>Enable System Tray:</strong>
+                                    <ul>
+                                        <li>Go to <code>File → Settings → General</code></li>
+                                        <li>Set "Close button behavior" to "Minimize to system tray"</li>
+                                    </ul>
+                                </li>
+                                <li><strong>System Tray Features:</strong>
+                                    <ul>
+                                        <li><strong>Left-click:</strong> Restore application window</li>
+                                        <li><strong>Right-click:</strong> Access context menu</li>
+                                        <li><strong>Show Window:</strong> Bring app back to foreground</li>
+                                        <li><strong>Exit:</strong> Completely close the application</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Background Monitoring:</strong>
+                                    <ul>
+                                        <li>App continues monitoring Star Citizen logs</li>
+                                        <li>Achievement notifications still appear</li>
+                                        <li>Discord integration remains active</li>
+                                        <li>Statistics continue updating</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p><strong>Note:</strong> If system tray isn't available, the close button will exit the application normally.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What are the Links menu options and how do I use them?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>The Links menu provides quick access to useful Star Citizen resources:</p>
+                            <ul>
+                                <li><strong>Neofox Socials:</strong>
+                                    <ul>
+                                        <li>Twitch, YouTube, Twitter, Discord links</li>
+                                        <li>Direct access to community content</li>
+                                    </ul>
+                                </li>
+                                <li><strong>RSI (Robert Space Industries):</strong>
+                                    <ul>
+                                        <li><strong>Star Citizen:</strong> Main site, pledge store, subscriptions, merchandise</li>
+                                        <li><strong>What's New:</strong> COMM-LINK and patch notes</li>
+                                        <li><strong>Discover:</strong> Galactapedia and Starmap</li>
+                                        <li><strong>Community:</strong> Spectrum forums and guide system</li>
+                                        <li><strong>Server Status:</strong> Real-time server monitoring</li>
+                                        <li><strong>Squadron 42:</strong> Single-player campaign info</li>
+                                    </ul>
+                                </li>
+                                <li><strong>SC Tools:</strong>
+                                    <ul>
+                                        <li><strong>Combat:</strong> DPS Calculator, SC Armory, SnarePlan</li>
+                                        <li><strong>Mining/Trading:</strong> Regolith, SC Trade Tools, UEX, Aaron Halo routes</li>
+                                        <li><strong>Exploration:</strong> VerseGuide, CStone Survey, Quantum Calculator</li>
+                                        <li><strong>Universal:</strong> CStone, StarShip42, FleetYards, reference sheets</li>
+                                    </ul>
+                                </li>
+                                <li><strong>SC Guides:</strong> Comprehensive tutorials for all gameplay aspects</li>
+                            </ul>
+                            <p><strong>Usage:</strong> Simply click any link to open it in your default web browser.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Troubleshooting Category -->
+        <div class="category" id="troubleshooting">
+            <div class="category-header" onclick="toggleCategory('troubleshooting')">
+                <h2 class="category-title">🔧 Troubleshooting</h2>
+                <span class="category-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>The application isn't detecting my kills/deaths. What should I do?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>If CFCMonitor isn't tracking your gameplay events, try these solutions:</p>
+                            <ol>
+                                <li><strong>Check Log File Path:</strong>
+                                    <ul>
+                                        <li>Verify the Game.log file location is correct</li>
+                                        <li>Ensure the file exists and isn't empty</li>
+                                        <li>Check file permissions (should be readable)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Game Status Verification:</strong>
+                                    <ul>
+                                        <li>Make sure Star Citizen is actually running</li>
+                                        <li>Check if you're logged into the game (not just launcher)</li>
+                                        <li>Verify you're in the Persistent Universe (PU) or Arena Commander</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Restart Sequence:</strong>
+                                    <ul>
+                                        <li>Close CFCMonitor completely</li>
+                                        <li>Close Star Citizen</li>
+                                        <li>Start Star Citizen first</li>
+                                        <li>Then launch CFCMonitor</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Use Reload Function:</strong>
+                                    <ul>
+                                        <li>Go to <code>File → Reload Program</code></li>
+                                        <li>This refreshes the log monitoring without restarting</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Check Debug Log:</strong>
+                                    <ul>
+                                        <li>Enable debug logging in Settings</li>
+                                        <li>Look for error messages in the Feed tab</li>
+                                        <li>Check the debug.txt file in the config folder</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>I'm getting a "Database not available" error. How do I fix this?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Database connectivity issues can prevent proper functionality:</p>
+                            <ol>
+                                <li><strong>Check Internet Connection:</strong>
+                                    <ul>
+                                        <li>Ensure you have a stable internet connection</li>
+                                        <li>Test accessing other websites</li>
+                                        <li>Check if your firewall is blocking the application</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Firewall/Antivirus:</strong>
+                                    <ul>
+                                        <li>Add CFCMonitor to your firewall exceptions</li>
+                                        <li>Temporarily disable antivirus to test</li>
+                                        <li>Check if the app is being quarantined</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Restart Application:</strong>
+                                    <ul>
+                                        <li>Close and restart CFCMonitor</li>
+                                        <li>Wait 30-60 seconds for database connection to establish</li>
+                                        <li>Check if Player Stats tab loads properly</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Server Status:</strong>
+                                    <ul>
+                                        <li>The database servers might be temporarily down</li>
+                                        <li>Check Discord for announcements about server maintenance</li>
+                                        <li>Try again later if the issue persists</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Contact Support:</strong>
+                                    <ul>
+                                        <li>Use <code>Help → Submit Bug Report</code> if the issue continues</li>
+                                        <li>Include error details and your system information</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>The application won't start or crashes immediately. What's wrong?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Startup issues can be caused by several factors:</p>
+                            <ol>
+                                <li><strong>Multiple Instances:</strong>
+                                    <ul>
+                                        <li>Check if CFCMonitor is already running (system tray or Task Manager)</li>
+                                        <li>Close all instances and try starting again</li>
+                                        <li>Look for <code>app.lock</code> file in config folder and delete it</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Corrupted Configuration:</strong>
+                                    <ul>
+                                        <li>Navigate to: <code>C:\Users\[YourUsername]\AppData\Local\CFCMonitor\</code></li>
+                                        <li>Rename or delete the <code>config.json</code> file</li>
+                                        <li>Restart the application (will recreate default settings)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Missing Dependencies:</strong>
+                                    <ul>
+                                        <li>Ensure you have the latest Visual C++ Redistributables installed</li>
+                                        <li>Try running as administrator</li>
+                                        <li>Check Windows Event Viewer for specific error messages</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Antivirus Interference:</strong>
+                                    <ul>
+                                        <li>Add the application folder to antivirus exclusions</li>
+                                        <li>Temporarily disable real-time protection to test</li>
+                                        <li>Check quarantine for blocked files</li>
+                                    </ul>
+                                </li>
+                                <li><strong>System Compatibility:</strong>
+                                    <ul>
+                                        <li>Verify Windows 10/11 compatibility</li>
+                                        <li>Try running in compatibility mode for Windows 8/7</li>
+                                        <li>Check if .NET Framework is up to date</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>My statistics aren't updating or are showing incorrect values. How do I fix this?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Statistics synchronization issues can occur. Try these solutions:</p>
+                            <ol>
+                                <li><strong>Manual Refresh:</strong>
+                                    <ul>
+                                        <li>Switch between tabs to force a refresh</li>
+                                        <li>Use <code>File → Reload Program</code></li>
+                                        <li>Wait a few minutes for database synchronization</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Cache Issues:</strong>
+                                    <ul>
+                                        <li>Close and restart the application</li>
+                                        <li>Clear application cache by deleting temp files</li>
+                                        <li>Check if debug logging shows any errors</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Database Sync Delay:</strong>
+                                    <ul>
+                                        <li>Statistics may take 2-5 minutes to update in database</li>
+                                        <li>Local session stats update immediately</li>
+                                        <li>Lifetime stats depend on database connection</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Verify Event Detection:</strong>
+                                    <ul>
+                                        <li>Check if events appear in the Feed tab</li>
+                                        <li>Ensure kills/deaths are being detected correctly</li>
+                                        <li>Verify PvP vs PvE classification is correct</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Player Handle Issues:</strong>
+                                    <ul>
+                                        <li>Ensure your player handle is detected correctly</li>
+                                        <li>Check if character login events appear in the feed</li>
+                                        <li>Verify organization membership authentication</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Discord notifications aren't working. How do I set them up?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Discord integration requires proper webhook configuration:</p>
+                            <ol>
+                                <li><strong>Webhook Setup (Admin Only):</strong>
+                                    <ul>
+                                        <li>Discord webhook URLs are pre-configured by administrators</li>
+                                        <li>Individual users cannot modify webhook settings</li>
+                                        <li>Contact your organization admins if notifications aren't working</li>
+                                    </ul>
+                                </li>
+                                <li><strong>User-Level Troubleshooting:</strong>
+                                    <ul>
+                                        <li>Ensure you're authenticated with the correct organization</li>
+                                        <li>Check if your player handle is properly detected</li>
+                                        <li>Verify events are being detected in the Feed tab</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Network Issues:</strong>
+                                    <ul>
+                                        <li>Check internet connectivity</li>
+                                        <li>Verify firewall isn't blocking Discord webhooks</li>
+                                        <li>Test with different network if possible</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Event Filtering:</strong>
+                                    <ul>
+                                        <li>Only significant events trigger Discord notifications</li>
+                                        <li>PvE kills may not always generate notifications</li>
+                                        <li>Achievement unlocks should generate notifications</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Debug Information:</strong>
+                                    <ul>
+                                        <li>Enable debug logging to see webhook attempts</li>
+                                        <li>Look for Discord-related error messages</li>
+                                        <li>Use <code>Help → Submit Bug Report</code> for persistent issues</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>The application is using too much CPU/Memory. How can I optimize performance?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Optimize CFCMonitor's performance with these settings:</p>
+                            <ol>
+                                <li><strong>Reduce Debug Logging:</strong>
+                                    <ul>
+                                        <li>Disable debug logging in Settings if not needed</li>
+                                        <li>Clear the debug.txt file periodically</li>
+                                        <li>Limit console feed history</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Theme Optimization:</strong>
+                                    <ul>
+                                        <li>Use simpler themes (Dark/Light vs complex animated themes)</li>
+                                        <li>Avoid frequently switching themes</li>
+                                        <li>Reduce font size if very large</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Background Operation:</strong>
+                                    <ul>
+                                        <li>Minimize to system tray when not actively viewing</li>
+                                        <li>Close unnecessary browser tabs if using Links menu frequently</li>
+                                        <li>Restart the application periodically during long gaming sessions</li>
+                                    </ul>
+                                </li>
+                                <li><strong>System Resources:</strong>
+                                    <ul>
+                                        <li>Close other unnecessary applications while gaming</li>
+                                        <li>Ensure adequate RAM available (8GB+ recommended)</li>
+                                        <li>Check for Windows updates and driver updates</li>
+                                    </ul>
+                                </li>
+                                <li><strong>File System:</strong>
+                                    <ul>
+                                        <li>Place application on SSD if available</li>
+                                        <li>Ensure game log backup location has sufficient space</li>
+                                        <li>Defragment HDD if using traditional hard drive</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievement System Category -->
+        <div class="category" id="achievement-system">
+            <div class="category-header" onclick="toggleCategory('achievement-system')">
+                <h2 class="category-title">🏆 Achievement System</h2>
+                <span class="category-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How does the achievement system work?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>CFCMonitor features a comprehensive achievement system that tracks your Star Citizen gameplay milestones:</p>
+                            <ul>
+                                <li><strong>Automatic Tracking:</strong>
+                                    <ul>
+                                        <li>Achievements are automatically unlocked based on your gameplay</li>
+                                        <li>Progress is tracked in real-time as events occur</li>
+                                        <li>Both cumulative and specific achievements are available</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Achievement Categories:</strong>
+                                    <ul>
+                                        <li><strong>Kill Milestones:</strong> Total kills (1, 10, 100, 1000, etc.)</li>
+                                        <li><strong>Death Challenges:</strong> Specific death types or situations</li>
+                                        <li><strong>Weapon Mastery:</strong> Kills with specific weapons</li>
+                                        <li><strong>Location Achievements:</strong> Events in specific areas/ships</li>
+                                        <li><strong>Special Events:</strong> Crashes, suicides, self-destructs</li>
+                                        <li><strong>Collection Sets:</strong> Kill all variants of specific ships</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Retroactive Unlocking:</strong>
+                                    <ul>
+                                        <li>When you first use the app, it checks your existing stats</li>
+                                        <li>You'll immediately unlock achievements you've already earned</li>
+                                        <li>No progress is lost from gameplay before using CFCMonitor</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Progress Tracking:</strong>
+                                    <ul>
+                                        <li>View achievement progress in the Player Stats tab</li>
+                                        <li>See how many achievements you've unlocked vs. total available</li>
+                                        <li>Visual indicators show locked vs. unlocked status</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What types of achievements are available?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>CFCMonitor offers a diverse range of achievement types:</p>
+                            <ul>
+                                <li><strong>Milestone Achievements:</strong>
+                                    <ul>
+                                        <li><strong>Total Kills:</strong> 1, 10, 25, 50, 100, 250, 500, 1000+ kills</li>
+                                        <li><strong>Total Deaths:</strong> Milestone tracking for deaths experienced</li>
+                                        <li><strong>PvE Kills:</strong> Separate tracking for AI/NPC eliminations</li>
+                                        <li><strong>PvE Deaths:</strong> Deaths to AI enemies</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Weapon-Specific Achievements:</strong>
+                                    <ul>
+                                        <li>Kills with specific weapon types (ballistics, energy, missiles)</li>
+                                        <li>Mastery achievements for each weapon category</li>
+                                        <li>Both PvP and PvE weapon achievements</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Location-Based Achievements:</strong>
+                                    <ul>
+                                        <li>Kills/deaths in specific star systems</li>
+                                        <li>Ship-specific achievements (kills while in certain ships)</li>
+                                        <li>Location combinations (weapon + location achievements)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Special Event Achievements:</strong>
+                                    <ul>
+                                        <li><strong>Crash Events:</strong> Game crashes (unfortunate but tracked!)</li>
+                                        <li><strong>Suicide Events:</strong> Self-elimination incidents</li>
+                                        <li><strong>Self-Destruct:</strong> Ship self-destruction events</li>
+                                        <li><strong>Suffocation:</strong> Environmental deaths</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Collection Achievements:</strong>
+                                    <ul>
+                                        <li><strong>"Hornet's Nest":</strong> Kill all available Hornet variants</li>
+                                        <li>Ship family completion challenges</li>
+                                        <li>Manufacturer-specific collections</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Application Features:</strong>
+                                    <ul>
+                                        <li>Achievements for using specific app features</li>
+                                        <li>First-time usage milestones</li>
+                                        <li>Settings customization achievements</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do I view my achievement progress and unlock status?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Track your achievement progress through multiple locations in CFCMonitor:</p>
+                            <ol>
+                                <li><strong>Player Stats Tab:</strong>
+                                    <ul>
+                                        <li>Navigate to the "Player Stats" tab in the main interface</li>
+                                        <li>Scroll down to the "Achievements" section</li>
+                                        <li>View a comprehensive tree of all available achievements</li>
+                                        <li>See unlock status with visual indicators</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Achievement Display Elements:</strong>
+                                    <ul>
+                                        <li><strong>Unlocked Achievements:</strong> Highlighted with distinct styling</li>
+                                        <li><strong>Locked Achievements:</strong> Grayed out or different color scheme</li>
+                                        <li><strong>Progress Indicators:</strong> Show how close you are to unlocking</li>
+                                        <li><strong>Descriptions:</strong> Detailed requirements for each achievement</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Real-time Notifications:</strong>
+                                    <ul>
+                                        <li>Achievement unlocks appear immediately in the Feed tab</li>
+                                        <li>Desktop notifications may appear (if enabled)</li>
+                                        <li>Discord notifications for significant achievement unlocks</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Summary Statistics:</strong>
+                                    <ul>
+                                        <li>Total achievements unlocked vs. available</li>
+                                        <li>Achievement completion percentage</li>
+                                        <li>Recent unlock history</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Filtering and Sorting:</strong>
+                                    <ul>
+                                        <li>View achievements by category</li>
+                                        <li>Sort by unlock status, difficulty, or name</li>
+                                        <li>Search for specific achievements</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Why didn't I unlock an achievement I should have earned?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>If an achievement didn't unlock when expected, check these common issues:</p>
+                            <ol>
+                                <li><strong>Achievement Requirements:</strong>
+                                    <ul>
+                                        <li>Carefully review the exact achievement description</li>
+                                        <li>Some achievements have specific conditions (PvP only, specific weapons, etc.)</li>
+                                        <li>Location-based achievements require exact location matches</li>
+                                        <li>Check if the achievement distinguishes between PvP and PvE</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Event Detection Issues:</strong>
+                                    <ul>
+                                        <li>Verify the kill/death was properly detected in the Feed tab</li>
+                                        <li>Check if the event was classified correctly (PvP vs PvE)</li>
+                                        <li>Ensure your player handle was detected in the event</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Database Synchronization:</strong>
+                                    <ul>
+                                        <li>Achievement checks may take a few seconds to process</li>
+                                        <li>Database connectivity issues can delay achievement unlocks</li>
+                                        <li>Try refreshing the Player Stats tab after a few minutes</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Retroactive Processing:</strong>
+                                    <ul>
+                                        <li>Use <code>File → Reload Program</code> to trigger retroactive checks</li>
+                                        <li>The app performs achievement checks when starting up</li>
+                                        <li>Some achievements only trigger on new events, not historical data</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Troubleshooting Steps:</strong>
+                                    <ul>
+                                        <li>Enable debug logging to see achievement processing messages</li>
+                                        <li>Check if your statistics updated correctly</li>
+                                        <li>Restart the application to refresh achievement status</li>
+                                        <li>Submit a bug report if the issue persists</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Can I suggest new achievements or see what achievements are planned?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>The achievement system is continuously expanding with community input:</p>
+                            <p>We welcome your ideas and feedback to help shape the future of achievements!</p>
+                            <p>Achievement guide is available here: <a href="https://seethingword.github.io/CFCMonitor/CFC-achievement-guide.html" target="_blank">Achievement Guide</a></p>
+                            <ul>
+                                <li><strong>Submit Achievement Suggestions:</strong>
+                                    <ul>
+                                        <li>Use the planned "Submit Achievement Suggestion" feature (coming soon)</li>
+                                        <li>Visit the achievement suggestion website when available</li>
+                                        <li>Provide detailed descriptions and requirements for your ideas</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Suggestion Guidelines:</strong>
+                                    <ul>
+                                        <li><strong>Be Specific:</strong> Clear, measurable requirements</li>
+                                        <li><strong>Achievable:</strong> Possible within normal gameplay</li>
+                                        <li><strong>Interesting:</strong> Unique or challenging scenarios</li>
+                                        <li><strong>Trackable:</strong> Can be detected from game logs</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Types of Suggestions Welcome:</strong>
+                                    <ul>
+                                        <li>New milestone numbers for existing categories</li>
+                                        <li>Weapon-specific achievements for new weapons</li>
+                                        <li>Creative combination achievements</li>
+                                        <li>Event-based achievements</li>
+                                        <li>Skill-based challenges</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Community Review Process:</strong>
+                                    <ul>
+                                        <li>Suggestions are reviewed by the development team</li>
+                                        <li>Community feedback may influence implementation</li>
+                                        <li>Popular suggestions get priority consideration</li>
+                                        <li>Technical feasibility affects implementation timeline</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Stay Updated:</strong>
+                                    <ul>
+                                        <li>Check the Changelog for new achievement announcements</li>
+                                        <li>Join the Discord community for achievement discussions</li>
+                                        <li>Follow development updates for planned features</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do achievements affect my in-game Star Citizen progress?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>CFCMonitor achievements are completely separate from Star Citizen:</p>
+                            <ul>
+                                <li><strong>Third-Party System:</strong>
+                                    <ul>
+                                        <li>CFCMonitor achievements are independent of Star Citizen</li>
+                                        <li>They don't affect your in-game character or progress</li>
+                                        <li>No impact on aUEC, reputation, or game mechanics</li>
+                                        <li>Purely for community tracking and enjoyment</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Data Source:</strong>
+                                    <ul>
+                                        <li>Achievements are based solely on log file analysis</li>
+                                        <li>No direct integration with Star Citizen servers</li>
+                                        <li>No modification of game files or memory</li>
+                                        <li>Read-only monitoring of publicly available log data</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Community Benefits:</strong>
+                                    <ul>
+                                        <li>Bragging rights within the CFC community</li>
+                                        <li>Personal progress tracking and goals</li>
+                                        <li>Friendly competition with other members</li>
+                                        <li>Recognition for gameplay milestones</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Privacy and Safety:</strong>
+                                    <ul>
+                                        <li>No risk of account bans or violations</li>
+                                        <li>Doesn't interfere with game performance</li>
+                                        <li>Cloud Imperium Games (CIG) independent</li>
+                                        <li>Complies with Star Citizen Terms of Service</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Future Integration:</strong>
+                                    <ul>
+                                        <li>If CIG releases official APIs, integration might be possible</li>
+                                        <li>Currently no official mod support in Star Citizen</li>
+                                        <li>Will always remain optional and non-intrusive</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleCategory(categoryId) {
+            const category = document.getElementById(categoryId);
+            category.classList.toggle('expanded');
+        }
+
+        function toggleFAQ(questionElement) {
+            const faqItem = questionElement.parentElement;
+            faqItem.classList.toggle('expanded');
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    // Highlight search terms
+                    if (searchTerm) {
+                        const questionEl = item.querySelector('h3');
+                        const answerEl = item.querySelector('.faq-answer-content');
+                        
+                        questionEl.innerHTML = highlightText(questionEl.textContent, searchTerm);
+                        answerEl.innerHTML = highlightText(answerEl.textContent, searchTerm);
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+    </script>
+</body>
+</html>
