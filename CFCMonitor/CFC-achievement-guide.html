@@ -3,29 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Achievement System Guide</title>
+    <title>CFCMonitor - Complete Achievement System Guide</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; max-width: 1200px; }
-        h1 { color: #333; border-bottom: 2px solid #333; }
-        h2 { color: #555; border-bottom: 1px solid #ddd; }
-        h3 { color: #777; }
-        code { background: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
-        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
-        .toc { background: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0; }
-        .toc ol { margin: 0; }
-        .toc a { text-decoration: none; color: #0066cc; }
-        .toc a:hover { text-decoration: underline; }
-        strong { color: #333; }
-        hr { border: none; border-top: 1px solid #ddd; margin: 30px 0; }
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34a853;
+            --background-color: #1a1a1a;
+            --surface-color: #2d2d2d;
+            --text-color: #e8eaed;
+            --text-muted: #9aa0a6;
+            --border-color: #3c4043;
+            --hover-color: #323639;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .nav {
+            margin-bottom: 30px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            background: linear-gradient(90deg, #1557b0, #2d8f47);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .section-content {
+            padding: 30px;
+        }
+
+        .toc {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .toc h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .toc ol {
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        .toc li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin: 30px 0 20px 0;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+
+        h4 {
+            color: var(--text-color);
+            margin: 20px 0 10px 0;
+            font-size: 1.1rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        ul, ol {
+            color: var(--text-muted);
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: var(--text-color);
+        }
+
+        code {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--secondary-color);
+        }
+
+        pre {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-color);
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 30px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav a {
+                width: 100%;
+                text-align: center;
+                max-width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 Complete Achievement System Guide</h1>
+            <p>Master the CFCMonitor Achievement Framework</p>
+        </div>
 
-<h1>Complete Achievement System Guide</h1>
+        <nav class="nav">
+            <a href="documentation.html">🏠 Home</a>
+            <a href="CFC-achievement-guide.html">🏆 Achievement Guide</a>
+            <a href="FAQ.html">❓ FAQ</a>
+            <a href="documentation.html#installation">📦 Installation</a>
+            <a href="documentation.html#usage">🎮 Usage</a>
+            <a href="documentation.html#support">🆘 Support</a>
+        </nav>
 
-<div class="toc">
-<h2>Table of Contents</h2>
-<ol>
+        <main>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">📋</span>
+                    <h2 class="section-title">Table of Contents</h2>
+                </div>
+                <div class="section-content">
+                    <div class="toc">
+                        <ol>
     <li><a href="#overview">Overview</a></li>
     <li><a href="#achievement-description-types">Achievement Description Types</a></li>
     <li><a href="#basic-achievement-criteria-types">Basic Achievement Criteria Types</a></li>
@@ -40,21 +296,30 @@
     <li><a href="#database-setup-process">Database Setup Process</a></li>
     <li><a href="#testing--troubleshooting">Testing & Troubleshooting</a></li>
 </ol>
-</div>
+                    </div>
+                </div>
+            </div>
 
-<hr>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">📖</span>
+                    <h2 class="section-title" id="overview">Overview</h2>
+                </div>
+                <div class="section-content">
+                    <p>This guide covers the complete achievement system for CFCMonitor, including all criteria types, the new before/after description feature (v0.4.0.7), and how to properly set up achievements in your AppWrite database.</p>
 
-<h2 id="overview">Overview</h2>
+                    <p><strong>Current Compatibility</strong>: This guide is accurate for CFCMonitor v0.4.0.14 and earlier versions.</p>
 
-<p>This guide covers the complete achievement system for CFCMonitor, including all criteria types, the new before/after description feature (v0.4.0.7), and how to properly set up achievements in your AppWrite database.</p>
+                    <p><strong>AppWrite Collection</strong>: Achievements (688bf7d000350d504672)</p>
+                </div>
+            </div>
 
-<p><strong>Current Compatibility</strong>: This guide is accurate for CFCMonitor v0.4.0.14 and earlier versions.</p>
-
-<p><strong>AppWrite Collection</strong>: Achievements (688bf7d000350d504672)</p>
-
-<hr>
-
-<h2 id="achievement-description-types">Achievement Description Types</h2>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">📝</span>
+                    <h2 class="section-title" id="achievement-description-types">Achievement Description Types</h2>
+                </div>
+                <div class="section-content">
 
 <h3>Simple Description (Traditional)</h3>
 <p>For achievements where the description remains the same whether locked or unlocked:</p>
@@ -102,12 +367,16 @@
   "criteria_type": "PVP_SPECIFIC_KILL_LOCATION",
   "criteria_value": "secret_bunker_location"
 }</code></pre>
+                </div>
+            </div>
 
-<hr>
-
-<h2 id="basic-achievement-criteria-types">Basic Achievement Criteria Types</h2>
-
-<p>These are counter-based achievements that track cumulative statistics across all gameplay sessions.</p>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">🎯</span>
+                    <h2 class="section-title" id="basic-achievement-criteria-types">Basic Achievement Criteria Types</h2>
+                </div>
+                <div class="section-content">
+                    <p>These are counter-based achievements that track cumulative statistics across all gameplay sessions.</p>
 
 <h3>TOTAL_KILLS</h3>
 <p><strong>What it does</strong>: Tracks the total number of player-vs-player kills across all sessions<br>
@@ -184,12 +453,16 @@
   "criteria_type": "TOTAL_PVE_DEATHS",
   "criteria_value": 15
 }</code></pre>
+                </div>
+            </div>
 
-<hr>
-
-<h2 id="weapon-specific-achievements">Weapon-Specific Achievements</h2>
-
-<p>These achievements trigger based on the specific weapon used in kill/death events. The system uses internal weapon identifiers from the Assets Collection to match weapons accurately.</p>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">🔫</span>
+                    <h2 class="section-title" id="weapon-specific-achievements">Weapon-Specific Achievements</h2>
+                </div>
+                <div class="section-content">
+                    <p>These achievements trigger based on the specific weapon used in kill/death events. The system uses internal weapon identifiers from the Assets Collection to match weapons accurately.</p>
 
 <h3>PVP_SPECIFIC_KILL_WEAPON</h3>
 <p><strong>What it does</strong>: Unlocks when the player kills another player using a specific weapon<br>
@@ -267,12 +540,16 @@
   "criteria_type": "PVE_SPECIFIC_DEATH_WEAPON",
   "criteria_value": "automated_turret"
 }</code></pre>
+                </div>
+            </div>
 
-<hr>
-
-<h2 id="location-specific-achievements">Location-Specific Achievements</h2>
-
-<p>These achievements trigger based on the specific location where events occur. The system uses internal location identifiers from the Assets Collection and can track events at stations, planets, moons, facilities, and other points of interest.</p>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">📍</span>
+                    <h2 class="section-title" id="location-specific-achievements">Location-Specific Achievements</h2>
+                </div>
+                <div class="section-content">
+                    <p>These achievements trigger based on the specific location where events occur. The system uses internal location identifiers from the Assets Collection and can track events at stations, planets, moons, facilities, and other points of interest.</p>
 
 <h3>PVP_SPECIFIC_KILL_LOCATION</h3>
 <p><strong>What it does</strong>: Unlocks when the player kills another player at a specific location<br>
@@ -353,12 +630,16 @@
   "criteria_type": "PVE_SPECIFIC_DEATH_LOCATION",
   "criteria_value": "underground_cave"
 }</code></pre>
+                </div>
+            </div>
 
-<hr>
-
-<h2 id="damage-type-achievements">Damage Type Achievements</h2>
-
-<p>These achievements track the specific type of damage that caused a kill or death. They help categorize different combat styles and environmental dangers.</p>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">💥</span>
+                    <h2 class="section-title" id="damage-type-achievements">Damage Type Achievements</h2>
+                </div>
+                <div class="section-content">
+                    <p>These achievements track the specific type of damage that caused a kill or death. They help categorize different combat styles and environmental dangers.</p>
 
 <h3>SPECIFIC_DEATH_TYPE</h3>
 <p><strong>What it does</strong>: Unlocks when the player dies from a specific type of damage<br>
@@ -416,15 +697,17 @@
     <li><strong>punish</strong> - Punishment system damage</li>
     <li><strong>hazard</strong> - Environmental hazards</li>
     <li><strong>electric arc</strong> - Electric damage (processed from "ElectricArc")</li>
-</ul>
+                    </ul>
+                </div>
+            </div>
 
-<hr>
-
-<h2 id="event-specific-achievements">Event-Specific Achievements</h2>
-
-<p>These achievements trigger on specific game events regardless of other factors like weapons or locations. They track unique gameplay moments and special circumstances.</p>
-
-<h3>CRASH_EVENT</h3>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">⚡</span>
+                    <h2 class="section-title" id="event-specific-achievements">Event-Specific Achievements</h2>
+                </div>
+                <div class="section-content">
+                    <p>These achievements trigger on specific game events regardless of other factors like weapons or locations. They track unique gameplay moments and special circumstances.</p><h3>CRASH_EVENT</h3>
 <p><strong>What it does</strong>: Unlocks when the player experiences a game crash<br>
 <strong>When it triggers</strong>: On CRASH_EVENT where player is the client_player_name<br>
 <strong>How it works</strong>:</p>
@@ -531,15 +814,17 @@
     <li><strong>Event Triggering</strong>: Fire IN_APP_FEATURE_EVENT when features are accessed</li>
     <li><strong>Case Sensitivity</strong>: Feature names are case-insensitive but should be consistent</li>
     <li><strong>Multiple Features</strong>: Create separate achievements for each distinct feature</li>
-</ul>
+                    </ul>
+                </div>
+            </div>
 
-<hr>
-
-<h2 id="combination-achievements">Combination Achievements</h2>
-
-<p>These advanced achievement types combine multiple criteria into a single achievement, allowing for very specific and challenging unlock conditions.</p>
-
-<h3>Weapon + Location Combinations</h3>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">🔗</span>
+                    <h2 class="section-title" id="combination-achievements">Combination Achievements</h2>
+                </div>
+                <div class="section-content">
+                    <p>These advanced achievement types combine multiple criteria into a single achievement, allowing for very specific and challenging unlock conditions.</p><h3>Weapon + Location Combinations</h3>
 
 <p>These achievements require both a specific weapon AND a specific location to be used together.</p>
 
@@ -614,15 +899,17 @@
     <li><strong>Player Guidance</strong>: Direct players to try specific tactics in specific areas</li>
     <li><strong>Content Discovery</strong>: Encourage exploration of both weapons and locations</li>
     <li><strong>Replay Value</strong>: Provide long-term goals that require planning and skill</li>
-</ul>
+                    </ul>
+                </div>
+            </div>
 
-<hr>
-
-<h2 id="custom-criteria-advanced">Custom Criteria (Advanced)</h2>
-
-<p>The most powerful and flexible achievement system that allows you to create complex achievements with multiple conditions, custom logic, and advanced matching rules.</p>
-
-<h3>What Custom Criteria Does</h3>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">⚙️</span>
+                    <h2 class="section-title" id="custom-criteria-advanced">Custom Criteria (Advanced)</h2>
+                </div>
+                <div class="section-content">
+                    <p>The most powerful and flexible achievement system that allows you to create complex achievements with multiple conditions, custom logic, and advanced matching rules.</p><h3>What Custom Criteria Does</h3>
 <p><strong>Purpose</strong>: Create achievements with any combination of conditions that aren't possible with standard criteria types<br>
 <strong>Flexibility</strong>: Supports multiple conditions, array matching, AND/OR logic, and complex scenarios<br>
 <strong>Power</strong>: Can create achievements like "Kill any Hornet variant with explosive damage at Port Olisar while the victim is a specific player"<br>
@@ -806,12 +1093,16 @@
   "criteria_value": "{"event_types": ["KILL_EVENT"], "conditions": {"killer": "player_handle", "victim_ship_id": ["HORNET", "GLADIUS", "A1_Spirit"], "location": "PORT_OLISAR_STATION"}, "all_conditions_required": true}"
 }</code></pre>
 <p><strong>Explanation</strong>: Player must kill any ship containing "HORNET", "GLADIUS", or "A1_Spirit" at Port Olisar.</p>
+                </div>
+            </div>
 
-<hr>
-
-<h2 id="vehicle-and-weapon-count-achievements-advanced-tracking">Vehicle and Weapon Count Achievements (Advanced Tracking)</h2>
-
-<p>Starting in version 0.4.0.10, CFCMonitor includes advanced tracking of kills and deaths per vehicle and weapon using the <code>tracker_weapons_ships</code> system. This enables achievements like "Get 10 kills against players in Hornet ships", "Get 5 kills with the FS9 LMG", "Die 10 times in Aurora variants", or "Get killed by energy weapons 5 times".</p>
+            <div class="content-section">
+                <div class="section-header">
+                    <span style="font-size: 2rem;">🚀</span>
+                    <h2 class="section-title" id="vehicle-and-weapon-count-achievements-advanced-tracking">Vehicle and Weapon Count Achievements (Advanced Tracking)</h2>
+                </div>
+                <div class="section-content">
+                    <p>Starting in version 0.4.0.10, CFCMonitor includes advanced tracking of kills and deaths per vehicle and weapon using the <code>tracker_weapons_ships</code> system. This enables achievements like "Get 10 kills against players in Hornet ships", "Get 5 kills with the FS9 LMG", "Die 10 times in Aurora variants", or "Get killed by energy weapons 5 times".</p>
 
 <p><strong>Available Count Criteria</strong> (as of v0.4.0.14):</p>
 <ul>
@@ -1097,5 +1388,13 @@
 
 <p>This guide provides everything you need to create achievements for your CFCMonitor system. Start with simple achievements and gradually work up to more complex custom criteria as you become familiar with the system.</p>
 
+        </main>
+
+        <div class="footer">
+            <p>&copy; 2025 CFCMonitor Achievement Guide. All rights reserved.</p>
+            <p>Last updated: August 25, 2025</p>
+            <p>🏆 Master the achievement system</p>
+        </div>
+    </div>
 </body>
 </html>
