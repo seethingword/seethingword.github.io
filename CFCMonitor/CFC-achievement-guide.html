@@ -49,6 +49,7 @@
             font-size: 2.5rem;
             margin-bottom: 10px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            border-bottom: none;
         }
 
         .header p {
@@ -82,6 +83,42 @@
             background: linear-gradient(90deg, #1557b0, #2d8f47);
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-box {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background-color: var(--surface-color);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            color: var(--text-color);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .highlight {
+            background-color: rgba(26, 115, 232, 0.2);
+            border-radius: 4px;
+            padding: 2px 4px;
         }
 
         .content-section {
@@ -145,16 +182,82 @@
             color: var(--primary-color);
         }
 
+        .toc-section {
+            margin-bottom: 15px;
+        }
+
+        .toc-main-item {
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .toc-main-item:hover {
+            color: var(--secondary-color);
+        }
+
+        .toc-toggle {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .toc-subsections {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 20px;
+        }
+
+        .toc-section.expanded .toc-subsections {
+            max-height: 500px;
+            padding-top: 10px;
+        }
+
+        .toc-section.expanded .toc-toggle {
+            transform: rotate(180deg);
+        }
+
+        .toc-sub-item {
+            margin: 5px 0;
+            padding: 3px 0;
+            font-size: 0.9rem;
+        }
+
+        .toc-sub-item a {
+            color: var(--text-muted);
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .toc-sub-item a:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        .toc-sub-item a:hover {
+            color: var(--secondary-color);
+        }
+
         h1 {
             color: var(--text-color);
-            border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
             margin-bottom: 20px;
+            border: none;
+            border-bottom: none;
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
         }
 
         h2 {
             color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
             padding-bottom: 8px;
             margin: 30px 0 20px 0;
             font-size: 1.5rem;
@@ -164,6 +267,40 @@
             color: var(--secondary-color);
             margin: 25px 0 15px 0;
             font-size: 1.2rem;
+            cursor: pointer;
+            padding: 15px;
+            background-color: rgba(52, 168, 83, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        h3:hover {
+            background-color: rgba(52, 168, 83, 0.2);
+        }
+
+        .h3-toggle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .h3-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 0;
+        }
+
+        .h3-item.expanded .h3-content {
+            max-height: 2000px;
+        }
+
+        .h3-item.expanded .h3-toggle {
+            transform: rotate(180deg);
         }
 
         h4 {
@@ -236,6 +373,39 @@
             margin: 5px 0;
         }
 
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, #1557b0, #2d8f47);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -274,6 +444,11 @@
             <a href="documentation.html#support">🆘 Support</a>
         </nav>
 
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search achievements, sections, or content..." id="searchInput">
+            <span class="search-icon">🔍</span>
+        </div>
+
         <main>
             <div class="content-section">
                 <div class="section-header">
@@ -282,19 +457,115 @@
                 </div>
                 <div class="section-content">
                     <div class="toc">
-                        <ol>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#achievement-description-types">Achievement Description Types</a></li>
-    <li><a href="#basic-achievement-criteria-types">Basic Achievement Criteria Types</a></li>
-    <li><a href="#weapon-specific-achievements">Weapon-Specific Achievements</a></li>
-    <li><a href="#location-specific-achievements">Location-Specific Achievements</a></li>
-    <li><a href="#damage-type-achievements">Damage Type Achievements</a></li>
-    <li><a href="#event-specific-achievements">Event-Specific Achievements</a></li>
-    <li><a href="#combination-achievements">Combination Achievements</a></li>
-    <li><a href="#custom-criteria-advanced">Custom Criteria (Advanced)</a></li>
-    <li><a href="#vehicle-and-weapon-count-achievements-advanced-tracking">Vehicle and Weapon Count Achievements (Advanced Tracking)</a></li>
-    <li><a href="#asset-names-reference">Asset Names Reference</a></li>
-</ol>
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#overview">📖 Overview</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#achievement-description-types">📝 Achievement Description Types</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#simple-description">Simple Description</a></div>
+                                <div class="toc-sub-item"><a href="#dynamic-description">Dynamic Description</a></div>
+                                <div class="toc-sub-item"><a href="#how-to-create-dynamic-description-strings">How to Create Dynamic Description Strings</a></div>
+                                <div class="toc-sub-item"><a href="#hidden-achievement-example">Hidden Achievement Example</a></div>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#basic-achievement-criteria-types">🎯 Basic Achievement Criteria Types</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#total-kills">TOTAL_KILLS</a></div>
+                                <div class="toc-sub-item"><a href="#total-deaths">TOTAL_DEATHS</a></div>
+                                <div class="toc-sub-item"><a href="#total-pve-kills">TOTAL_PVE_KILLS</a></div>
+                                <div class="toc-sub-item"><a href="#total-pve-deaths">TOTAL_PVE_DEATHS</a></div>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#weapon-specific-achievements">🔫 Weapon-Specific Achievements</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#pvp-specific-kill-weapon">PVP_SPECIFIC_KILL_WEAPON</a></div>
+                                <div class="toc-sub-item"><a href="#pve-specific-kill-weapon">PVE_SPECIFIC_KILL_WEAPON</a></div>
+                                <div class="toc-sub-item"><a href="#pvp-specific-death-weapon">PVP_SPECIFIC_DEATH_WEAPON</a></div>
+                                <div class="toc-sub-item"><a href="#pve-specific-death-weapon">PVE_SPECIFIC_DEATH_WEAPON</a></div>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#location-specific-achievements">🌍 Location-Specific Achievements</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#pvp-specific-kill-location">PVP_SPECIFIC_KILL_LOCATION</a></div>
+                                <div class="toc-sub-item"><a href="#pve-specific-kill-location">PVE_SPECIFIC_KILL_LOCATION</a></div>
+                                <div class="toc-sub-item"><a href="#pvp-specific-death-location">PVP_SPECIFIC_DEATH_LOCATION</a></div>
+                                <div class="toc-sub-item"><a href="#pve-specific-death-location">PVE_SPECIFIC_DEATH_LOCATION</a></div>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#damage-type-achievements">💥 Damage Type Achievements</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#specific-death-type">SPECIFIC_DEATH_TYPE</a></div>
+                                <div class="toc-sub-item"><a href="#specific-kill-type">SPECIFIC_KILL_TYPE</a></div>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#event-specific-achievements">⚡ Event-Specific Achievements</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#crash-event">CRASH_EVENT</a></div>
+                                <div class="toc-sub-item"><a href="#suicide-event">SUICIDE_EVENT</a></div>
+                                <div class="toc-sub-item"><a href="#self-destruct-event">SELF_DESTRUCT_EVENT</a></div>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#combination-achievements">🔄 Combination Achievements</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#custom-criteria-advanced">🔧 Custom Criteria (Advanced)</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#vehicle-and-weapon-count-achievements-advanced-tracking">🚁 Vehicle and Weapon Count Achievements</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#asset-names-reference">📚 Asset Names Reference</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1360,5 +1631,191 @@
             <p>🏆 Master the achievement system</p>
         </div>
     </div>
+
+    <script>
+        // Toggle function for h3 sections
+        function toggleH3(element) {
+            const h3Item = element.closest('.h3-item');
+            if (!h3Item) return;
+            
+            const isCurrentlyExpanded = h3Item.classList.contains('expanded');
+            
+            // Close all other h3 items in the same section
+            const parentSection = h3Item.closest('.content-section');
+            if (parentSection) {
+                const allH3Items = parentSection.querySelectorAll('.h3-item');
+                allH3Items.forEach(item => {
+                    item.classList.remove('expanded');
+                });
+            }
+            
+            // If the clicked item wasn't expanded, expand it
+            if (!isCurrentlyExpanded) {
+                h3Item.classList.add('expanded');
+            }
+        }
+
+        // Toggle function for TOC sections
+        function toggleTocSection(element) {
+            const tocSection = element.closest('.toc-section');
+            if (!tocSection) return;
+            
+            tocSection.classList.toggle('expanded');
+        }
+
+        // Initialize h3 collapsible structure
+        function initializeH3Structure() {
+            const h3Elements = document.querySelectorAll('h3');
+            
+            h3Elements.forEach(h3 => {
+                // Skip if already processed or if it's inside a .toc or .section-title
+                if (h3.classList.contains('processed') || 
+                    h3.closest('.toc') || 
+                    h3.classList.contains('section-title')) {
+                    return;
+                }
+                
+                // Add ID based on text content for linking
+                if (!h3.id) {
+                    const id = h3.textContent.toLowerCase()
+                        .replace(/[^a-z0-9\s]/g, '')
+                        .replace(/\s+/g, '-')
+                        .trim();
+                    h3.id = id;
+                }
+                
+                // Create wrapper div
+                const wrapper = document.createElement('div');
+                wrapper.className = 'h3-item';
+                
+                // Insert wrapper before h3
+                h3.parentNode.insertBefore(wrapper, h3);
+                
+                // Move h3 into wrapper and add toggle icon
+                wrapper.appendChild(h3);
+                h3.innerHTML += ' <span class="h3-toggle">▼</span>';
+                h3.setAttribute('onclick', 'toggleH3(this)');
+                h3.classList.add('processed');
+                
+                // Create content container
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'h3-content';
+                
+                // Move all following content until next h3, h2, or section end
+                let nextElement = wrapper.nextSibling;
+                while (nextElement && 
+                       !nextElement.matches?.('h2, h3, .content-section, .section-header') &&
+                       nextElement.nodeType !== 8) { // 8 = comment node
+                    const currentElement = nextElement;
+                    nextElement = nextElement.nextSibling;
+                    
+                    // Only move if it's an element or significant text
+                    if (currentElement.nodeType === 1 || 
+                        (currentElement.nodeType === 3 && currentElement.textContent.trim())) {
+                        contentDiv.appendChild(currentElement);
+                    }
+                }
+                
+                wrapper.appendChild(contentDiv);
+            });
+        }
+
+        // Search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize h3 structure first
+            initializeH3Structure();
+            
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            // Store original content to prevent accumulating highlights
+            const originalContent = new Map();
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            contentSections.forEach(section => {
+                const sectionContent = section.querySelector('.section-content');
+                if (sectionContent) {
+                    originalContent.set(section, {
+                        title: section.querySelector('.section-title')?.textContent || '',
+                        content: sectionContent.innerHTML
+                    });
+                }
+            });
+            
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                
+                contentSections.forEach(section => {
+                    const original = originalContent.get(section);
+                    if (!original) return;
+                    
+                    const sectionTitle = section.querySelector('.section-title');
+                    const sectionContent = section.querySelector('.section-content');
+                    
+                    if (!sectionContent) return;
+                    
+                    const title = original.title.toLowerCase();
+                    const content = sectionContent.textContent.toLowerCase();
+                    
+                    if (!searchTerm || title.includes(searchTerm) || content.includes(searchTerm)) {
+                        section.style.display = 'block';
+                        
+                        // Apply highlighting
+                        if (searchTerm) {
+                            if (sectionTitle) {
+                                sectionTitle.innerHTML = highlightText(original.title, searchTerm);
+                            }
+                            sectionContent.innerHTML = highlightText(original.content, searchTerm);
+                            
+                            // Re-initialize h3 structure after highlighting
+                            initializeH3Structure();
+                        } else {
+                            if (sectionTitle) {
+                                sectionTitle.textContent = original.title;
+                            }
+                            sectionContent.innerHTML = original.content;
+                            
+                            // Re-initialize h3 structure after restoring content
+                            initializeH3Structure();
+                        }
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${escapeRegex(searchTerm)})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+        
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Back to Top functionality
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ▲
+    </button>
 </body>
 </html>

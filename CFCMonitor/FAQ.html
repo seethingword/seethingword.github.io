@@ -237,6 +237,39 @@
             padding: 2px 4px;
         }
 
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, #1557b0, #2d8f47);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -1299,35 +1332,101 @@
         }
 
         // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            // Store original content to prevent accumulating highlights
+            const originalContent = new Map();
             const faqItems = document.querySelectorAll('.faq-item');
             
             faqItems.forEach(item => {
-                const question = item.querySelector('h3').textContent.toLowerCase();
-                const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
-                
-                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    // Highlight search terms
-                    if (searchTerm) {
-                        const questionEl = item.querySelector('h3');
-                        const answerEl = item.querySelector('.faq-answer-content');
-                        
-                        questionEl.innerHTML = highlightText(questionEl.textContent, searchTerm);
-                        answerEl.innerHTML = highlightText(answerEl.textContent, searchTerm);
-                    }
-                } else {
-                    item.style.display = 'none';
+                const questionEl = item.querySelector('h3');
+                const answerEl = item.querySelector('.faq-answer-content');
+                if (questionEl && answerEl) {
+                    originalContent.set(item, {
+                        question: questionEl.textContent,
+                        answer: answerEl.innerHTML
+                    });
                 }
+            });
+            
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                
+                faqItems.forEach(item => {
+                    const original = originalContent.get(item);
+                    if (!original) return;
+                    
+                    const questionEl = item.querySelector('h3');
+                    const answerEl = item.querySelector('.faq-answer-content');
+                    
+                    if (!questionEl || !answerEl) return;
+                    
+                    const question = original.question.toLowerCase();
+                    const answer = answerEl.textContent.toLowerCase();
+                    
+                    if (!searchTerm || question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        item.parentElement.style.display = 'block'; // Show category
+                        
+                        // Apply highlighting
+                        if (searchTerm) {
+                            questionEl.innerHTML = highlightText(original.question, searchTerm);
+                            answerEl.innerHTML = highlightText(original.answer, searchTerm);
+                        } else {
+                            questionEl.textContent = original.question;
+                            answerEl.innerHTML = original.answer;
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Hide empty categories
+                const categories = document.querySelectorAll('.category');
+                categories.forEach(category => {
+                    const visibleItems = category.querySelectorAll('.faq-item[style*="block"], .faq-item:not([style*="none"])');
+                    if (searchTerm && visibleItems.length === 0) {
+                        category.style.display = 'none';
+                    } else {
+                        category.style.display = 'block';
+                    }
+                });
             });
         });
 
         function highlightText(text, searchTerm) {
             if (!searchTerm) return text;
-            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            const regex = new RegExp(`(${escapeRegex(searchTerm)})`, 'gi');
             return text.replace(regex, '<span class="highlight">$1</span>');
         }
+        
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Back to Top functionality
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
     </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ▲
+    </button>
 </body>
 </html>
