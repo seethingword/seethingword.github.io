@@ -291,7 +291,7 @@ body {
 
 .category-header {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    padding: 20px;
+    padding: 0px 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -306,6 +306,7 @@ body {
 .category-title {
     font-size: 1.3rem;
     font-weight: 600;
+    color:#e8eaed;
 }
 
 .category-icon {
@@ -337,7 +338,7 @@ body {
 }
 
 .faq-question {
-    padding: 20px;
+    padding: 0px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: flex;
