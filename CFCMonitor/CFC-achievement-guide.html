@@ -786,37 +786,6 @@
   "criteria_value": ""
 }</code></pre>
 
-<h3>IN_APP_FEATURE</h3>
-<p><strong>What it does</strong>: Unlocks when the player accesses hidden features, easter eggs, or special functions within the application<br>
-<strong>When it triggers</strong>: Either on IN_APP_FEATURE_EVENT with matching feature_name, or retrospectively when checking player_stats<br>
-<strong>How it works</strong>:</p>
-<ul>
-    <li><strong>Real-time</strong>: Triggered when IN_APP_FEATURE_EVENT is fired with specific feature_name in event_data</li>
-    <li><strong>Retrospective</strong>: Checks if player has the specified feature field set to true in player_stats database</li>
-    <li>Used for easter eggs, secret menus, cheat codes, hidden areas, developer features</li>
-    <li>Encourages exploration of the application's hidden functionality</li>
-    <li><strong>Note</strong>: Criteria_value should match the feature identifier used in your code</li>
-</ul>
-
-<pre><code>{
-  "id": "space_invaders_discoverer",
-  "name": "Space Explorer",
-  "description": "{"before": "Discover a hidden feature within the application", "after": "You found the Space Invaders easter egg!"}",
-  "criteria_type": "IN_APP_FEATURE",
-  "criteria_value": "easter_egg_1"
-}</code></pre>
-
-<p><strong>IN_APP_FEATURE Implementation Details:</strong></p>
-<ul>
-    <li><strong>Feature Naming</strong>: Use descriptive identifiers like "easter_egg_1", "secret_menu", "developer_mode"</li>
-    <li><strong>Database Fields</strong>: For retrospective checking, ensure boolean fields exist in player_stats</li>
-    <li><strong>Event Triggering</strong>: Fire IN_APP_FEATURE_EVENT when features are accessed</li>
-    <li><strong>Case Sensitivity</strong>: Feature names are case-insensitive but should be consistent</li>
-    <li><strong>Multiple Features</strong>: Create separate achievements for each distinct feature</li>
-                    </ul>
-                </div>
-            </div>
-
             <div class="content-section">
                 <div class="section-header">
                     <span style="font-size: 2rem;">🔗</span>
@@ -1073,7 +1042,6 @@
 <p><strong>Explanation</strong>: Unlocks if player kills an NPC OR dies to explosion damage. OR logic means only one condition needs to be met.</p>
 
 <h4>Get killed by a specific player</h4>
-```json
 <pre><code>{
   "id": "nemesis_victim",
   "name": "Nemesis Encounter",
@@ -1103,7 +1071,7 @@
                 <div class="section-content">
                     <p>Starting in version 0.4.0.10, CFCMonitor includes advanced tracking of kills and deaths per vehicle and weapon using the <code>tracker_weapons_ships</code> system. This enables achievements like "Get 10 kills against players in Hornet ships", "Get 5 kills with the FS9 LMG", "Die 10 times in Aurora variants", or "Get killed by energy weapons 5 times".</p>
 
-<p><strong>Available Count Criteria</strong> (as of v0.4.0.14):</p>
+<p><strong>Available Count Criteria</strong></p>
 <ul>
     <li><code>count_vehicle_kills</code> - Track kills against players flying specific vehicles</li>
     <li><code>count_weapon_kills</code> - Track kills using specific weapons</li>
@@ -1183,7 +1151,6 @@
 <p><strong>Purpose</strong>: Track deaths while flying specific vehicles<br>
 <strong>Use Case</strong>: "Die 10 times in a Hornet", "Survive the learning curve"</p>
 
-```json
 <pre><code>{
   "id": "hornet_learning_curve",
   "name": "Hornet Learning Curve", 
@@ -1218,7 +1185,6 @@
 }</code></pre>
 
 <h4>Multi-Vehicle Hunting Achievement</h4>
-```json
 <pre><code>{
   "id": "ship_variety_hunter",
   "name": "Ship Variety Hunter",
@@ -1303,7 +1269,6 @@
 }</code></pre>
 
 <p><strong>After</strong> (count-based kills):</p>
-```json
 <pre><code>{
   "criteria_type": "CUSTOM_CRITERIA",
   "criteria_value": "{"event_types": ["KILL_EVENT"], "conditions": {"count_vehicle_kills": {"vehicle_id": "ANVL_HORNET_F7_MK2_COLLECTOR_MOD", "count": 1}, "victim_type": "player"}}"
