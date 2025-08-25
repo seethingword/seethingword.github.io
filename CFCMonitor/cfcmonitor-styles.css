@@ -218,7 +218,7 @@ body {
 }
 
 .toc a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .toc-section {
