@@ -1218,7 +1218,18 @@
 
         function toggleFAQ(questionElement) {
             const faqItem = questionElement.parentElement;
-            faqItem.classList.toggle('expanded');
+            const isCurrentlyExpanded = faqItem.classList.contains('expanded');
+            
+            // Close all currently open FAQ items
+            const allFaqItems = document.querySelectorAll('.faq-item');
+            allFaqItems.forEach(item => {
+                item.classList.remove('expanded');
+            });
+            
+            // If the clicked item wasn't expanded, expand it
+            if (!isCurrentlyExpanded) {
+                faqItem.classList.add('expanded');
+            }
         }
 
         // Search functionality
