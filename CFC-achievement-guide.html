@@ -1175,6 +1175,8 @@
     <li><strong>normal</strong> - Environmental damage</li>
     <li><strong>punish</strong> - Punishment system damage</li>
     <li><strong>blunt force</strong> - Blunt force trauma damage</li>
+    <li><strong>hazard</strong> - Environmental hazards</li>
+    <li><strong>electric arc</strong> - Electric damage</li>
 </ul>
 
 <h3 id="important-notes-asset">Important Notes</h3>
@@ -1247,6 +1249,8 @@
         // Toggle function for categories (like FAQ.html)
         function toggleCategory(categoryId) {
             const category = document.getElementById(categoryId);
+            if (!category) return;
+            
             const isCurrentlyExpanded = category.classList.contains('expanded');
             
             // Close all currently open categories
