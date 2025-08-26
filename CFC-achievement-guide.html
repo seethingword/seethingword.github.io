@@ -1314,6 +1314,12 @@
             if (!h3Item) return;
             const isCurrentlyExpanded = h3Item.classList.contains('expanded');
             
+            // If the clicked item is already expanded, just close it
+            if (isCurrentlyExpanded) {
+                h3Item.classList.remove('expanded');
+                return;
+            }
+            
             // Close all other h3 items in the same category
             const parentCategory = h3Item.closest('.category-content');
             let hadOpenItems = false;
@@ -1329,51 +1335,49 @@
                 });
             }
             
-            // If the clicked item wasn't expanded, expand it
-            if (!isCurrentlyExpanded) {
-                if (hadOpenItems) {
-                    // Smooth transition: first close others, then open new one
-                    
-                    // Step 1: Close other items with a slight delay between each
-                    openItems.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.classList.remove('expanded');
-                        }, index * 50); // Stagger the closing
-                    });
-                    
-                    // Step 2: Wait for all closing animations, then open new item
+            // Open the clicked item
+            if (hadOpenItems) {
+                // Smooth transition: first close others, then open new one
+                
+                // Step 1: Close other items with a slight delay between each
+                openItems.forEach((item, index) => {
                     setTimeout(() => {
-                        h3Item.classList.add('expanded');
-                        
-                        // Step 3: Scroll after opening animation starts
-                        setTimeout(() => {
-                            // Force layout recalculation
-                            element.offsetHeight;
-                            
-                            requestAnimationFrame(() => {
-                                element.scrollIntoView({
-                                    behavior: 'smooth',
-                                    block: 'start'
-                                });
-                            });
-                        }, 150); // Reduced delay for smoother feel
-                        
-                    }, Math.max(250, openItems.length * 50 + 150)); // Dynamic delay based on number of items closing
-                    
-                } else {
-                    // No other items open, just expand immediately
+                        item.classList.remove('expanded');
+                    }, index * 50); // Stagger the closing
+                });
+                
+                // Step 2: Wait for all closing animations, then open new item
+                setTimeout(() => {
                     h3Item.classList.add('expanded');
                     
+                    // Step 3: Scroll after opening animation starts
                     setTimeout(() => {
+                        // Force layout recalculation
                         element.offsetHeight;
+                        
                         requestAnimationFrame(() => {
                             element.scrollIntoView({
                                 behavior: 'smooth',
                                 block: 'start'
                             });
                         });
-                    }, 100);
-                }
+                    }, 150); // Reduced delay for smoother feel
+                    
+                }, Math.max(250, openItems.length * 50 + 150)); // Dynamic delay based on number of items closing
+                
+            } else {
+                // No other items open, just expand immediately
+                h3Item.classList.add('expanded');
+                
+                setTimeout(() => {
+                    element.offsetHeight;
+                    requestAnimationFrame(() => {
+                        element.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    });
+                }, 100);
             }
         }
         // Toggle function for TOC sections
