@@ -10,43 +10,21 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="header" style="position: relative;">
-            <img src="Logo.png" alt="CFCMonitor Logo" style="height: 8em; position: absolute; left: 50px; top: 50%; transform: translateY(-50%);">
-            <div style="text-align: center; width: 100%;">
-                <h1>Complete Achievement System Guide</h1>
-                <p>Master the Cosmic Fox Corps Monitor Achievement Framework</p>
+    <!-- TOC Toggle Button -->
+    <button class="toc-toggle-btn sidebar-hidden" id="tocToggleBtn" onclick="toggleSidebar()">
+        📋 Table of Contents
+    </button>
+
+    <!-- Sidebar TOC positioned against left screen edge -->
+    <aside class="sidebar-toc hidden" id="sidebarToc">
+        <div class="category" id="table-of-contents">
+            <div class="toc-header">
+                <h2 class="category-title">📋 Table of Contents</h2>
             </div>
-        </div>
-
-        <nav class="nav">
-            <a href="documentation.html">🏠 Home</a>
-            <a href="CFC-achievement-guide.html">🏆 Achievement Guide</a>
-            <a href="FAQ.html">❓ FAQ</a>
-            <a href="submit-achievement.html">📝 Submit Achievement</a>
-            <a href="documentation.html#installation">📦 Installation</a>
-            <a href="documentation.html#usage">🎮 Usage</a>
-            <a href="documentation.html#support">🆘 Support</a>
-            <a href="https://discord.gg/neofox" target="_blank">💬 Discord</a>
-        </nav>
-
-        <div class="search-box">
-            <input type="text" class="search-input" placeholder="Search achievements, sections, or content..." id="searchInput">
-            <span class="search-icon">🔍</span>
-        </div>
-
-        <main>
-            <div class="category" id="table-of-contents">
-                <div class="category-header" onclick="toggleCategory('table-of-contents')">
-                    <h2 class="category-title">📋 Table of Contents</h2>
-                    <span class="category-icon">▼</span>
-                </div>
-                <div class="category-content">
-                    <div class="toc">
+            <div class="toc">
                         <div class="toc-section">
-                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                            <div class="toc-main-item"">
                                 <a href="#overview">📖 Overview</a>
-                                <span class="toc-toggle">▼</span>
                             </div>
                         </div>
 
@@ -57,10 +35,10 @@
                                 <span class="toc-toggle">▼</span>
                             </div>
                             <div class="toc-subsections">
-                                <div class="toc-sub-item"><a href="#totalkills" onclick="navigateToSection(event, 'totalkills')">TOTAL_KILLS</a></div>
-                                <div class="toc-sub-item"><a href="#totaldeaths" onclick="navigateToSection(event, 'totaldeaths')">TOTAL_DEATHS</a></div>
-                                <div class="toc-sub-item"><a href="#totalpvekills" onclick="navigateToSection(event, 'totalpvekills')">TOTAL_PVE_KILLS</a></div>
-                                <div class="toc-sub-item"><a href="#totalpvedeaths" onclick="navigateToSection(event, 'totalpvedeaths')">TOTAL_PVE_DEATHS</a></div>
+                                <div class="toc-sub-item"><a href="#totalkills" onclick="navigateToSection(event, 'totalkills')">TOTAL KILLS</a></div>
+                                <div class="toc-sub-item"><a href="#totaldeaths" onclick="navigateToSection(event, 'totaldeaths')">TOTAL DEATHS</a></div>
+                                <div class="toc-sub-item"><a href="#totalpvekills" onclick="navigateToSection(event, 'totalpvekills')">TOTAL PVE KILLS</a></div>
+                                <div class="toc-sub-item"><a href="#totalpvedeaths" onclick="navigateToSection(event, 'totalpvedeaths')">TOTAL PVE DEATHS</a></div>
                             </div>
                         </div>
 
@@ -70,10 +48,10 @@
                                 <span class="toc-toggle">▼</span>
                             </div>
                             <div class="toc-subsections">
-                                <div class="toc-sub-item"><a href="#pvpspecifickillweapon" onclick="navigateToSection(event, 'pvpspecifickillweapon')">PVP_SPECIFIC_KILL_WEAPON</a></div>
-                                <div class="toc-sub-item"><a href="#pvespecifickillweapon" onclick="navigateToSection(event, 'pvespecifickillweapon')">PVE_SPECIFIC_KILL_WEAPON</a></div>
-                                <div class="toc-sub-item"><a href="#pvpspecificdeathweapon" onclick="navigateToSection(event, 'pvpspecificdeathweapon')">PVP_SPECIFIC_DEATH_WEAPON</a></div>
-                                <div class="toc-sub-item"><a href="#pvespecificdeathweapon" onclick="navigateToSection(event, 'pvespecificdeathweapon')">PVE_SPECIFIC_DEATH_WEAPON</a></div>
+                                <div class="toc-sub-item"><a href="#pvpspecifickillweapon" onclick="navigateToSection(event, 'pvpspecifickillweapon')">PVP SPECIFIC KILL WEAPON</a></div>
+                                <div class="toc-sub-item"><a href="#pvespecifickillweapon" onclick="navigateToSection(event, 'pvespecifickillweapon')">PVE SPECIFIC KILL WEAPON</a></div>
+                                <div class="toc-sub-item"><a href="#pvpspecificdeathweapon" onclick="navigateToSection(event, 'pvpspecificdeathweapon')">PVP SPECIFIC DEATH WEAPON</a></div>
+                                <div class="toc-sub-item"><a href="#pvespecificdeathweapon" onclick="navigateToSection(event, 'pvespecificdeathweapon')">PVE SPECIFIC DEATH WEAPON</a></div>
                             </div>
                         </div>
 
@@ -83,10 +61,10 @@
                                 <span class="toc-toggle">▼</span>
                             </div>
                             <div class="toc-subsections">
-                                <div class="toc-sub-item"><a href="#pvpspecifickilllocation" onclick="navigateToSection(event, 'pvpspecifickilllocation')">PVP_SPECIFIC_KILL_LOCATION</a></div>
-                                <div class="toc-sub-item"><a href="#pvespecifickilllocation" onclick="navigateToSection(event, 'pvespecifickilllocation')">PVE_SPECIFIC_KILL_LOCATION</a></div>
-                                <div class="toc-sub-item"><a href="#pvpspecificdeathlocation" onclick="navigateToSection(event, 'pvpspecificdeathlocation')">PVP_SPECIFIC_DEATH_LOCATION</a></div>
-                                <div class="toc-sub-item"><a href="#pvespecificdeathlocation" onclick="navigateToSection(event, 'pvespecificdeathlocation')">PVE_SPECIFIC_DEATH_LOCATION</a></div>
+                                <div class="toc-sub-item"><a href="#pvpspecifickilllocation" onclick="navigateToSection(event, 'pvpspecifickilllocation')">PVP SPECIFIC KILL LOCATION</a></div>
+                                <div class="toc-sub-item"><a href="#pvespecifickilllocation" onclick="navigateToSection(event, 'pvespecifickilllocation')">PVE SPECIFIC KILL LOCATION</a></div>
+                                <div class="toc-sub-item"><a href="#pvpspecificdeathlocation" onclick="navigateToSection(event, 'pvpspecificdeathlocation')">PVP SPECIFIC DEATH LOCATION</a></div>
+                                <div class="toc-sub-item"><a href="#pvespecificdeathlocation" onclick="navigateToSection(event, 'pvespecificdeathlocation')">PVE SPECIFIC DEATH LOCATION</a></div>
                             </div>
                         </div>
 
@@ -96,8 +74,8 @@
                                 <span class="toc-toggle">▼</span>
                             </div>
                             <div class="toc-subsections">
-                                <div class="toc-sub-item"><a href="#specificdeathtype" onclick="navigateToSection(event, 'specificdeathtype')">SPECIFIC_DEATH_TYPE</a></div>
-                                <div class="toc-sub-item"><a href="#specifickilltype" onclick="navigateToSection(event, 'specifickilltype')">SPECIFIC_KILL_TYPE</a></div>
+                                <div class="toc-sub-item"><a href="#specificdeathtype" onclick="navigateToSection(event, 'specificdeathtype')">SPECIFIC DEATH TYPE</a></div>
+                                <div class="toc-sub-item"><a href="#specifickilltype" onclick="navigateToSection(event, 'specifickilltype')">SPECIFIC KILL TYPE</a></div>
                             </div>
                         </div>
 
@@ -107,15 +85,16 @@
                                 <span class="toc-toggle">▼</span>
                             </div>
                             <div class="toc-subsections">
-                                <div class="toc-sub-item"><a href="#crashevent" onclick="navigateToSection(event, 'crashevent')">CRASH_EVENT</a></div>
-                                <div class="toc-sub-item"><a href="#suicideevent" onclick="navigateToSection(event, 'suicideevent')">SUICIDE_EVENT</a></div>
-                                <div class="toc-sub-item"><a href="#selfdestructevent" onclick="navigateToSection(event, 'selfdestructevent')">SELF_DESTRUCT_EVENT</a></div>
+                                <div class="toc-sub-item"><a href="#crashevent" onclick="navigateToSection(event, 'crashevent')">CRASH EVENT</a></div>
+                                <div class="toc-sub-item"><a href="#suicideevent" onclick="navigateToSection(event, 'suicideevent')">SUICIDE EVENT</a></div>
+                                <div class="toc-sub-item"><a href="#selfdestructevent" onclick="navigateToSection(event, 'selfdestructevent')">SELF DESTRUCT EVENT</a></div>
+                                <div class="toc-sub-item"><a href="#suffocationdeath" onclick="navigateToSection(event, 'suffocationdeath')">SUFFOCATION DEATH EVENT</a></div>
                             </div>
                         </div>
 
                         <div class="toc-section">
                             <div class="toc-main-item" onclick="toggleTocSection(this)">
-                                <a href="#asset-names-reference">📚 Asset Names Reference</a>
+                                <a href="#asset-names-reference">📚 What You Can Use in Achievement Suggestions</a>
                                 <span class="toc-toggle">▼</span>
                             </div>
                             <div class="toc-subsections">
@@ -126,18 +105,47 @@
                     </div>
                 </div>
             </div>
+    </aside>
 
+    <!-- Main content area with container -->
+    <div class="main-container">
+        <div class="container">
+            <div class="header" style="position: relative;">
+                <img src="Logo.png" alt="CFCMonitor Logo" style="height: 8em; position: absolute; left: 50px; top: 50%; transform: translateY(-50%);">
+                <div style="text-align: center; width: 100%;">
+                    <h1>Complete Achievement System Guide</h1>
+                    <p>Master the Cosmic Fox Corps Monitor Achievement Framework</p>
+                </div>
+            </div>
+
+            <nav class="nav">
+                <a href="documentation.html">🏠 Home</a>
+                <a href="CFC-achievement-guide.html">🏆 Achievement Guide</a>
+                <a href="FAQ.html">❓ FAQ</a>
+                <a href="submit-achievement.html">📝 Submit Achievement</a>
+                <a href="documentation.html#installation">📦 Installation</a>
+                <a href="documentation.html#usage">🎮 Usage</a>
+                <a href="documentation.html#support">🆘 Support</a>
+                <a href="https://discord.gg/neofox" target="_blank">💬 Discord</a>
+            </nav>
+
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search achievements, sections, or content..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <main class="main-content">
             <div class="category" id="overview">
                 <div class="category-header" onclick="toggleCategory('overview')">
                     <h2 class="category-title">📖 Overview</h2>
                     <span class="category-icon">▼</span>
                 </div>
                 <div class="category-content">
-                    <p>This guide covers the complete achievement system for CFCMonitor, including all criteria types, & the new before/after description feature (v0.4.0.7).</p>
+                    <p>This guide covers the complete achievement system for CFCMonitor, showing you all the different ways achievements can be created and what makes each type special.</p>
 
-                    <p><strong>Current Compatibility</strong>: This guide is accurate for CFCMonitor v0.4.0.14 and earlier versions.</p>
+                    <p>Whether you want to suggest an achievement idea or understand what's possible, this guide will show you the creative potential of each criteria type.</p>
 
-                    <p><strong>Vehicle and Weapon ID's</strong> can be found on external websites like: <a href="https://starcitizen.tools/" target="_blank">starcitizen.tools</a> and <a href="https://finder.cstone.space/" target="_blank">Cornerstone</a>.</p>
+                    <p><strong>Achievement Ideas Welcome!</strong> Use this guide to understand what each criteria type can do, then suggest your own creative achievements using these building blocks.</p>
                 </div>
             </div>
 
@@ -148,54 +156,54 @@
                     <span class="category-icon">▼</span>
                 </div>
                 <div class="category-content">
-                    <p>These are counter-based achievements that track cumulative statistics across all gameplay sessions.</p>
+                    <p>These achievements reward players for reaching milestones in combat and survival. Perfect for recognizing dedication and progress over time.</p>
 
-                    <h3>TOTAL_KILLS</h3>
-                    <p><strong>What it does</strong>: Tracks the total number of player-vs-player kills across all sessions<br>
-                        <strong>When it triggers</strong>: Every time a KILL_EVENT occurs where the player is the killer and victim is another player (not NPC)<br>
-                        <strong>How it works</strong>:
+                    <h3 id="totalkills">TOTAL KILLS</h3>
+                    <p><strong>What it's for</strong>: Celebrating combat prowess against other players<br>
+                        <strong>Achievement ideas</strong>: "First Blood" (1 kill), "Veteran Fighter" (50 kills), "Combat Legend" (500 kills)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Increments player's PvP kill counter in the database</li>
-                        <li>Checks if new total meets or exceeds the criteria_value</li>
-                        <li>Unlocks achievement if threshold is reached</li>
-                        <li><strong>Note</strong>: This is cumulative - kills from different sessions, weapons, and locations all count</li>
+                        <li>Create progression tiers from rookie to elite fighter</li>
+                        <li>Reward players for participating in PvP combat</li>
+                        <li>Build reputation systems around combat achievements</li>
+                        <li><strong>Tip</strong>: Works great for org recruitment - shows active PvP participation</li>
                     </ul>
 
-                    <h3>TOTAL_DEATHS</h3>
-                    <p><strong>What it does</strong>: Tracks the total number of times the player has died to other players<br>
-                        <strong>When it triggers</strong>: Every time a DEATH_EVENT occurs where the player is the victim and killer is another player (not NPC)<br>
-                        <strong>How it works</strong>:
+                    <h3 id="totaldeaths">TOTAL DEATHS</h3>
+                    <p><strong>What it's for</strong>: Adding humor to defeats and encouraging resilience<br>
+                        <strong>Achievement ideas</strong>: "Learning Experience" (1 death), "Battle Scarred" (25 deaths), "Phoenix Rising" (100 deaths)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Increments player's PvP death counter in the database</li>
-                        <li>Checks if new total meets or exceeds the criteria_value</li>
-                        <li>Unlocks achievement if threshold is reached</li>
-                        <li><strong>Note</strong>: Only counts deaths to other players, not environmental deaths or NPC deaths</li>
+                        <li>Turn negative experiences into positive progression</li>
+                        <li>Create funny "badges of dishonor" that players can laugh about</li>
+                        <li>Reward persistence and willingness to engage in risky PvP</li>
+                        <li><strong>Tip</strong>: These achievements help reduce PvP anxiety by making deaths feel less punishing</li>
                     </ul>
 
-                    <h3>TOTAL_PVE_KILLS</h3>
-                    <p><strong>What it does</strong>: Tracks the total number of NPC kills across all sessions<br>
-                        <strong>When it triggers</strong>: Every time a KILL_EVENT occurs where the player is the killer and victim is an NPC<br>
-                        <strong>How it works</strong>:
+                    <h3 id="totalpvekills">TOTAL PVE KILLS</h3>
+                    <p><strong>What it's for</strong>: Recognizing PvE combat mastery and mission completion<br>
+                        <strong>Achievement ideas</strong>: "Bounty Hunter" (100 NPC kills), "Sector Cleaner" (1000 kills), "AI Nemesis" (5000 kills)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Increments player's PvE kill counter in the database</li>
-                        <li>Distinguishes NPCs from players using internal game identifiers</li>
-                        <li>Checks if new total meets or exceeds the criteria_value</li>
-                        <li><strong>Note</strong>: Includes all types of NPCs (guards, pirates, wildlife, etc.)</li>
+                        <li>Reward players who focus on PvE content like bunker missions</li>
+                        <li>Create milestones for different types of gameplay preferences</li>
+                        <li>Recognize dedication to clearing security forces or pirate threats</li>
+                        <li><strong>Tip</strong>: Great for players who prefer cooperative or solo PvE over PvP combat</li>
                     </ul>
 
-                    <h3>TOTAL_PVE_DEATHS</h3>
-                    <p><strong>What it does</strong>: Tracks the total number of times the player has died to NPCs<br>
-                        <strong>When it triggers</strong>: Every time a DEATH_EVENT occurs where the player is the victim and killer is an NPC<br>
-                        <strong>How it works</strong>:
+                    <h3 id="totalpvedeaths">TOTAL PVE DEATHS</h3>
+                    <p><strong>What it's for</strong>: Acknowledging the learning curve and exploration risks<br>
+                        <strong>Achievement ideas</strong>: "Security Encounter" (first death to guards), "Underestimated the Opposition" (10 NPC deaths), "Lesson Learned" (50 deaths)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Increments player's PvE death counter in the database</li>
-                        <li>Identifies NPC killers using internal game identifiers</li>
-                        <li>Checks if new total meets or exceeds the criteria_value</li>
-                        <li><strong>Note</strong>: Includes deaths to all NPCs (security, pirates, turrets, etc.) but not environmental deaths</li>
+                        <li>Mark first encounters with different types of threats</li>
+                        <li>Create educational achievements about game world dangers</li>
+                        <li>Reward exploration of high-risk areas with tough NPCs</li>
+                        <li><strong>Tip</strong>: Perfect for new player guidance - shows they're exploring and learning</li>
                     </ul>
                 </div>
             </div>
@@ -206,55 +214,54 @@
                     <span class="category-icon">▼</span>
                 </div>
                 <div class="category-content">
-                    <p>These achievements trigger based on the specific weapon used in kill/death events. The system uses internal weapon identifiers from the Assets Collection to match weapons accurately.</p>
+                    <p>These achievements celebrate mastery with specific weapons and can create interesting social dynamics around equipment choices.</p>
 
-                    <h3>PVP_SPECIFIC_KILL_WEAPON</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player kills another player using a specific weapon<br>
-                        <strong>When it triggers</strong>: On KILL_EVENT where player is killer, victim is another player, and weapon matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="pvpspecifickillweapon">PVP SPECIFIC KILL WEAPON</h3>
+                    <p><strong>What it's for</strong>: Rewarding skilled use of particular weapons against players<br>
+                        <strong>Achievement ideas</strong>: "Sniper Elite" (kill with sniper rifle), "Close Quarters" (kill with shotgun), "Old School" (kill with basic pistol)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Extracts weapon information from game logs</li>
-                        <li>Strips numerical suffixes from weapon names (e.g., "_1654651")</li>
-                        <li>Compares cleaned weapon name against criteria_value</li>
-                        <li>Uses internal_key from Assets Collection for accurate matching</li>
-                        <li><strong>Note</strong>: This is a one-time unlock, not cumulative</li>
+                        <li>Create weapon mastery challenges that encourage trying different loadouts</li>
+                        <li>Build prestige around difficult-to-use or rare weapons</li>
+                        <li>Design themed achievements around weapon categories</li>
+                        <li><strong>Tip</strong>: Great for encouraging weapon diversity in PvP encounters</li>
                     </ul>
 
-                    <h3>PVE_SPECIFIC_KILL_WEAPON</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player kills an NPC using a specific weapon<br>
-                        <strong>When it triggers</strong>: On KILL_EVENT where player is killer, victim is an NPC, and weapon matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="pvespecifickillweapon">PVE SPECIFIC KILL WEAPON</h3>
+                    <p><strong>What it's for</strong>: Testing weapon effectiveness against NPCs in a safer environment<br>
+                        <strong>Achievement ideas</strong>: "Field Test Complete" (kill NPC with new weapon), "Bunker Buster" (clear facility with specific weapon), "Pirate Hunter" (eliminate pirates with chosen gun)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Similar to PVP weapon kills but specifically checks for NPC victims</li>
-                        <li>Useful for weapon mastery achievements against AI enemies</li>
-                        <li>Often easier to achieve than PVP weapon kills</li>
-                        <li><strong>Note</strong>: Great for testing weapon-specific achievement mechanics</li>
+                        <li>Perfect for weapon tutorial achievements - easier than PvP requirements</li>
+                        <li>Create mission-specific weapon challenges</li>
+                        <li>Build achievements around roleplay scenarios (bounty hunter, security contractor)</li>
+                        <li><strong>Tip</strong>: Ideal stepping stone before attempting similar PvP weapon achievements</li>
                     </ul>
 
-                    <h3>PVP_SPECIFIC_DEATH_WEAPON</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player gets killed by another player using a specific weapon<br>
-                        <strong>When it triggers</strong>: On DEATH_EVENT where player is victim, killer is another player, and weapon matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="pvpspecificdeathweapon">PVP SPECIFIC DEATH WEAPON</h3>
+                    <p><strong>What it's for</strong>: Adding humor to defeats and creating memorable "war stories"<br>
+                        <strong>Achievement ideas</strong>: "Humbled by a Pistol" (killed by basic sidearm), "Railgun Victim" (hit by sniper), "Explosives Expert Target" (killed by grenades)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Tracks what weapon killed the player</li>
-                        <li>Useful for "unlucky" or "experience" type achievements</li>
-                        <li>Can create interesting social dynamics (players may seek out specific death types)</li>
-                        <li><strong>Note</strong>: These achievements add humor and can reduce frustration from deaths</li>
+                        <li>Turn embarrassing deaths into funny achievements players can share</li>
+                        <li>Create social dynamics where players hunt specific weapon kills</li>
+                        <li>Build achievements around experiencing different combat styles</li>
+                        <li><strong>Tip</strong>: These can actually make players less frustrated about dying in PvP</li>
                     </ul>
 
-                    <h3>PVE_SPECIFIC_DEATH_WEAPON</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player gets killed by an NPC using a specific weapon<br>
-                        <strong>When it triggers</strong>: On DEATH_EVENT where player is victim, killer is an NPC, and weapon matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="pvespecificdeathweapon">PVE SPECIFIC DEATH WEAPON</h3>
+                    <p><strong>What it's for</strong>: Warning about area-specific threats and first-time exploration<br>
+                        <strong>Achievement ideas</strong>: "Security Checkpoint" (killed by station turrets), "Underestimated Security" (killed by guard's rifle), "Bunker Hazard" (killed by facility defenses)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Tracks NPC weapon kills against the player</li>
-                        <li>Useful for location-specific dangers (turrets, security forces)</li>
-                        <li>Can warn players about specific threats in areas</li>
-                        <li><strong>Note</strong>: Often tied to exploring dangerous areas or attempting infiltrations</li>
+                        <li>Mark first encounters with dangerous areas or security systems</li>
+                        <li>Create exploration achievements tied to specific locations</li>
+                        <li>Build educational achievements about environmental dangers</li>
+                        <li><strong>Tip</strong>: Excellent for teaching new players about different threat levels</li>
                     </ul>
                 </div>
             </div>
@@ -265,58 +272,54 @@
                     <span class="category-icon">▼</span>
                 </div>
                 <div class="category-content">
-                    <p>These achievements trigger based on the specific location where events occur. The system uses internal location identifiers from the Assets Collection and can track events at stations, planets, moons, facilities, and other points of interest.</p>
+                    <p>These achievements encourage exploration and can create territorial significance around different areas of the game world.</p>
 
-                    <h3>PVP_SPECIFIC_KILL_LOCATION</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player kills another player at a specific location<br>
-                        <strong>When it triggers</strong>: On KILL_EVENT where player is killer, victim is another player, and location matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="pvpspecifickilllocation">PVP SPECIFIC KILL LOCATION</h3>
+                    <p><strong>What it's for</strong>: Claiming territory and encouraging exploration to specific areas<br>
+                        <strong>Achievement ideas</strong>: "Orison Dominator" (kill at Orison), "Jumptown Veteran" (kill at drug lab), "Station Guardian" (defend a specific station)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Extracts location data from game logs</li>
-                        <li>Compares location against internal_key from Assets Collection</li>
-                        <li>Can track kills at stations, landing zones, space, planetary surfaces, etc.</li>
-                        <li>Useful for territorial control or exploration achievements</li>
-                        <li><strong>Note</strong>: Great for encouraging players to visit specific areas or create PvP hotspots</li>
+                        <li>Create territorial control achievements for organizations</li>
+                        <li>Build tourism achievements that reward visiting famous PvP hotspots</li>
+                        <li>Design exploration challenges that lead to memorable locations</li>
+                        <li><strong>Tip</strong>: Perfect for creating org-based competition over strategic locations</li>
                     </ul>
 
-                    <h3>PVE_SPECIFIC_KILL_LOCATION</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player kills an NPC at a specific location<br>
-                        <strong>When it triggers</strong>: On KILL_EVENT where player is killer, victim is an NPC, and location matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="pvespecifickilllocation">PVE SPECIFIC KILL LOCATION</h3>
+                    <p><strong>What it's for</strong>: Rewarding thorough exploration and mission completion in specific areas<br>
+                        <strong>Achievement ideas</strong>: "Bunker Cleaner" (clear specific facility), "Asteroid Patrol" (eliminate pirates in belt), "Security Response" (handle threats at stations)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Tracks NPC kills at specific locations</li>
-                        <li>Useful for mission-area achievements or exploration rewards</li>
-                        <li>Can encourage players to clear specific facilities or areas</li>
-                        <li>Often tied to bunker missions, outpost clearing, or security encounters</li>
-                        <li><strong>Note</strong>: Helps guide players to content areas and rewards thorough exploration</li>
+                        <li>Create mission-area mastery achievements</li>
+                        <li>Build exploration rewards for finding and clearing hidden locations</li>
+                        <li>Design achievements around different gameplay loops (mining security, trade route protection)</li>
+                        <li><strong>Tip</strong>: Great for guiding players to content areas they might otherwise miss</li>
                     </ul>
 
-                    <h3>PVP_SPECIFIC_DEATH_LOCATION</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player gets killed by another player at a specific location</p>
-                    <p><strong>When it triggers</strong>: On DEATH_EVENT where player is victim, killer is another player, and location matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="pvpspecificdeathlocation">PVP SPECIFIC DEATH LOCATION</h3>
+                    <p><strong>What it's for</strong>: Creating "tourist" achievements and marking dangerous territories<br>
+                        <strong>Achievement ideas</strong>: "Jumptown Tourist" (died at notorious PvP location), "Station Casualty" (killed at major hub), "Deep Space Victim" (died in remote system)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Tracks where the player dies to other players</li>
-                        <li>Can create "tourist" achievements for visiting dangerous areas</li>
-                        <li>Often used for high-risk location exploration rewards</li>
-                        <li>May indicate PvP hotspots or dangerous territories</li>
-                        <li><strong>Note</strong>: Adds humor to deaths and can reduce frustration by providing progression</li>
+                        <li>Turn dangerous areas into exploration challenges</li>
+                        <li>Create funny "pilgrimage" achievements for visiting infamous locations</li>
+                        <li>Build social achievements around shared experiences in risky areas</li>
+                        <li><strong>Tip</strong>: These make exploring dangerous areas feel rewarding even when it goes wrong</li>
                     </ul>
 
-                    <h3>PVE_SPECIFIC_DEATH_LOCATION</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player gets killed by an NPC at a specific location<br>
-                        <strong>When it triggers</strong>: On DEATH_EVENT where player is victim, killer is an NPC, and location matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="pvespecificdeathlocation">PVE SPECIFIC DEATH LOCATION</h3>
+                    <p><strong>What it's for</strong>: Learning about environmental dangers and security systems<br>
+                        <strong>Achievement ideas</strong>: "Restricted Area" (died in high-security zone), "Facility Hazard" (killed at dangerous outpost), "First Contact" (died exploring new location)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Tracks deaths to NPCs at specific locations</li>
-                        <li>Useful for marking dangerous areas or high-security zones</li>
-                        <li>Can warn players about location-specific threats</li>
-                        <li>Often indicates the first time visiting a heavily guarded area</li>
-                        <li><strong>Note</strong>: Educational achievements that teach players about game world dangers</li>
+                        <li>Mark first exploration attempts of challenging areas</li>
+                        <li>Create educational achievements about different security levels</li>
+                        <li>Build progression achievements for overcoming location-specific threats</li>
+                        <li><strong>Tip</strong>: Perfect for teaching new players about the galaxy's danger zones</li>
                     </ul>
                 </div>
             </div>
@@ -327,51 +330,32 @@
                     <span class="category-icon">▼</span>
                 </div>
                 <div class="category-content">
-                    <p>These achievements track the specific type of damage that caused a kill or death. They help categorize different combat styles and environmental dangers.</p>
+                    <p>These achievements focus on how combat happens rather than what weapons are used, creating unique gameplay moments and encouraging creative approaches.</p>
 
-                    <h3>SPECIFIC_DEATH_TYPE</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player dies from a specific type of damage<br>
-                        <strong>When it triggers</strong>: On DEATH_EVENT where the damage type matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <h3 id="specificdeathtype">SPECIFIC DEATH TYPE</h3>
+                    <p><strong>What it's for</strong>: Marking unique death experiences and teaching about game mechanics<br>
+                        <strong>Achievement ideas</strong>: "Space Walk Gone Wrong" (suffocation), "Gravity Lesson" (collision damage), "Close Encounter" (takedown death)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Analyzes the damage type field from game logs</li>
-                        <li>Processes raw damage types into standardized categories</li>
-                        <li>Can track environmental deaths, combat deaths, or accident deaths</li>
-                        <li>Useful for creating educational or humorous achievements</li>
-                        <li><strong>Note</strong>: Helps players understand different death mechanics and game world dangers</li>
+                        <li>Create educational achievements about environmental dangers</li>
+                        <li>Build funny achievements around unusual death circumstances</li>
+                        <li>Design achievements that teach players about different hazards</li>
+                        <li><strong>Tip</strong>: Great for making deaths feel educational rather than just frustrating</li> 
                     </ul>
-
-                    <h3>SPECIFIC_KILL_TYPE</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player kills someone using a specific type of damage<br>
-                        <strong>When it triggers</strong>: On KILL_EVENT where player is killer and damage type matches criteria_value<br>
-                        <strong>How it works</strong>:
+                    <p><strong>List of different damage types can be found <a href="#damage-types">here</a>.</strong></p>
+                    <h3 id="specifickilltype">SPECIFIC KILL TYPE</h3>
+                    <p><strong>What it's for</strong>: Rewarding creative combat approaches and tactical diversity<br>
+                        <strong>Achievement ideas</strong>: "Up Close and Personal" (takedown kill), "Demolition Expert" (explosion kill), "Accident Prone" (collision kill)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Tracks the damage type used to eliminate targets</li>
-                        <li>Encourages different combat approaches and tactics</li>
-                        <li>Can promote creative killing methods</li>
-                        <li>Often tied to specific scenarios or equipment usage</li>
-                        <li><strong>Note</strong>: Creates variety in combat achievements beyond just weapon-specific kills</li>
+                        <li>Encourage players to try different combat tactics beyond just shooting</li>
+                        <li>Create challenges around environmental kills and creative solutions</li>
+                        <li>Build achievements around specific combat scenarios or situations</li>
+                        <li><strong>Tip</strong>: Perfect for rewarding outside-the-box thinking in combat</li>
                     </ul>
-
-                    <p><strong>Available Damage Types:</strong></p>
-                    <ul>
-                        <li><strong>takedown</strong> - Melee kills/deaths</li>
-                        <li><strong>collision</strong> - Impact/crash damage</li>
-                        <li><strong>suicide</strong> - Self-inflicted damage</li>
-                        <li><strong>vehicle destruction</strong> - Vehicle destruction events</li>
-                        <li><strong>selfdestruct</strong> - Self-destruct events</li>
-                        <li><strong>suffocation</strong> - Oxygen deprivation deaths</li>
-                        <li><strong>bleed out</strong> - Bleeding out deaths</li>
-                        <li><strong>bullet</strong> - Ballistic projectile damage</li>
-                        <li><strong>explosion</strong> - Explosive damage</li>
-                        <li><strong>normal</strong> - Environmental damage</li>
-                        <li><strong>punish</strong> - Punishment system damage</li>
-                        <li><strong>blunt force</strong> - Blunt force trauma damage</li>
-                        <li><strong>hazard</strong> - Environmental hazards</li>
-                        <li><strong>electric arc</strong> - Electric damage</li>
-                    </ul>
+                    <p><strong>List of different damage types can be found <a href="#damage-types">here</a>.</strong></p>
                 </div>
             </div>
 
@@ -381,57 +365,53 @@
                     <span class="category-icon">▼</span>
                 </div>
                 <div class="category-content">
-                    <p>These achievements trigger on specific game events regardless of other factors like weapons or locations. They track unique gameplay moments and special circumstances.</p>
-                    <h3>CRASH_EVENT</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player experiences a game crash<br>
-                        <strong>When it triggers</strong>: On CRASH_EVENT where player is the client_player_name<br>
-                        <strong>How it works</strong>:
+                    <p>These achievements capture special moments and unusual circumstances that make for memorable gameplay stories.</p>
+                    <h3 id="crashevent">CRASH EVENT</h3>
+                    <p><strong>What it's for</strong>: Acknowledging ship crashes and tracking piloting incidents<br>
+                        <strong>Achievement ideas</strong>: "First Crash" (any ship crash), "Crash Test Dummy" (multiple crashes), "Aurora Wrecker" (crash in Aurora), "Connie Down" (crash in Constellation)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Automatically triggered when the game client crashes</li>
-                        <li>Logged by the system when game termination is detected</li>
-                        <li>Can be used for "survivor" type achievements that add humor to technical issues</li>
-                        <li>Helps track stability issues while rewarding players for persistence</li>
-                        <li><strong>Note</strong>: Turns a negative experience into a positive achievement moment</li>
+                        <li>Create general crash achievements for new pilot experiences</li>
+                        <li>Build progression achievements for frequent crashers</li>
+                        <li>Design ship-specific crash achievements for different vessels</li>
+                        <li><strong>Tip</strong>: Can track crashes by ship type - great for ship-specific humor achievements</li>
                     </ul>
 
-                    <h3>SUICIDE_EVENT</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player commits suicide in-game<br>
-                        <strong>When it triggers</strong>: On SUICIDE_EVENT where player is the client_player_name<br>
-                        <strong>How it works</strong>:
+                    <h3 id="suicideevent">SUICIDE EVENT</h3>
+                    <p><strong>What it's for</strong>: Detecting when suicide is the cause of death<br>
+                        <strong>Achievement ideas</strong>: "Self-Inflicted" (first suicide damage), "Oops Moment" (accidentally killed yourself), "Intentional Exit" (deliberate self-termination)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Triggered when player intentionally kills themselves</li>
-                        <li>Different from accidental deaths or deaths to other players</li>
-                        <li>Can track deliberate self-elimination for tactical or other reasons</li>
-                        <li>Often used for dark humor achievements</li>
-                        <li><strong>Note</strong>: Empty criteria_value since the event itself is the trigger</li>
+                        <li>Create achievements for accidental self-harm incidents</li>
+                        <li>Track when players accidentally hurt themselves with their own weapons</li>
+                        <li>Build achievements around learning weapon safety the hard way</li>
+                        <li><strong>Tip</strong>: This tracks suicide as a damage type - also counts toward total death counter</li>
                     </ul>
 
-                    <h3>SELF_DESTRUCT_EVENT</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player self-destructs their ship<br>
-                        <strong>When it triggers</strong>: On SELF_DESTRUCT_EVENT where player is the client_player_name<br>
-                        <strong>How it works</strong>:
+                    <h3 id="selfdestructevent">SELF DESTRUCT EVENT</h3>
+                    <p><strong>What it's for</strong>: Recognizing dramatic ship sacrifices and last-stand moments<br>
+                        <strong>Achievement ideas</strong>: "Going Down with the Ship" (first self-destruct), "Scorched Earth" (deny enemies your vessel), "Captain's Choice" (heroic self-sacrifice)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Specifically tracks ship self-destruct sequences</li>
-                        <li>Different from general suicide - this is vehicle-specific</li>
-                        <li>Often used as a last resort in combat or to prevent capture</li>
-                        <li>Can be strategic in certain scenarios</li>
-                        <li><strong>Note</strong>: Distinct from other death types as it's a deliberate ship destruction</li>
+                        <li>Create cinematic achievements around dramatic ship destruction</li>
+                        <li>Build achievements around preventing ship capture</li>
+                        <li>Design achievements for tactical denial of resources to enemies</li>
+                        <li><strong>Tip</strong>: Perfect for creating memorable "last stand" moments in PvP</li>
                     </ul>
 
-                    <h3>SUFFOCATION_DEATH_EVENT</h3>
-                    <p><strong>What it does</strong>: Unlocks when the player dies from suffocation/oxygen deprivation<br>
-                        <strong>When it triggers</strong>: On SUFFOCATION_DEATH_EVENT where player is the client_player_name<br>
-                        <strong>How it works</strong>:
+                    <h3 id="suffocationdeath">SUFFOCATION DEATH EVENT</h3>
+                    <p><strong>What it's for</strong>: Teaching about environmental dangers and EVA safety<br>
+                        <strong>Achievement ideas</strong>: "Vacuum Lesson" (first suffocation), "EVA Gone Wrong" (died during spacewalk), "Life Support Critical" (oxygen system failure)<br>
+                        <strong>Creative uses</strong>:
                     </p>
                     <ul>
-                        <li>Triggered when player runs out of oxygen in space or hostile environments</li>
-                        <li>Common when EVA suits fail or life support systems are damaged</li>
-                        <li>Educational achievement teaching about environmental dangers</li>
-                        <li>Often happens during exploration or after ship damage</li>
-                        <li><strong>Note</strong>: Specific to oxygen-related deaths, not general environmental damage</li>
+                        <li>Create educational achievements about space survival</li>
+                        <li>Build achievements around exploration risks and safety learning</li>
+                        <li>Design achievements that teach players about life support systems</li>
+                        <li><strong>Tip</strong>: Perfect for new player education about environmental hazards</li>
                     </ul>
                 </div>
             </div>
@@ -439,13 +419,14 @@
 
             <div class="category" id="asset-names-reference">
                 <div class="category-header" onclick="toggleCategory('asset-names-reference')">
-                    <h2 class="category-title">📚 Asset Names Reference</h2>
+                    <h2 class="category-title">📚 What You Can Use in Achievement Suggestions</h2>
                     <span class="category-icon">▼</span>
                 </div>
                 <div class="category-content">
+                    <p>When suggesting achievements, you can reference these specific game elements. Just mention them by name in your suggestion - we'll handle the technical details!</p>
 
-                    <h3 id="damage-types">Damage Types</h3>
-                    <p>Use these processed damage type names:</p>
+                    <h3 id="damage-types">Ways People Can Die or Kill</h3>
+                    <p>Your achievement suggestions can involve these different types of combat and death scenarios:</p>
 
                     <ul>
                         <li><strong>takedown</strong> - Melee kills/deaths</li>
@@ -464,26 +445,58 @@
                         <li><strong>electric arc</strong> - Electric damage</li>
                     </ul>
 
-                    <h3 id="important-notes-asset">Important Notes</h3>
+                    <h3 id="important-notes-asset">Tips for Suggesting Achievements</h3>
                     <ul>
-                        <li>All asset names use <strong>internal_key</strong> values from your Assets Collection</li>
-                        <li>Damage type comparisons are case-insensitive</li>
-                        <li>System automatically strips numerical suffixes (e.g., "_1654651")</li>
-                        <li>For CUSTOM_CRITERIA, use internal_key values, not display names</li>
+                        <li><strong>Be Creative!</strong> You can suggest achievements involving any weapons, ships, or locations you've seen in Star Citizen</li>
+                        <li><strong>Use Recognizable Names</strong> - Reference ships like "Aurora," "Constellation," or locations like "Lorville" or "Area18"</li>
+                        <li><strong>Mix and Match</strong> - Combine different criteria types for unique achievements (like "kill with a specific weapon at a specific location")</li>
+                        <li><strong>Don't Worry About Details</strong> - Just describe your idea clearly - we'll figure out the technical implementation</li>
+                        <li><strong>Think About Stories</strong> - The best achievements create memorable moments players will want to share</li>
                     </ul>
+
+                    <div style="background-color: #2a2a2a; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <h4 style="color: #4CAF50; margin-top: 0;">💡 Example Suggestion Format:</h4>
+                        <p style="font-style: italic; color: #cccccc; margin-bottom: 10px;">
+                            "I'd like an achievement called 'Aurora Pilot's Nightmare' for crashing an Aurora ship. 
+                            Maybe something funny like 'Close Quarters Specialist' for getting 5 takedown kills. 
+                            Or 'Lorville Tourist' for dying at Lorville!"
+                        </p>
+                        <p style="color: #888; font-size: 0.9em; margin-bottom: 0;">
+                            See? Just describe what you want - we handle the rest!
+                        </p>
+                    </div>
                 </div>
             </div>
 
         </main>
 
-        <div class="footer">
-            <p>&copy; 2025 CFCMonitor Achievement Guide. All rights reserved.</p>
-            <p>Last updated: August 25, 2025</p>
-            <p>🏆 Master the achievement system</p>
+            <div class="footer">
+                <p>&copy; 2025 CFCMonitor Achievement Guide. All rights reserved.</p>
+                <p>Last updated: August 25, 2025</p>
+                <p>🏆 Master the achievement system</p>
+            </div>
         </div>
     </div>
 
     <script>
+        // Toggle function for sidebar TOC
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebarToc');
+            const toggleBtn = document.getElementById('tocToggleBtn');
+            
+            sidebar.classList.toggle('hidden');
+            toggleBtn.classList.toggle('sidebar-hidden');
+            
+            // Update button text based on state
+            if (sidebar.classList.contains('hidden')) {
+                toggleBtn.textContent = '📋 Table of Contents';
+                toggleBtn.title = 'Show Table of Contents';
+            } else {
+                toggleBtn.textContent = '✖';
+                toggleBtn.title = 'Hide Table of Contents';
+            }
+        }
+
         // Toggle function for categories (like FAQ.html)
         function toggleCategory(categoryId) {
             const category = document.getElementById(categoryId);
@@ -591,7 +604,19 @@
         function toggleTocSection(element) {
             const tocSection = element.closest('.toc-section');
             if (!tocSection) return;
-            tocSection.classList.toggle('expanded');
+            
+            const isCurrentlyExpanded = tocSection.classList.contains('expanded');
+            
+            // Close all other TOC sections first
+            const allTocSections = document.querySelectorAll('.toc-section');
+            allTocSections.forEach(section => {
+                section.classList.remove('expanded');
+            });
+            
+            // If the clicked section wasn't expanded, expand it
+            if (!isCurrentlyExpanded) {
+                tocSection.classList.add('expanded');
+            }
         }
         // Navigate to section and open collapsed boxes
         function navigateToSection(event, targetId) {
@@ -666,13 +691,10 @@
                     h3.classList.contains('category-title')) {
                     return;
                 }
-                // Add ID based on text content for linking
-                if (!h3.id) {
-                    const id = h3.textContent.toLowerCase()
-                        .replace(/[^a-z0-9\s]/g, '')
-                        .replace(/\s+/g, '-')
-                        .trim();
-                    h3.id = id;
+                // Set ID from data-custom-id attribute if provided
+                const customId = h3.getAttribute('data-custom-id');
+                if (customId && !h3.id) {
+                    h3.id = customId;
                 }
                 // Create wrapper div
                 const wrapper = document.createElement('div');
