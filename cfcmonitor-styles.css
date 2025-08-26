@@ -495,12 +495,21 @@ h3:hover {
     overflow: hidden;
     transition: max-height 0.3s ease;
     margin-top: 0;
-    padding: 0 15px; /* Add horizontal padding for collapsed state */
+}
+
+.h3-content-inner {
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 .h3-item.expanded .h3-content {
     max-height: 5000px;
-    padding: 15px; /* Add full padding when expanded */
+}
+
+.h3-item.expanded .h3-content-inner {
+    opacity: 1;
+    transition-delay: 0.1s;
 }
 
 .h3-item.expanded .h3-toggle {
