@@ -38,14 +38,14 @@ body {
 /* Layout Styles */
 .toc-toggle-btn {
     position: fixed;
-    left: 330px; /* Position at the right edge of the TOC content (350px - 20px padding) */
-    top: 120px; /* Position flush with the first TOC section (Overview) */
-    width: 32px;
+    left: 328px;
+    top: 142px;
+    width: 23px;
     height: 65px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
-    border-radius: 0 12px 12px 0; /* Only round the right corners */
+    border-radius: 0 12px 12px 0;
     font-size: 1rem;
     cursor: pointer;
     z-index: 1001;
@@ -61,7 +61,6 @@ body {
     background: linear-gradient(135deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
     width: 38px;
     box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
-    transform: translateX(2px);
 }
 
 .sidebar-toc {
@@ -78,13 +77,10 @@ body {
     transition: transform 0.3s ease;
     border-right: 2px solid var(--border-color);
     box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
-    
-    /* Hide scrollbar for all browsers */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
 .sidebar-toc::-webkit-scrollbar {
     display: none;
 }
