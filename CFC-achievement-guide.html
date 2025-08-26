@@ -1313,17 +1313,67 @@
             const h3Item = element.closest('.h3-item');
             if (!h3Item) return;
             const isCurrentlyExpanded = h3Item.classList.contains('expanded');
+            
             // Close all other h3 items in the same category
             const parentCategory = h3Item.closest('.category-content');
+            let hadOpenItems = false;
+            let openItems = [];
+            
             if (parentCategory) {
                 const allH3Items = parentCategory.querySelectorAll('.h3-item');
                 allH3Items.forEach(item => {
-                    item.classList.remove('expanded');
+                    if (item.classList.contains('expanded') && item !== h3Item) {
+                        hadOpenItems = true;
+                        openItems.push(item);
+                    }
                 });
             }
+            
             // If the clicked item wasn't expanded, expand it
             if (!isCurrentlyExpanded) {
-                h3Item.classList.add('expanded');
+                if (hadOpenItems) {
+                    // Smooth transition: first close others, then open new one
+                    
+                    // Step 1: Close other items with a slight delay between each
+                    openItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.remove('expanded');
+                        }, index * 50); // Stagger the closing
+                    });
+                    
+                    // Step 2: Wait for all closing animations, then open new item
+                    setTimeout(() => {
+                        h3Item.classList.add('expanded');
+                        
+                        // Step 3: Scroll after opening animation starts
+                        setTimeout(() => {
+                            // Force layout recalculation
+                            element.offsetHeight;
+                            
+                            requestAnimationFrame(() => {
+                                element.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            });
+                        }, 150); // Reduced delay for smoother feel
+                        
+                    }, Math.max(250, openItems.length * 50 + 150)); // Dynamic delay based on number of items closing
+                    
+                } else {
+                    // No other items open, just expand immediately
+                    h3Item.classList.add('expanded');
+                    
+                    setTimeout(() => {
+                        element.offsetHeight;
+                        requestAnimationFrame(() => {
+                            element.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        });
+                    }, 100);
+                }
             }
         }
         // Toggle function for TOC sections
@@ -1476,33 +1526,179 @@
                     const categoryContent = category.querySelector('.category-content');
                     if (!categoryContent) return;
                     const title = original.title.toLowerCase();
-                    // Get text content excluding h3 elements from original content for search matching
-                    const textToSearch = getTextContentExcludingH3FromHTML(original.content).toLowerCase();
-                    if (!searchTerm || title.includes(searchTerm) || textToSearch.includes(searchTerm)) {
+                    
+                    if (!searchTerm) {
+                        // No search term - show everything
                         category.style.display = 'block';
-                        // Apply highlighting
-                        if (searchTerm) {
+                        if (categoryTitle) {
+                            categoryTitle.textContent = original.title;
+                        }
+                        categoryContent.innerHTML = original.content;
+                        // Clear any existing processed state and re-initialize H3 structure
+                        const h3Elements = categoryContent.querySelectorAll('h3');
+                        h3Elements.forEach(h3 => {
+                            h3.classList.remove('processed');
+                            h3.removeAttribute('onclick');
+                            // Remove any existing toggle spans
+                            const existingToggle = h3.querySelector('.h3-toggle');
+                            if (existingToggle) {
+                                existingToggle.remove();
+                            }
+                        });
+                        initializeH3Structure();
+                    } else {
+                        // Check if category title matches
+                        const titleMatches = title.includes(searchTerm);
+                        
+                        // Find h3 elements that match the search term
+                        const matchingH3Content = filterContentByH3Matches(original.content, searchTerm);
+                        
+                        if (titleMatches || matchingH3Content.hasMatches) {
+                            category.style.display = 'block';
+                            // Apply highlighting to category title
                             if (categoryTitle) {
                                 categoryTitle.innerHTML = highlightText(original.title, searchTerm);
                             }
-                            // Apply highlighting but preserve h3 structure
-                            categoryContent.innerHTML = highlightTextExcludingH3(original.content, searchTerm);
-                            // Re-initialize h3 structure after highlighting
+                            // Show filtered content with highlighted search terms
+                            categoryContent.innerHTML = matchingH3Content.content;
+                            // Clear any existing processed state and re-initialize H3 structure
+                            const h3Elements = categoryContent.querySelectorAll('h3');
+                            h3Elements.forEach(h3 => {
+                                h3.classList.remove('processed');
+                                h3.removeAttribute('onclick');
+                                // Remove any existing toggle spans
+                                const existingToggle = h3.querySelector('.h3-toggle');
+                                if (existingToggle) {
+                                    existingToggle.remove();
+                                }
+                            });
                             initializeH3Structure();
                         } else {
-                            if (categoryTitle) {
-                                categoryTitle.textContent = original.title;
-                            }
-                            categoryContent.innerHTML = original.content;
-                            // Re-initialize h3 structure after restoring content
-                            initializeH3Structure();
+                            category.style.display = 'none';
                         }
-                    } else {
-                        category.style.display = 'none';
                     }
                 });
             });
         });
+
+        function filterContentByH3Matches(htmlContent, searchTerm) {
+            if (!searchTerm) {
+                return { hasMatches: false, content: htmlContent };
+            }
+            
+            // Create a temporary container to parse the HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            
+            // Find all h3 elements that match the search term
+            const allH3Elements = tempDiv.querySelectorAll('h3');
+            const matchingH3Sections = [];
+            let hasMatches = false;
+            
+            allH3Elements.forEach(h3 => {
+                const h3Text = h3.textContent.toLowerCase();
+                if (h3Text.includes(searchTerm.toLowerCase())) {
+                    hasMatches = true;
+                    // Find the content associated with this h3
+                    const section = extractH3Section(h3);
+                    if (section) {
+                        matchingH3Sections.push(section);
+                    }
+                }
+            });
+            
+            if (!hasMatches) {
+                return { hasMatches: false, content: '' };
+            }
+            
+            // Create a new container for the filtered content
+            const filteredContainer = document.createElement('div');
+            
+            // Add each matching section and apply highlighting
+            matchingH3Sections.forEach(sectionHTML => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.innerHTML = highlightTextInHTML(sectionHTML, searchTerm);
+                
+                // Append all children of the section to the container
+                while (sectionDiv.firstChild) {
+                    filteredContainer.appendChild(sectionDiv.firstChild);
+                }
+            });
+            
+            return { hasMatches: true, content: filteredContainer.innerHTML };
+        }
+        
+        function extractH3Section(h3Element) {
+            // Get all content from the h3 until the next h3 or end of container
+            let section = '';
+            let currentElement = h3Element;
+            
+            // Add the h3 itself
+            section += currentElement.outerHTML;
+            
+            // Add all following siblings until we hit another h3 or run out of elements
+            currentElement = currentElement.nextElementSibling;
+            while (currentElement && currentElement.tagName !== 'H3') {
+                section += currentElement.outerHTML;
+                currentElement = currentElement.nextElementSibling;
+            }
+            
+            return section;
+        }
+        
+        function highlightTextInHTML(htmlContent, searchTerm) {
+            if (!searchTerm) return htmlContent;
+            
+            // Create a temporary container
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            
+            // Get all text nodes
+            const walker = document.createTreeWalker(
+                tempDiv,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode: function(node) {
+                        // Skip empty or whitespace-only text nodes
+                        if (!node.textContent.trim()) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        // Skip text nodes that are inside h3 elements
+                        if (node.parentElement && node.parentElement.closest('h3')) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                }
+            );
+            
+            const textNodes = [];
+            let node;
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+            }
+            
+            // Apply highlighting to text nodes that contain the search term
+            const regex = new RegExp(`(${escapeRegex(searchTerm)})`, 'gi');
+            textNodes.forEach(textNode => {
+                if (textNode.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    const parent = textNode.parentNode;
+                    const highlightedText = textNode.textContent.replace(regex, '<span class="highlight">$1</span>');
+                    
+                    // Create a temporary container to hold the highlighted content
+                    const tempContainer = document.createElement('div');
+                    tempContainer.innerHTML = highlightedText;
+                    
+                    // Replace the text node with the highlighted content
+                    while (tempContainer.firstChild) {
+                        parent.insertBefore(tempContainer.firstChild, textNode);
+                    }
+                    parent.removeChild(textNode);
+                }
+            });
+            
+            return tempDiv.innerHTML;
+        }
 
         function highlightText(text, searchTerm) {
             if (!searchTerm) return text;
