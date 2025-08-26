@@ -1,41 +1,223 @@
+/* ============================================================================
+   CFCMONITOR STYLES
+   A comprehensive stylesheet for the CFCMonitor website
+   ============================================================================ */
+
+/* ============================================================================
+   1. CSS VARIABLES & THEME CONFIGURATION
+   ============================================================================ */
+
 /* CFCMonitor CSS Variables */
+/* Define all color variables and theme settings used throughout the website */
+/* This creates a consistent color scheme that can be easily maintained and modified */
 :root {
-    --primary-color: #10216b;
-    --secondary-color: #c57916;
-    --background-color: #1a1a1a;
-    --surface-color: #2d2d2d;
-    --text-color: #e8eaed;
-    --text-muted: #9aa0a6;
-    --border-color: #3c4043;
-    --hover-color: #323639;
-    --h3-bg-color: #965c10;
-    --h3-hover-bg-color: #613c0b;
-    --section-title-color: #e8eaed;
-    --category-header-btt-nav-hover-left-color: #0b174d;
-    --category-header-btt-nav-hover-right-color: #965c10;
-}
+    --primary-color: #10216b;                              /* Main brand color - dark blue */
+    --secondary-color: #c57916;                            /* Accent color - golden orange */
+    --background-color: #1a1a1a;                           /* Main page background - dark gray */
+    --surface-color: #2d2d2d;                              /* Card/section backgrounds - lighter gray */
+    --text-color: #e8eaed;                                 /* Primary text color - light gray */
+    --text-muted: #9aa0a6;                                 /* Secondary text color - muted gray */
+    --border-color: #3c4043;                               /* Border and divider color */
+    --hover-color: #323639;                                /* Hover state background color */
+    --h3-bg-color: #965c10;                                /* Background for h3 elements */
+    --h3-hover-bg-color: #613c0b;                          /* Hover state for h3 elements */
+    --section-title-color: #e8eaed;                        /* Color for section titles */
+    --category-header-btt-nav-hover-left-color: #0b174d;   /* Left gradient color for hover states */
+    --category-header-btt-nav-hover-right-color: #965c10;  /* Right gradient color for hover states */}
+/* ============================================================================
+   2. GLOBAL STYLES & RESETS
+   ============================================================================ */
+
 /* Global Styles */
+/* Reset default browser styles and set base styling for the entire website */
+/* Ensures consistent appearance across different browsers */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
+    box-sizing: border-box;}
+/* Base body styling - sets the foundation for the entire page */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
-}
-
+    overflow-x: hidden;}
+/* Main content container - centers content and adds consistent padding */
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;}
+/* ============================================================================
+   3. TYPOGRAPHY
+   ============================================================================ */
+
+/* Typography Styles */
+/* Global typography settings for all heading levels and text elements */
+/* Consistent styling across the entire website */
+
+/* Main page headings - no borders or decorations */
+h1 {
+    color: var(--text-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: none;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;}
+/* Secondary headings */
+h2 {
+    color: var(--primary-color);
+    padding-bottom: 8px;
+    margin: 30px 0 20px 0;
+    font-size: 1.5rem;}
+/* Collapsible section headings with interactive styling */
+h3 {
+    color: var(--secondary-color);
+    margin: 25px 0 15px 0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 15px;
+    background-color: var(--h3-bg-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;}
+/* Hover effect for h3 headings */
+h3:hover {
+    background-color: var(--h3-hover-bg-color);}
+/* Toggle arrows for h3 sections */
+.h3-toggle {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    transition: transform 0.3s ease;}
+/* Collapsible content containers for h3 sections */
+.h3-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-top: 0;}
+/* Inner content wrapper for h3 sections */
+.h3-content-inner {
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 0.2s ease;}
+/* Expanded state for h3 content */
+.h3-item.expanded .h3-content {
+    max-height: 5000px;}
+/* Visible inner content when expanded */
+.h3-item.expanded .h3-content-inner {
+    opacity: 1;
+    transition-delay: 0.1s;}
+/* Rotated toggle when h3 is expanded */
+.h3-item.expanded .h3-toggle {
+    transform: rotate(180deg);}
+/* Subheadings */
+h4 {
+    color: var(--text-color);
+    margin: 20px 0 10px 0;
+    font-size: 1.1rem;}
+/* Standard paragraph text */
+p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    line-height: 1.7;}
+/* Unordered and ordered lists */
+ul, ol {
+    color: var(--text-muted);
+    margin: 15px 0;
+    padding-left: 25px;}
+/* List items */
+li {
+    margin: 8px 0;
+    line-height: 1.6;}
+/* Bold text emphasis */
+strong {
+    color: var(--text-color);}
+/* Inline code elements */
+code {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: var(--secondary-color);}
+/* Code blocks and preformatted text */
+pre {
+    background-color: rgba(0, 0, 0, 0.3);
     padding: 20px;
-}
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 15px 0;
+    border-left: 4px solid var(--primary-color);}
+/* Code within pre blocks */
+pre code {
+    background: none;
+    padding: 0;
+    color: var(--text-color);}
+/* Horizontal rule dividers */
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 30px 0;}
+/* Highlighting style for search results */
+.highlight {
+    background-color: rgba(26, 115, 232, 0.2);
+    border-radius: 4px;
+    padding: 2px 4px;}
+/* ============================================================================
+   4. LAYOUT & STRUCTURE
+   ============================================================================ */
 
 /* Layout Styles */
+/* Main content container - adjusts layout when sidebar is present */
+.main-container {
+    margin-left: 0;
+    min-height: 100vh;}
+/* Header Styles */
+/* Main page header containing the site title and description */
+/* Features gradient background and centered text layout */
+.header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 40px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);}
+/* Main heading within the header */
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: none;}
+/* Subtitle/description text in the header */
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;}
+/* Footer Styles */
+/* Website footer with centered content and consistent styling */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);}
+/* Paragraph text within the footer */
+.footer p {
+    color: var(--text-muted);
+    margin: 5px 0;}
+/* Decorative section divider with gradient */
+.section-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    margin: 30px 0;
+    border-radius: 1px;}
+/* ============================================================================
+   5. SIDEBAR & TABLE OF CONTENTS
+   ============================================================================ */
 .toc-toggle-btn {
     position: fixed;
     left: 328px;
@@ -54,15 +236,13 @@ body {
     align-items: center;
     justify-content: center;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(5px);
-}
-
+    backdrop-filter: blur(5px);}
 .toc-toggle-btn:hover {
     background: linear-gradient(135deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
     width: 38px;
-    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
-}
-
+    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);}
+/* Fixed sidebar containing the table of contents navigation */
+/* Provides quick navigation to different sections of the page */
 .sidebar-toc {
     position: fixed;
     left: 0;
@@ -78,32 +258,26 @@ body {
     border-right: 2px solid var(--border-color);
     box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
     scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
+    -ms-overflow-style: none;}
 .sidebar-toc::-webkit-scrollbar {
-    display: none;
-}
-
+    display: none;}
+/* Hidden state for the sidebar - slides it off-screen */
 .sidebar-toc.hidden {
-    transform: translateX(-100%);
-}
-
+    transform: translateX(-100%);}
+/* Modified toggle button appearance when sidebar is hidden */
 .toc-toggle-btn.sidebar-hidden {
-    left: 0; /* Position at the left edge when sidebar is hidden */
-    border-radius: 0 12px 12px 0; /* Keep right-side rounding */
-    width: 170px; /* Wider to accommodate full text */
-    font-size: 0.9rem; /* Slightly smaller font for longer text */
-    padding: 0 15px; /* Add horizontal padding for text */
-    white-space: nowrap; /* Prevent text wrapping */
-    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.4);
-}
-
+    left: 0;
+    border-radius: 0 12px 12px 0;
+    width: 170px;
+    font-size: 0.9rem;
+    padding: 0 15px;
+    white-space: nowrap;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.4);}
 .toc-toggle-btn.sidebar-hidden:hover {
     width: 180px;
-    transform: translateX(5px);
-}
-
+    transform: translateX(5px);}
+/* Header section within the sidebar table of contents */
+/* Contains the main title and branding for the navigation */
 .toc-header {
     margin-bottom: 25px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -114,9 +288,8 @@ body {
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(16, 33, 107, 0.3);
     position: relative;
-    overflow: hidden;
-}
-
+    overflow: hidden;}
+/* Subtle animation effect overlay for the TOC header */
 .toc-header::before {
     content: "";
     position: absolute;
@@ -127,56 +300,34 @@ body {
     background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
+    pointer-events: none;}
+/* Hover effect for TOC header - activates the animation overlay */
 .toc-header:hover::before {
-    opacity: 1;
-}
-
+    opacity: 1;}
+/* Main hover effect for the TOC header */
 .toc-header:hover {
     background: linear-gradient(135deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 33, 107, 0.4);
-}
-
+    box-shadow: 0 6px 20px rgba(16, 33, 107, 0.4);}
+/* Title text styling within the TOC header */
 .toc-header .category-title {
     color: var(--text-color);
     font-size: 1.4rem;
     margin: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
+    letter-spacing: 0.5px;}
+/* Main content container - adjusts layout when sidebar is present */
 .main-container {
-    margin-left: 0; /* Remove left margin so content uses full width */
-    min-height: 100vh;
-}
-
-/* Header Styles */
-.header {
-    text-align: center;
-    margin-bottom: 15px;
-    padding: 40px 0;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    border-bottom: none;
-}
-
-.header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
+    margin-left: 0;
+    min-height: 100vh;}
+/* ============================================================================
+   6. NAVIGATION & SEARCH
+   ============================================================================ */
 
 /* Navigation Styles */
+/* Horizontal navigation bar with gradient button styling */
+/* Provides links to different sections or pages of the site */
 .nav {
     margin-bottom: 30px;
     background-color: var(--surface-color);
@@ -187,9 +338,8 @@ body {
     flex-wrap: nowrap;
     gap: 10px;
     justify-content: center;
-    overflow-x: auto;
-}
-
+    overflow-x: auto;}
+/* Individual navigation links styling */
 .nav a {
     color: var(--text-color);
     text-decoration: none;
@@ -200,21 +350,19 @@ body {
     font-weight: 500;
     font-size: 1rem;
     white-space: nowrap;
-    flex-shrink: 0;
-}
-
+    flex-shrink: 0;}
+/* Hover effects for navigation links */
 .nav a:hover {
     background: linear-gradient(90deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);}
 /* Search Box Styles */
+/* Search functionality container and input field styling */
+/* Allows users to search through page content */
 .search-box {
     margin-bottom: 30px;
-    position: relative;
-}
-
+    position: relative;}
+/* Main search input field */
 .search-input {
     width: 100%;
     padding: 15px 50px 15px 20px;
@@ -223,93 +371,80 @@ body {
     border-radius: 25px;
     color: var(--text-color);
     font-size: 16px;
-    transition: all 0.3s ease;
-}
-
+    transition: all 0.3s ease;}
+/* Focus state for search input */
 .search-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
-}
-
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);}
+/* Search icon positioned within the search box */
 .search-icon {
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--text-muted);
-}
-
-.highlight {
-    background-color: rgba(26, 115, 232, 0.2);
-    border-radius: 4px;
-    padding: 2px 4px;
-}
+    color: var(--text-muted);}
+/* ============================================================================
+   7. CONTENT SECTIONS & COMPONENTS
+   ============================================================================ */
 
 /* Content Section Styles */
+/* Main content containers for organizing page sections */
+/* Provides consistent card-like appearance for content blocks */
 .content-section {
     margin-bottom: 30px;
     background-color: var(--surface-color);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);}
+/* Header section within content blocks */
 .section-header {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     padding: 20px;
     display: flex;
     align-items: center;
-    gap: 15px;
-}
-
+    gap: 15px;}
+/* Title text within section headers */
 .section-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
-    color: var(--section-title-color);
-}
-
+    color: var(--section-title-color);}
+/* Main content area within sections */
 .section-content {
-    padding: 30px;
-}
-
+    padding: 30px;}
+/* H3 headings within section content */
 .section-content h3 {
     color: var(--primary-color);
     margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
+    font-size: 1.2rem;}
+/* Paragraph text within sections */
 .section-content p {
     color: var(--text-muted);
     margin-bottom: 15px;
-    line-height: 1.7;
-}
-
+    line-height: 1.7;}
+/* Lists within section content */
 .section-content ul, .section-content ol {
     color: var(--text-muted);
     margin: 15px 0;
-    padding-left: 25px;
-}
-
+    padding-left: 25px;}
+/* List items within sections */
 .section-content li {
     margin: 8px 0;
-    line-height: 1.6;
-}
-
+    line-height: 1.6;}
+/* Bold text emphasis within sections */
 .section-content strong {
-    color: var(--text-color);
-}
-
+    color: var(--text-color);}
+/* Inline code elements within sections */
 .section-content code {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
-    color: var(--secondary-color);
-}
-
+    color: var(--secondary-color);}
 /* Table of Contents Styles */
+/* Styled table of contents with collapsible sections */
+/* Provides organized navigation through long content */
 .toc {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.2));
     padding: 25px;
@@ -317,9 +452,8 @@ body {
     margin: 20px 0;
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-}
-
+    backdrop-filter: blur(10px);}
+/* Main heading for the table of contents */
 .toc h2 {
     color: var(--primary-color);
     margin-bottom: 25px;
@@ -327,9 +461,8 @@ body {
     text-align: center;
     padding-bottom: 10px;
     border-bottom: 2px solid var(--secondary-color);
-    position: relative;
-}
-
+    position: relative;}
+/* Decorative line under TOC heading */
 .toc h2::after {
     content: "";
     position: absolute;
@@ -338,47 +471,40 @@ body {
     transform: translateX(-50%);
     width: 50px;
     height: 2px;
-    background: var(--primary-color);
-}
-
+    background: var(--primary-color);}
+/* Ordered list styling within TOC */
 .toc ol {
     margin: 0;
-    padding-left: 25px;
-}
-
+    padding-left: 25px;}
+/* List items within TOC */
 .toc li {
     margin: 10px 0;
-    line-height: 1.7;
-}
-
+    line-height: 1.7;}
+/* Links within TOC */
 .toc a {
     text-decoration: none;
     color: var(--text-color);
     transition: all 0.3s ease;
     padding: 5px 10px;
     border-radius: 6px;
-    display: inline-block;
-}
-
+    display: inline-block;}
+/* Hover effects for TOC links */
 .toc a:hover {
     color: var(--secondary-color);
-    transform: translateX(5px);
-}
-
+    transform: translateX(5px);}
+/* Individual sections within the TOC */
 .toc-section {
     margin-bottom: 15px;
     background-color: rgba(255, 255, 255, 0.03);
     border-radius: 8px;
     border: 1px solid var(--border-color);
     overflow: hidden;
-    transition: all 0.3s ease;
-}
-
+    transition: all 0.3s ease;}
+/* Hover effects for TOC sections */
 .toc-section:hover {
     border-color: var(--primary-color);
-    box-shadow: 0 2px 8px rgba(16, 33, 107, 0.2);
-}
-
+    box-shadow: 0 2px 8px rgba(16, 33, 107, 0.2);}
+/* Main clickable items in TOC sections */
 .toc-main-item {
     font-weight: 600;
     color: var(--text-color);
@@ -390,9 +516,8 @@ body {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
-}
-
+    overflow: hidden;}
+/* Animated shimmer effect for TOC main items */
 .toc-main-item::before {
     content: "";
     position: absolute;
@@ -401,65 +526,55 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
+    transition: left 0.5s ease;}
+/* Hover effect to trigger shimmer animation */
 .toc-main-item:hover::before {
-    left: 100%;
-}
-
+    left: 100%;}
+/* Main hover state for TOC items */
 .toc-main-item:hover {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     transform: translateY(-1px);
     filter: brightness(1.1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);}
+/* Links within TOC main items */
 .toc-main-item a {
     color: inherit;
     text-decoration: none;
     font-size: 1rem;
     display: flex;
     align-items: center;
-    gap: 8px;
-}
-
+    gap: 8px;}
+/* Toggle arrow icons for expandable TOC sections */
 .toc-toggle {
     font-size: 1rem;
     transition: transform 0.3s ease, color 0.3s ease;
     color: rgba(255, 255, 255, 0.8);
-    font-weight: bold;
-}
-
+    font-weight: bold;}
+/* Collapsible subsections within TOC */
 .toc-subsections {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, padding 0.3s ease;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
+    background-color: rgba(0, 0, 0, 0.1);}
+/* Expanded state for TOC subsections */
 .toc-section.expanded .toc-subsections {
     max-height: 600px;
-    padding: 15px 20px;
-}
-
+    padding: 15px 20px;}
+/* Rotated toggle arrow for expanded sections */
 .toc-section.expanded .toc-toggle {
     transform: rotate(180deg);
-    color: white;
-}
-
+    color: white;}
+/* Individual sub-items within TOC sections */
 .toc-sub-item {
     margin: 8px 0;
     padding: 6px 0;
     font-size: 0.95rem;
     position: relative;
-    transition: all 0.3s ease;
-}
-
+    transition: all 0.3s ease;}
+/* Hover effect for sub-items */
 .toc-sub-item:hover {
-    transform: translateX(5px);
-}
-
+    transform: translateX(5px);}
+/* Links within TOC sub-items */
 .toc-sub-item a {
     color: var(--text-muted);
     padding-left: 20px;
@@ -468,9 +583,8 @@ body {
     display: block;
     padding: 8px 12px 8px 28px;
     border-radius: 6px;
-    transition: all 0.3s ease;
-}
-
+    transition: all 0.3s ease;}
+/* Bullet point styling for sub-items */
 .toc-sub-item a:before {
     content: "◦";
     position: absolute;
@@ -479,30 +593,31 @@ body {
     transform: translateY(-50%);
     color: var(--secondary-color);
     font-size: 1.2rem;
-    transition: all 0.3s ease;
-}
-
+    transition: all 0.3s ease;}
+/* Hover effects for sub-item links */
 .toc-sub-item a:hover {
     color: var(--text-color);
     background-color: rgba(197, 121, 22, 0.1);
-    border-left: 3px solid var(--secondary-color);
-}
-
+    border-left: 3px solid var(--secondary-color);}
+/* Animated bullet point change on hover */
 .toc-sub-item a:hover:before {
     content: "▶";
     color: var(--secondary-color);
-    transform: translateY(-50%) scale(1.1);
-}
+    transform: translateY(-50%) scale(1.1);}
+/* ============================================================================
+   8. FAQ & INTERACTIVE ELEMENTS
+   ============================================================================ */
 
 /* FAQ Category Styles */
+/* Collapsible category containers for organizing FAQ content */
+/* Each category can be expanded/collapsed to show related questions */
 .category {
     margin-bottom: 30px;
     background-color: var(--surface-color);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);}
+/* Clickable header for each category */
 .category-header {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     padding: 0px 20px;
@@ -510,84 +625,71 @@ body {
     transition: all 0.3s ease;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-
+    align-items: center;}
+/* Hover effects for category headers */
 .category-header:hover {
-    background: linear-gradient(90deg, #0b174d, #965c10);
-}
-
+    background: linear-gradient(90deg, #0b174d, #965c10);}
+/* Title text within category headers */
 .category-title {
     font-size: 1.3rem;
     font-weight: 600;
-    color:#e8eaed;
-}
-
+    color:#e8eaed;}
+/* Expand/collapse icons for categories */
 .category-icon {
     font-size: 1.2rem;
-    transition: transform 0.3s ease;
-}
-
+    transition: transform 0.3s ease;}
+/* Rotated icon when category is expanded */
 .category.expanded .category-icon {
-    transform: rotate(180deg);
-}
-
+    transform: rotate(180deg);}
+/* Content area within categories (hidden by default) */
 .category-content {
     display: none;
-    padding: 0 20px; /* Add horizontal padding to prevent content from touching sides */
-}
-
+    padding: 0 20px;}
+/* Visible content when category is expanded */
 .category.expanded .category-content {
     display: block !important;
-    padding: 20px; /* Add full padding when expanded */
+    padding: 20px;
     height: auto !important;
-    overflow: visible !important;
-}
-
+    overflow: visible !important;}
 /* Category Content Styles - Same as section-content styles */
+/* H3 headings within category content */
 .category-content h3 {
     color: var(--primary-color);
     margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
+    font-size: 1.2rem;}
+/* Paragraph text within categories */
 .category-content p {
     color: var(--text-muted);
     margin-bottom: 15px;
-    line-height: 1.7;
-}
-
+    line-height: 1.7;}
+/* Lists within category content */
 .category-content ul, .category-content ol {
     color: var(--text-muted);
     margin: 15px 0;
-    padding-left: 25px;
-}
-
+    padding-left: 25px;}
+/* List items within categories */
 .category-content li {
     margin: 8px 0;
-    line-height: 1.6;
-}
-
+    line-height: 1.6;}
+/* Bold text within categories */
 .category-content strong {
-    color: var(--text-color);
-}
-
+    color: var(--text-color);}
+/* Inline code within categories */
 .category-content code {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
-    color: var(--secondary-color);
-}
-
+    color: var(--secondary-color);}
 /* FAQ Item Styles */
+/* Individual FAQ question and answer pairs */
+/* Provides collapsible Q&A format within categories */
 .faq-item {
     background: none !important;
     border: none !important;
     margin: 0 !important;
-    padding: 0 !important;
-}
-
+    padding: 0 !important;}
+/* Clickable question header for FAQ items */
 .faq-question {
     padding: 15px 20px;
     cursor: pointer;
@@ -598,13 +700,11 @@ body {
     background-color: var(--h3-bg-color);
     border-radius: 8px;
     border-left: 4px solid var(--secondary-color);
-    margin: 10px 0;
-}
-
+    margin: 10px 0;}
+/* Hover effect for FAQ questions */
 .faq-question:hover {
-    background-color: var(--h3-hover-bg-color);
-}
-
+    background-color: var(--h3-hover-bg-color);}
+/* H3 headings within FAQ questions */
 .faq-question h3 {
     font-size: 1.2rem;
     color: var(--primary-color);
@@ -615,246 +715,100 @@ body {
     border-radius: 0 !important;
     display: block !important;
     cursor: inherit;
-    transition: none;
-}
-
+    transition: none;}
+/* Toggle arrows for FAQ items */
 .faq-toggle {
     font-size: 1.2rem;
     color: var(--secondary-color);
-    transition: transform 0.5s ease;
-}
-
+    transition: transform 0.5s ease;}
+/* Rotated toggle arrow when FAQ is expanded */
 .faq-item.expanded .faq-toggle {
-    transform: rotate(180deg);
-}
-
+    transform: rotate(180deg);}
+/* Collapsible answer section for FAQ items */
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s ease;
-}
-
+    transition: max-height 0.5s ease;}
+/* Expanded state for FAQ answers */
 .faq-item.expanded .faq-answer {
-    max-height: 2000px;
-}
-
+    max-height: 2000px;}
+/* Inner content container for FAQ answers */
 .faq-answer-content {
     padding: 20px;
     color: var(--text-muted);
     line-height: 1.7;
     opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
+    transition: opacity 0.3s ease;}
+/* Visible state for FAQ answer content */
 .faq-item.expanded .faq-answer-content {
     opacity: 1;
-    transition-delay: 0.2s;
-}
-
+    transition-delay: 0.2s;}
+/* Inline code within FAQ answers */
 .faq-answer-content code {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
-    color: var(--secondary-color);
-}
-
+    color: var(--secondary-color);}
+/* Lists within FAQ answers */
 .faq-answer-content ul, .faq-answer-content ol {
     margin: 10px 0;
-    padding-left: 20px;
-}
-
+    padding-left: 20px;}
+/* List items within FAQ answers */
 .faq-answer-content li {
-    margin: 5px 0;
-}
-
-/* Typography Styles */
-h1 {
-    color: var(--text-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-bottom: none;
-    text-decoration: none;
-    outline: none;
-    box-shadow: none;
-}
-
-h2 {
-    color: var(--primary-color);
-    padding-bottom: 8px;
-    margin: 30px 0 20px 0;
-    font-size: 1.5rem;
-}
-
-h3 {
-    color: var(--secondary-color);
-    margin: 25px 0 15px 0;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 15px;
-    background-color: var(--h3-bg-color);
-    border-radius: 8px;
-    border-left: 4px solid var(--secondary-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-h3:hover {
-    background-color: var(--h3-hover-bg-color);
-}
-
-.h3-toggle {
-    font-size: 1.2rem;
-    color: var(--secondary-color);
-    transition: transform 0.3s ease;
-}
-
-.h3-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    margin-top: 0;
-}
-
-.h3-content-inner {
-    padding: 15px;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.h3-item.expanded .h3-content {
-    max-height: 5000px;
-}
-
-.h3-item.expanded .h3-content-inner {
-    opacity: 1;
-    transition-delay: 0.1s;
-}
-
-.h3-item.expanded .h3-toggle {
-    transform: rotate(180deg);
-}
-
-h4 {
-    color: var(--text-color);
-    margin: 20px 0 10px 0;
-    font-size: 1.1rem;
-}
-
-p {
-    color: var(--text-muted);
-    margin-bottom: 15px;
-    line-height: 1.7;
-}
-
-ul, ol {
-    color: var(--text-muted);
-    margin: 15px 0;
-    padding-left: 25px;
-}
-
-li {
-    margin: 8px 0;
-    line-height: 1.6;
-}
-
-strong {
-    color: var(--text-color);
-}
-
-code {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    color: var(--secondary-color);
-}
-
-pre {
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin: 15px 0;
-    border-left: 4px solid var(--primary-color);
-}
-
-pre code {
-    background: none;
-    padding: 0;
-    color: var(--text-color);
-}
-
-hr {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 30px 0;
-}
+    margin: 5px 0;}
+/* ============================================================================
+   10. UTILITY COMPONENTS & SPECIAL ELEMENTS
+   ============================================================================ */
 
 /* Feature Grid Styles */
+/* Grid layout for displaying feature cards or content blocks */
+/* Responsive design that adapts to different screen sizes */
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    margin: 20px 0;
-}
-
+    margin: 20px 0;}
+/* Individual feature cards within the grid */
 .feature-card {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid var(--primary-color);
-}
-
+    border-left: 4px solid var(--primary-color);}
+/* Headings within feature cards */
 .feature-card h4 {
     color: var(--text-color);
-    margin-bottom: 10px;
-}
-
-/* Footer Styles */
-.footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 30px;
-    background-color: var(--surface-color);
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.footer p {
-    color: var(--text-muted);
-    margin: 5px 0;
-}
+    margin-bottom: 10px;}
+/* ============================================================================
+   9. FORMS & INPUT ELEMENTS
+   ============================================================================ */
 
 /* Form Styles */
+/* Comprehensive form styling for contact forms, submissions, etc. */
+/* Consistent input field appearance and interactive states */
+
+/* Main form container */
 .form-container {
     background-color: var(--surface-color);
     border-radius: 12px;
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);}
+/* Individual form field groups */
 .form-group {
-    margin-bottom: 20px;
-}
-
+    margin-bottom: 20px;}
+/* Form field labels */
 .form-group label {
     display: block;
     margin-bottom: 8px;
     color: var(--text-color);
     font-weight: 500;
-    font-size: 1rem;
-}
-
+    font-size: 1rem;}
+/* Required field indicator */
 .form-group label.required::after {
     content: " *";
-    color: #ff6b6b;
-}
-
+    color: #ff6b6b;}
+/* Form input fields, textareas, and selects */
 .form-control {
     width: 100%;
     padding: 12px 16px;
@@ -864,34 +818,28 @@ hr {
     color: var(--text-color);
     font-size: 16px;
     transition: all 0.3s ease;
-    font-family: inherit;
-}
-
+    font-family: inherit;}
+/* Focus state for form controls */
 .form-control:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(16, 33, 107, 0.1);
-}
-
+    box-shadow: 0 0 0 3px rgba(16, 33, 107, 0.1);}
+/* Placeholder text styling */
 .form-control::placeholder {
-    color: var(--text-muted);
-}
-
+    color: var(--text-muted);}
+/* Select dropdown styling */
 select.form-control {
-    cursor: pointer;
-}
-
+    cursor: pointer;}
+/* Textarea specific styling */
 textarea.form-control {
     resize: vertical;
-    min-height: 100px;
-}
-
+    min-height: 100px;}
+/* Two-column form layout */
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
+    gap: 20px;}
+/* Submit button styling with gradient background */
 .submit-btn {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
@@ -903,41 +851,29 @@ textarea.form-control {
     cursor: pointer;
     transition: all 0.3s ease;
     width: 100%;
-    margin-top: 20px;
-}
-
+    margin-top: 20px;}
+/* Submit button hover effects */
 .submit-btn:hover {
     background: linear-gradient(135deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);}
+/* Submit button active state */
 .submit-btn:active {
-    transform: translateY(0);
-}
-
+    transform: translateY(0);}
+/* Conditional form sections (hidden by default) */
 .achievement-type-section {
     display: none;
     margin-top: 20px;
     padding: 20px;
     background-color: var(--background-color);
     border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
+    border: 1px solid var(--border-color);}
+/* Active state for conditional sections */
 .achievement-type-section.active {
-    display: block;
-}
-
-.section-divider {
-    border: none;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    margin: 30px 0;
-    border-radius: 1px;
-}
-
+    display: block;}
 /* Back to Top Button */
+/* Floating action button for easy navigation back to page top */
+/* Appears/disappears based on scroll position */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -957,58 +893,52 @@ textarea.form-control {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
+    justify-content: center;}
+/* Visible state for back to top button */
 .back-to-top.visible {
     opacity: 1;
-    visibility: visible;
-}
-
+    visibility: visible;}
+/* Hover effects for back to top button */
 .back-to-top:hover {
     background: linear-gradient(135deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);}
+/* ============================================================================
+   11. RESPONSIVE DESIGN & MEDIA QUERIES
+   ============================================================================ */
 
 /* Responsive Design */
+/* Media queries for mobile and tablet devices */
+/* Ensures the website works well on all screen sizes */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
-    }
-    
+        padding: 10px;}
+/* Smaller header text on mobile */
     .header h1 {
-        font-size: 2rem;
-    }
-    
+        font-size: 2rem;}
+/* Vertical navigation layout on mobile */
     .nav {
         flex-direction: column;
-        align-items: center;
-    }
-    
+        align-items: center;}
+/* Full-width navigation links on mobile */
     .nav a {
         width: 100%;
         text-align: center;
-        max-width: 200px;
-    }
-    
+        max-width: 200px;}
+/* Smaller category titles on mobile */
     .category-title {
-        font-size: 1.1rem;
-    }
-    
+        font-size: 1.1rem;}
+/* Single column feature grid on mobile */
     .feature-grid {
-        grid-template-columns: 1fr;
-    }
-    
+        grid-template-columns: 1fr;}
+/* Single column form layout on mobile */
     .form-row {
-        grid-template-columns: 1fr;
-    }
-    
+        grid-template-columns: 1fr;}
+/* Reduced form padding on mobile */
     .form-container {
-        padding: 20px;
-    }
-    
-    /* Responsive layout - show sidebar as collapsible top section on mobile */
+        padding: 20px;}
+/* Responsive layout - show sidebar as collapsible top section on mobile */
+    /* Mobile-friendly toggle button */
     .toc-toggle-btn {
         position: static;
         width: 100%;
@@ -1016,31 +946,27 @@ textarea.form-control {
         border-radius: 8px;
         margin-bottom: 10px;
         left: auto;
-        top: auto;
-    }
-    
+        top: auto;}
+/* Mobile toggle button when sidebar is hidden */
     .toc-toggle-btn.sidebar-hidden {
-        left: auto; /* Reset left positioning on mobile */
-    }
-    
+        left: auto;}
+/* Mobile sidebar layout */
     .sidebar-toc {
         position: static;
         width: 100%;
         height: 100%;
         padding: 10px;
-        padding-top: 10px; /* Reset padding on mobile */
-        transform: none; /* Disable transform on mobile */
-    }
-    
+        padding-top: 10px;
+        transform: none;}
+/* Hidden sidebar on mobile */
     .sidebar-toc.hidden {
-        display: none; /* Use display none instead of transform on mobile */
-    }
-    
+        display: none;}
+/* Main content container on mobile */
     .main-container {
-        margin-left: 0;
-    }
-    
+        margin-left: 0;}
+/* Hide header images on mobile for cleaner look */
     .header img {
-        display: none;
-    }
-}
+        display: none;}
+/* ============================================================================
+   END OF CFCMONITOR STYLES
+   ============================================================================ */}

@@ -102,6 +102,17 @@
                                 <div class="toc-sub-item"><a href="#important-notes-asset" onclick="navigateToSection(event, 'important-notes-asset')" class="toc-sub-item">Important Notes</a></div>
                             </div>
                         </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#planned-achievements">🚧 Planned Achievements</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#submitted" onclick="navigateToSection(event, 'submitted')" class="toc-sub-item">Submitted Achievements</a></div>
+                                <div class="toc-sub-item"><a href="#inhouse" onclick="navigateToSection(event, 'inhouse')" class="toc-sub-item">In-House Achievements</a></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -468,6 +479,28 @@
                 </div>
             </div>
 
+
+            <div class="category" id="planned-achievements">
+                <div class="category-header" onclick="toggleCategory('planned-achievements')">
+                    <h2 class="category-title">🚧 Planned Achievements</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <p>When suggesting achievements, you can reference these specific game elements. Just mention them by name in your suggestion - we'll handle the technical details!</p>
+
+                    <h3 id="submitted">Submitted Achievements</h3>
+
+                    <ul>
+                        <li><strong>None yet</strong></li>
+                    </ul>
+
+                    <h3 id="inhouse">In-House Achievements</h3>
+                    <ul>
+                        <li><strong>None yet</strong></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
         </main>
 
             <div class="footer">
