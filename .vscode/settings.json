@@ -1,0 +1,11 @@
+{
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.root": "/",
+    "liveServer.settings.CustomBrowser": null,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "simpleBrowser.showWhenUsingWebViews": false,
+    "workbench.editorAssociations": {
+        "*.html": "default"
+    }
+}
