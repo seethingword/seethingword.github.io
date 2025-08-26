@@ -40,12 +40,12 @@ body {
     position: fixed;
     left: 330px; /* Position at the right edge of the TOC content (350px - 20px padding) */
     top: 120px; /* Position flush with the first TOC section (Overview) */
-    width: 30px;
-    height: 60px;
+    width: 32px;
+    height: 65px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
-    border-radius: 0 8px 8px 0; /* Only round the right corners */
+    border-radius: 0 12px 12px 0; /* Only round the right corners */
     font-size: 1rem;
     cursor: pointer;
     z-index: 1001;
@@ -53,11 +53,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 .toc-toggle-btn:hover {
     background: linear-gradient(135deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
-    width: 35px;
+    width: 38px;
+    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
+    transform: translateX(2px);
 }
 
 .sidebar-toc {
@@ -66,13 +70,16 @@ body {
     top: 0;
     width: 350px;
     height: 100vh;
-    background-color: var(--background-color);
+    background: linear-gradient(180deg, var(--background-color) 0%, rgba(26, 26, 26, 0.95) 100%);
+    backdrop-filter: blur(10px);
     overflow-y: auto;
     z-index: 1000;
     padding: 20px;
     transition: transform 0.3s ease;
+    border-right: 2px solid var(--border-color);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
     
-    /* Hide scrollbar for Chrome, Safari and Opera */
+    /* Hide scrollbar for all browsers */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
@@ -88,32 +95,62 @@ body {
 
 .toc-toggle-btn.sidebar-hidden {
     left: 0; /* Position at the left edge when sidebar is hidden */
-    border-radius: 0 8px 8px 0; /* Keep right-side rounding */
-    width: 160px; /* Wider to accommodate full text */
+    border-radius: 0 12px 12px 0; /* Keep right-side rounding */
+    width: 170px; /* Wider to accommodate full text */
     font-size: 0.9rem; /* Slightly smaller font for longer text */
-    padding: 0 10px; /* Add horizontal padding for text */
+    padding: 0 15px; /* Add horizontal padding for text */
     white-space: nowrap; /* Prevent text wrapping */
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.toc-toggle-btn.sidebar-hidden:hover {
+    width: 180px;
+    transform: translateX(5px);
 }
 
 .toc-header {
-    margin-bottom: 20px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    padding: 15px;
-    border-radius: 8px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 20px;
+    border-radius: 12px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(16, 33, 107, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.toc-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.toc-header:hover::before {
+    opacity: 1;
 }
 
 .toc-header:hover {
-    background: linear-gradient(90deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
+    background: linear-gradient(135deg, var(--category-header-btt-nav-hover-left-color), var(--category-header-btt-nav-hover-right-color));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 33, 107, 0.4);
 }
 
 .toc-header .category-title {
     color: var(--text-color);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin: 0;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .main-container {
@@ -124,7 +161,7 @@ body {
 /* Header Styles */
 .header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
     padding: 40px 0;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 12px;
@@ -160,12 +197,12 @@ body {
 .nav a {
     color: var(--text-color);
     text-decoration: none;
-    padding: 8px 15px;
+    padding: 10px 14px;
     border-radius: 8px;
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     transition: all 0.3s ease;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 1rem;
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -278,16 +315,34 @@ body {
 
 /* Table of Contents Styles */
 .toc {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.2));
+    padding: 25px;
+    border-radius: 15px;
     margin: 20px 0;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .toc h2 {
     color: var(--primary-color);
-    margin-bottom: 20px;
-    font-size: 1.3rem;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary-color);
+    position: relative;
+}
+
+.toc h2::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: var(--primary-color);
 }
 
 .toc ol {
@@ -296,81 +351,151 @@ body {
 }
 
 .toc li {
-    margin: 8px 0;
-    line-height: 1.6;
+    margin: 10px 0;
+    line-height: 1.7;
 }
 
 .toc a {
     text-decoration: none;
     color: var(--text-color);
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 6px;
+    display: inline-block;
 }
 
 .toc a:hover {
     color: var(--secondary-color);
+    transform: translateX(5px);
 }
 
 .toc-section {
-    margin-bottom: 8px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.toc-section:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(16, 33, 107, 0.2);
 }
 
 .toc-main-item {
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--text-color);
     cursor: pointer;
-    padding: 8px 0;
+    padding: 12px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.toc-main-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.toc-main-item:hover::before {
+    left: 100%;
 }
 
 .toc-main-item:hover {
-    color: var(--secondary-color);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.toc-main-item a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .toc-toggle {
-    font-size: 0.9rem;
-    transition: transform 0.3s ease;
+    font-size: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
 }
 
 .toc-subsections {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
-    padding-left: 20px;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .toc-section.expanded .toc-subsections {
-    max-height: 500px;
-    padding-top: 10px;
+    max-height: 600px;
+    padding: 15px 20px;
 }
 
 .toc-section.expanded .toc-toggle {
     transform: rotate(180deg);
+    color: white;
 }
 
 .toc-sub-item {
-    margin: 5px 0;
-    padding: 3px 0;
-    font-size: 0.9rem;
+    margin: 8px 0;
+    padding: 6px 0;
+    font-size: 0.95rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.toc-sub-item:hover {
+    transform: translateX(5px);
 }
 
 .toc-sub-item a {
     color: var(--text-muted);
-    padding-left: 15px;
+    padding-left: 20px;
     position: relative;
+    text-decoration: none;
+    display: block;
+    padding: 8px 12px 8px 28px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
 .toc-sub-item a:before {
-    content: "▸";
+    content: "◦";
     position: absolute;
-    left: 0;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--secondary-color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
 }
 
 .toc-sub-item a:hover {
+    color: var(--text-color);
+    background-color: rgba(197, 121, 22, 0.1);
+    border-left: 3px solid var(--secondary-color);
+}
+
+.toc-sub-item a:hover:before {
+    content: "▶";
     color: var(--secondary-color);
+    transform: translateY(-50%) scale(1.1);
 }
 
 /* FAQ Category Styles */
