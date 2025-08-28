@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFCMonitor - Support & Help</title>
+    <link rel="stylesheet" href="cfcmonitor-styles.css">
+    <link rel="icon" href="cfc.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="Logo.png" alt="CFCMonitor Logo">
+            <div class="header-content">
+                <h1>CFCMonitor Support</h1>
+                <p>Get help and find solutions for CFCMonitor</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="documentation.html">🏠 Home</a>
+            <a href="CFC-achievement-guide.html">🏆 Achievement Guide</a>
+            <a href="FAQ.html">❓ FAQ</a>
+            <a href="submit-achievement.html">📝 Submit Achievement</a>
+            <a href="documentation.html#installation">📦 Installation</a>
+            <a href="support.html">🆘 Support</a>
+            <a href="https://discord.gg/neofox" target="_blank">💬 Discord</a>
+        </nav>
+
+        <main>
+            <div class="content-section">
+                <div class="section-header">
+                    <span>🆘</span>
+                    <h2 class="section-title">Getting Help</h2>
+                </div>
+                <div class="section-content">
+                    <p>If you're experiencing issues with CFCMonitor or need assistance, you're in the right place! This comprehensive support guide will help you find solutions quickly.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>📋 FAQ Section</h4>
+                            <p>Check our comprehensive <a href="FAQ.html">FAQ page</a> for answers to the most common questions and troubleshooting steps.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🏆 Achievement Guide</h4>
+                            <p>View the complete <a href="CFC-achievement-guide.html">Achievement Guide</a> for detailed information about all available achievements and unlock conditions.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🐛 Bug Reports</h4>
+                            <p>Use the built-in <code>Help → Submit Bug Report</code> feature to report issues with detailed system information automatically included.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>💬 Community Support</h4>
+                            <p>Join our <a href="https://discord.gg/neofox" target="_blank">Discord community</a> for real-time help and discussions with other users and developers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <span>🔧</span>
+                    <h2 class="section-title">Common Issues & Solutions</h2>
+                </div>
+                <div class="section-content">
+                    <h3>Application Issues</h3>
+                    <div class="troubleshoot-section">
+                        <h4>❌ CFCMonitor Won't Start</h4>
+                        <ul>
+                            <li>Check if another instance is already running (check system tray)</li>
+                            <li>Run as Administrator if you encounter permission errors</li>
+                            <li>Verify Windows version compatibility (Windows 10/11 required)</li>
+                            <li>Check for corrupted configuration files in the application directory</li>
+                            <li>Restart your computer to clear any locked processes</li>
+                        </ul>
+                    </div>
+
+                    <div class="troubleshoot-section">
+                        <h4>🎯 Events Not Being Detected</h4>
+                        <ul>
+                            <li>Verify the game log path is correct: <code>C:\Program Files\Roberts Space Industries\StarCitizen\LIVE\Game.log</code></li>
+                            <li>Make sure Star Citizen is actually running and generating logs</li>
+                            <li>Check if the log file has recent timestamps</li>
+                            <li>Reload the program using <code>File → Reload Program</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="troubleshoot-section">
+                        <h4>🌐 Database Connection Problems</h4>
+                        <ul>
+                            <li>Check your internet connection stability</li>
+                            <li>Verify firewall isn't blocking CFCMonitor</li>
+                            <li>Try disabling VPN temporarily if using one</li>
+                            <li>Check if your antivirus is interfering with network connections</li>
+                            <li>Wait for server maintenance periods to complete</li>
+                        </ul>
+                    </div>
+
+                    <div class="troubleshoot-section">
+                        <h4>📊 Statistics Not Updating</h4>
+                        <ul>
+                            <li>Allow 2-5 minutes for database synchronization</li>
+                            <li>Check if you're authenticated as a CFC member</li>
+                            <li>Verify your Player Handle is correctly being detected</li>
+                            <li>Try refreshing the statistics panel</li>
+                            <li>Ensure events are being detected in the main log panel</li>
+                        </ul>
+                    </div>
+
+                    <h3>Performance Issues</h3>
+                    <div class="troubleshoot-section">
+                        <h4>🐌 Slow Performance or High CPU Usage</h4>
+                        <ul>
+                            <li>Disable the debug logging tab if not needed</li>
+                            <li>Run CFCMonitor from an SSD instead of HDD</li>
+                            <li>Close other resource-intensive applications</li>
+                            <li>Consider disabling window overlay if performance is critical</li>
+                        </ul>
+                    </div>
+
+                    <div class="troubleshoot-section">
+                        <h4>💾 High Memory Usage</h4>
+                        <ul>
+                            <li>Restart CFCMonitor periodically during long sessions</li>
+                            <li>Clear log history if it becomes very large</li>
+                            <li>Disable unnecessary features like Twitch integration if not used</li>
+                            <li>Check for memory leaks by monitoring usage over time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <span>🔍</span>
+                    <h2 class="section-title">Detailed Troubleshooting</h2>
+                </div>
+                <div class="section-content">
+                    <h3>Configuration Issues</h3>
+                    <div class="troubleshoot-section">
+                        <h4>⚙️ Settings Not Saving</h4>
+                        <ul>
+                            <li>Run CFCMonitor as Administrator</li>
+                            <li>Check if the application directory is write-protected</li>
+                            <li>Verify disk space is available</li>
+                            <li>Look for config file corruption in application folder</li>
+                        </ul>
+                    </div>
+
+                    <div class="troubleshoot-section">
+                        <h4>🎨 Theme or Display Issues</h4>
+                        <ul>
+                            <li>Try switching to default theme in settings</li>
+                            <li>Check Windows display scaling settings</li>
+                            <li>Update graphics drivers</li>
+                            <li>Verify monitor resolution compatibility</li>
+                        </ul>
+                    </div>
+
+                    <h3>Achievement System Issues</h3>
+                    <div class="troubleshoot-section">
+                        <h4>🏆 Achievements Not Unlocking</h4>
+                        <ul>
+                            <li>Review achievement criteria in the <a href="CFC-achievement-guide.html">Achievement Guide</a></li>
+                            <li>Check if events are being properly categorized (PvP vs PvE)</li>
+                            <li>Verify your statistics are updating correctly</li>
+                            <li>Some achievements may have hidden progress requirements</li>
+                            <li>Wait for database synchronization (achievements may unlock with delay)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <span>📞</span>
+                    <h2 class="section-title">Contact & Community</h2>
+                </div>
+                <div class="section-content">
+                    <h3>Getting Direct Help</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>💬 Discord Community</h4>
+                            <p>Join our active Discord server for:</p>
+                            <ul>
+                                <li>Real-time support from developers and community</li>
+                                <li>Feature requests and suggestions</li>
+                                <li>Beta testing opportunities</li>
+                                <li>General Star Citizen discussions</li>
+                            </ul>
+                            <p><a href="https://discord.gg/neofox" target="_blank">Join Discord Server</a></p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🐛 Bug Reporting</h4>
+                            <p>For technical issues:</p>
+                            <ul>
+                                <li>Use <code>Help → Submit Bug Report</code> in the application</li>
+                                <li>Include system information automatically</li>
+                                <li>Provide detailed steps to reproduce</li>
+                                <li>Attach relevant log files if requested</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>💡 Feature Requests</h4>
+                            <p>Have ideas for improvements?</p>
+                            <ul>
+                                <li>Use <code>Help → Submit Bug Report</code> in the application & choose "Feature Request"</li>
+                                <li>Describe your use case clearly</li>
+                                <li>Explain how it would benefit the community</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🤝 Community Guidelines</h4>
+                            <p>When seeking help:</p>
+                            <ul>
+                                <li>Be respectful and patient</li>
+                                <li>Search existing discussions first</li>
+                                <li>Provide clear, detailed descriptions</li>
+                                <li>Help others when you can</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Self-Help Resources</h3>
+                    <p>Before reaching out for help, consider these resources:</p>
+                    <ul>
+                        <li><strong>Application Logs:</strong> Check the debug tab for error messages</li>
+                        <li><strong>Windows Event Viewer:</strong> Look for application-specific errors</li>
+                        <li><strong>System Requirements:</strong> Verify your system meets minimum requirements</li>
+                        <li><strong>Recent Changes:</strong> Consider if recent system changes might be related</li>
+                        <li><strong>Clean Installation:</strong> Sometimes a fresh install resolves persistent issues</li>
+                        <li><strong>Files related to the program locations:</strong></li>
+                        <li> - Your .exe location</li>
+                        <li> - Your configuration files location (C:\Users\[USERNAME]\AppData\Roaming\StarCitizenLogMonitor)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <span>🔗</span>
+                    <h2 class="section-title">Additional Resources</h2>
+                </div>
+                <div class="section-content">
+                    <h3>Star Citizen Tools & Resources</h3>
+                    <p>CFCMonitor includes integrated links to useful Star Citizen tools and resources:</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>📈 Trading Tools</h4>
+                            <ul>
+                                <li>Route calculators and profit optimizers</li>
+                                <li>Real-time commodity pricing</li>
+                                <li>Market analysis tools</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>⚔️ Combat Resources</h4>
+                            <ul>
+                                <li>DPS calculators and ship databases</li>
+                                <li>Weapon comparison tools</li>
+                                <li>Combat guides and strategies</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🌍 Exploration Guides</h4>
+                            <ul>
+                                <li>Mining location databases</li>
+                                <li>Exploration route planners</li>
+                                <li>Resource maps and guides</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>📢 Community Hubs</h4>
+                            <ul>
+                                <li>Real-time server status</li>
+                                <li>Game updates and news</li>
+                                <li>Community forums and discussions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>CFCMonitor Documentation</h3>
+                    <ul>
+                        <li><a href="documentation.html">Main Documentation</a> - Complete application guide</li>
+                        <li><a href="FAQ.html">Frequently Asked Questions</a> - Common questions and answers</li>
+                        <li><a href="CFC-achievement-guide.html">Achievement Guide</a> - Complete achievement reference</li>
+                        <li><a href="submit-achievement.html">Submit Achievement</a> - Request new achievements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <span>📋</span>
+                    <h2 class="section-title">System Information Checklist</h2>
+                </div>
+                <div class="section-content">
+                    <p>When reporting issues, having this information ready helps us assist you faster:</p>
+                    
+                    <div class="checklist">
+                        <h4>Basic Information</h4>
+                        <ul>
+                            <li>CFCMonitor version number</li>
+                            <li>Windows version (Windows 10/11)</li>
+                            <li>Star Citizen version and game mode</li>
+                            <li>When the issue started occurring</li>
+                        </ul>
+
+                        <h4>Technical Details</h4>
+                        <ul>
+                            <li>Error messages (exact text)</li>
+                            <li>Steps to reproduce the issue</li>
+                            <li>What you expected to happen</li>
+                            <li>Any recent changes to your system</li>
+                        </ul>
+
+                        <h4>Application State</h4>
+                        <ul>
+                            <li>Current settings configuration</li>
+                            <li>Any enabled integrations (Discord, Twitch)</li>
+                            <li>Recent log entries from debug tab</li>
+                            <li>Performance impact observed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="footer">
+            <p>&copy; 2025 CFCMonitor Support Documentation. All rights reserved.</p>
+            <p>Last updated: August 27, 2025</p>
+            <p>🌟 Enhancing your Star Citizen experience with comprehensive support</p>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ▲
+    </button>
+
+    <script>
+        // Back to Top functionality
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>

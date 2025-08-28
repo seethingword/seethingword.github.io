@@ -8,10 +8,16 @@
     <link rel="icon" href="cfc.ico" type="image/x-icon">
 </head>
 <body>
+    <style>
+        /* Force vertical scrollbar to always be visible on FAQ page to prevent layout shift */
+        html {
+            overflow-y: scroll;
+        }
+    </style>
     <div class="container">
-        <div class="header" style="position: relative;">
-            <img src="Logo.png" alt="CFCMonitor Logo" style="height: 8em; position: absolute; left: 50px; top: 50%; transform: translateY(-50%);">
-            <div style="text-align: center; width: 100%;">
+        <div class="header">
+            <img src="Logo.png" alt="CFCMonitor Logo">
+            <div class="header-content">
                 <h1>CFCMonitor FAQ</h1>
                 <p>Cosmic Fox Corps Monitor FAQ's</p>
             </div>
@@ -23,14 +29,15 @@
             <a href="FAQ.html">❓ FAQ</a>
             <a href="submit-achievement.html">📝 Submit Achievement</a>
             <a href="documentation.html#installation">📦 Installation</a>
-            <a href="documentation.html#support">🆘 Support</a>
+            <a href="support.html">🆘 Support</a>
             <a href="https://discord.gg/neofox" target="_blank">💬 Discord</a>
         </nav>
 
-        <div class="search-box">
-            <input type="text" class="search-input" placeholder="Search for questions..." id="searchInput">
-            <span class="search-icon">🔍</span>
-        </div>
+        <main>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for questions..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
 
         <!-- Getting Started Category -->
         <div class="category" id="getting-started">
@@ -385,7 +392,7 @@
                                 <li><strong>RSI (Robert Space Industries):</strong>
                                     <ul>
                                         <li><strong>Star Citizen:</strong> Main site, pledge store, subscriptions, merchandise</li>
-                                        <li><strong>What's New:</strong> COMM-LINK and patch notes</li>
+                                        <li><strong>What's New:</strong> COMM-LINK and updates</li>
                                         <li><strong>Discover:</strong> Galactapedia and Starmap</li>
                                         <li><strong>Community:</strong> Spectrum forums and guide system</li>
                                         <li><strong>Server Status:</strong> Real-time server monitoring</li>
@@ -1032,6 +1039,7 @@
                 </div>
             </div>
         </div>
+        </main>
 
     </div>
 
