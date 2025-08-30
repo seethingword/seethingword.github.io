@@ -44,7 +44,7 @@ body {
     overflow-x: hidden;}
 /* Main content container - centers content and adds consistent padding */
 .container {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: 0 auto;
     padding: 20px;}
 /* ============================================================================
@@ -240,7 +240,7 @@ hr {
    ============================================================================ */
 .toc-toggle-btn {
     position: fixed;
-    left: 328px;
+    left: 318px;
     top: 142px;
     width: 23px;
     height: 65px;
@@ -267,7 +267,7 @@ hr {
     position: fixed;
     left: 0;
     top: 0;
-    width: 350px;
+    width: 340px;
     height: 100vh;
     background: linear-gradient(180deg, var(--background-color) 0%, rgba(26, 26, 26, 0.95) 100%);
     backdrop-filter: blur(10px);
@@ -1033,6 +1033,103 @@ textarea.form-control {
 
 .checklist ul:last-child {
     margin-bottom: 0;
+}
+
+/* ============================================================================
+   CONFIGURATION PAGE SPECIFIC STYLES
+   ============================================================================ */
+
+/* Configuration templates for different play styles */
+.config-template {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.config-template h4 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+/* File path display boxes */
+.config-path {
+    background-color: var(--hover-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    border: 1px solid var(--border-color);
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+/* Setting examples with code formatting */
+.setting-example {
+    background-color: var(--hover-color);
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    border-left: 3px solid var(--primary-color);
+    font-family: 'Courier New', monospace;
+    line-height: 1.4;
+}
+
+/* Warning boxes for important notices */
+.warning-box {
+    background-color: rgba(255, 165, 0, 0.1);
+    border: 1px solid #ffa500;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 15px 0;
+    border-left: 4px solid #ffa500;
+}
+
+.warning-box strong {
+    color: #ffa500;
+}
+
+/* Information boxes for tips and notes */
+.info-box {
+    background-color: rgba(0, 123, 255, 0.1);
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 15px 0;
+    border-left: 4px solid #007bff;
+}
+
+.info-box strong {
+    color: #007bff;
+}
+
+/* Troubleshooting step containers */
+.troubleshooting-step {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: var(--surface-color);
+    border-radius: 6px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.troubleshooting-step strong {
+    color: var(--secondary-color);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.troubleshooting-step ol,
+.troubleshooting-step ul {
+    margin-top: 8px;
+    padding-left: 20px;
+}
+
+.troubleshooting-step li {
+    margin: 5px 0;
+    line-height: 1.5;
 }
 
 /* ============================================================================

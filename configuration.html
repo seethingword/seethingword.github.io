@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFCMonitor - Configuration Guide</title>
+    <link rel="stylesheet" href="cfcmonitor-styles.css">
+    <link rel="icon" href="cfc.ico" type="image/x-icon">
+</head>
+<body>
+    <style>
+        /* Force vertical scrollbar to always be visible to prevent layout shift */
+        html {
+            overflow-y: scroll;
+        }
+    </style>
+    
+    <div class="container">
+        <div class="header">
+            <img src="Logo.png" alt="CFCMonitor Logo">
+            <div class="header-content">
+                <h1>CFCMonitor Configuration Guide</h1>
+                <p>Complete setup walkthrough for customizing CFCMonitor</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="documentation.html">🏠 Home</a>
+            <a href="CFC-achievement-guide.html">🏆 Achievement Guide</a>
+            <a href="FAQ.html">❓ FAQ</a>
+            <a href="submit-achievement.html">📝 Submit Achievement</a>
+            <a href="configuration.html" class="active">⚙️ Configuration</a>
+            <a href="documentation.html#installation">📦 Installation</a>
+            <a href="support.html">🆘 Support</a>
+            <a href="https://discord.gg/neofox" target="_blank">💬 Discord</a>
+        </nav>
+
+        <main>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search configuration options..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <!-- Quick Start Configuration -->
+            <div class="category" id="quick-start">
+                <div class="category-header" onclick="toggleCategory('quick-start')">
+                    <h2 class="category-title">🚀 Quick Start Configuration</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>First-Time Setup Wizard</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>When you first launch CFCMonitor, follow these essential setup steps:</p>
+                                <ol>
+                                    <li><strong>Game Log Location:</strong> Point CFCMonitor to your Star Citizen game log file</li>
+                                    <li><strong>Player Verification:</strong> Authenticate your CFC organization membership</li>
+                                    <li><strong>Basic Settings:</strong> Configure your preferred theme and notification settings</li>
+                                    <li><strong>Test Connectivity:</strong> Verify database connection and data synchronization</li>
+                                </ol>
+                                
+                                <div class="config-path">
+                                    <strong>Default Game Log Path:</strong><br>
+                                    <code>C:\Program Files\Roberts Space Industries\StarCitizen\LIVE\Game.log</code>
+                                </div>
+                                
+                                <div class="warning-box">
+                                    <strong>⚠️ Important:</strong> Make sure Star Citizen has been run at least once (And gotten to main menu) initial setup for best results.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Configuration File Location</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>CFCMonitor stores all configuration in a JSON file located at:</p>
+                                
+                                <div class="config-path">
+                                    <strong>Windows:</strong><br>
+                                    <code>%APPDATA%\StarCitizenLogMonitor\config.json</code><br><br>
+                                    <strong>macOS:</strong><br>
+                                    <code>~/Library/Application Support/StarCitizenLogMonitor/config.json</code><br><br>
+                                    <strong>Linux:</strong><br>
+                                    <code>~/.config/StarCitizenLogMonitor/config.json</code>
+                                </div>
+                                
+                                <div class="info-box">
+                                    <strong>💡 Tip:</strong> You can backup this file to save your settings, or share configurations between installations.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Settings -->
+            <div class="category" id="core-settings">
+                <div class="category-header" onclick="toggleCategory('core-settings')">
+                    <h2 class="category-title">⚙️ Core Settings</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Game Log Monitoring</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Game Log Path Configuration</h4>
+                                <p>The most critical setting in CFCMonitor is the path to your Star Citizen game log file.</p>
+                                
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>GAME_LOG_PATH</code><br>
+                                    <strong>Default:</strong> <code>""</code> (empty - must be configured)<br>
+                                    <strong>Purpose:</strong> Tells CFCMonitor where to find your Star Citizen game logs
+                                </div>
+                                
+                                <p><strong>Common Locations:</strong></p>
+                                <ul>
+                                    <li><strong>Live Branch:</strong> <code>C:\Program Files\Roberts Space Industries\StarCitizen\LIVE\Game.log</code></li>
+                                    <li><strong>PTU Branch:</strong> <code>C:\Program Files\Roberts Space Industries\StarCitizen\PTU\Game.log</code></li>
+                                    <li><strong>EPTU Branch:</strong> <code>C:\Program Files\Roberts Space Industries\StarCitizen\EPTU\Game.log</code></li>
+                                    <li><strong>Custom Install:</strong> <code>[Your Custom Path]\StarCitizen\[BRANCH]\Game.log</code></li>
+                                </ul>
+                                
+                                <h4>Current Monitored Log</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>CURRENT_MONITORED_LOG</code><br>
+                                    <strong>Purpose:</strong> Tracks which specific log file is currently being monitored
+                                </div>
+                                
+                                <h4>Game Version Support</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>GAME_VERSIONS</code><br>
+                                    <strong>Default:</strong> <code>[]</code> (array)<br>
+                                    <strong>Purpose:</strong> Stores information about supported Star Citizen versions
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>User Identification & Privacy</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Client User ID</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>CLIENT_USER_ID</code><br>
+                                    <strong>Default:</strong> Auto-generated UUID<br>
+                                    <strong>Purpose:</strong> Unique identifier for your CFCMonitor installation
+                                </div>
+                                
+                                <p>This unique ID is automatically generated when you first run CFCMonitor. It's used to:</p>
+                                <ul>
+                                    <li>Track your statistics across sessions</li>
+                                    <li>Sync data with the CFC database</li>
+                                    <li>Maintain leaderboard positions</li>
+                                    <li>Link achievements to your account</li>
+                                </ul>
+                                
+                                <div class="info-box">
+                                    <strong>🔒 Privacy Note:</strong> This ID is completely anonymous and cannot be used to identify you personally. Only your in-game handle and statistics are associated with it.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Application Behavior</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Startup Options</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>START_WITH_WINDOWS</code><br>
+                                    <strong>Default:</strong> <code>false</code><br>
+                                    <strong>Purpose:</strong> Automatically start CFCMonitor when Windows starts
+                                </div>
+                                
+                                <h4>Close Button Behavior</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>CLOSE_BUTTON_BEHAVIOR</code><br>
+                                    <strong>Options:</strong> <code>"close"</code> or <code>"minimize_to_tray"</code><br>
+                                    <strong>Default:</strong> <code>"close"</code><br>
+                                    <strong>Purpose:</strong> Controls what happens when you click the X button
+                                </div>
+                                
+                                <p><strong>Close Button Options:</strong></p>
+                                <ul>
+                                    <li><strong>"close":</strong> Completely exits the application</li>
+                                    <li><strong>"minimize_to_tray":</strong> Minimizes to system tray to continue monitoring</li>
+                                </ul>
+                                
+                                <h4>Debug Features</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>SHOW_DEBUG_TAB</code><br>
+                                    <strong>Default:</strong> <code>false</code><br>
+                                    <strong>Purpose:</strong> Shows additional debugging information and logs
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual & Interface Settings -->
+            <div class="category" id="visual-settings">
+                <div class="category-header" onclick="toggleCategory('visual-settings')">
+                    <h2 class="category-title">🎨 Visual & Interface Settings</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Application Theme</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>THEME</code><br>
+                                    <strong>Default:</strong> <code>"dark"</code><br>
+                                    <strong>Purpose:</strong> Controls the overall color scheme of the application
+                                </div>
+                                
+                                <p><strong>Available Themes:</strong></p>
+                                
+                                <h4>🖥️ Modern/Professional Themes</h4>
+                                <ul>
+                                    <li><code>"dark"</code> - Dark theme with comfortable gray tones</li>
+                                    <li><code>"light"</code> - Clean light theme for bright environments</li>
+                                    <li><code>"charcoal"</code> - Professional charcoal gray theme</li>
+                                    <li><code>"high_contrast"</code> - High contrast black and white theme</li>
+                                    <li><code>"midnight_blue"</code> - Deep blue professional theme</li>
+                                </ul>
+                                
+                                <h4>🚀 Space/Sci-Fi Themes</h4>
+                                <ul>
+                                    <li><code>"star_citizen"</code> - Official Star Citizen orange and blue theme</li>
+                                    <li><code>"neon_blue"</code> - Bright cyan neon theme</li>
+                                    <li><code>"neon_green"</code> - Matrix-style bright green theme</li>
+                                    <li><code>"deep_space"</code> - Purple space exploration theme</li>
+                                    <li><code>"ocean_depths"</code> - Deep ocean blue theme</li>
+                                </ul>
+                                
+                                <h4>🎮 Gaming Themes</h4>
+                                <ul>
+                                    <li><code>"retro_amber"</code> - Classic amber terminal theme</li>
+                                    <li><code>"hacker_green"</code> - Traditional hacker green on black</li>
+                                    <li><code>"military_green"</code> - Military tactical green theme</li>
+                                </ul>
+                                
+                                <h4>🌈 Colorful Themes</h4>
+                                <ul>
+                                    <li><code>"purple_haze"</code> - Rich purple gradient theme</li>
+                                    <li><code>"sunset"</code> - Warm orange and red sunset theme</li>
+                                </ul>
+                                
+                                <div class="info-box">
+                                    <strong>💡 Theme Recommendations:</strong>
+                                    <ul>
+                                        <li><strong>"star_citizen"</strong> - Perfect for immersive Star Citizen experience</li>
+                                        <li><strong>"dark"</strong> - Best for long gaming sessions</li>
+                                        <li><strong>"high_contrast"</strong> - Excellent for accessibility</li>
+                                        <li><strong>"retro_amber"</strong> - Classic terminal feel</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Console Appearance</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Text Color</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>CONSOLE_TEXT_COLOR</code><br>
+                                    <strong>Default:</strong> <code>""</code> (uses theme default)<br>
+                                    <strong>Format:</strong> Hex color code (e.g., <code>"#00FF00"</code>)<br>
+                                    <strong>Purpose:</strong> Custom color for console text
+                                </div>
+                                
+                                <h4>Background Color</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>CONSOLE_BG_COLOR</code><br>
+                                    <strong>Default:</strong> <code>""</code> (uses theme default)<br>
+                                    <strong>Format:</strong> Hex color code (e.g., <code>"#000000"</code>)<br>
+                                    <strong>Purpose:</strong> Custom background color for console
+                                </div>
+                                
+                                <h4>Font Size</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>CONSOLE_FONT_SIZE</code><br>
+                                    <strong>Default:</strong> <code>10</code><br>
+                                    <strong>Range:</strong> 8-24 (recommended)<br>
+                                    <strong>Purpose:</strong> Size of text in the console window
+                                </div>
+                                
+                                <div class="info-box">
+                                    <strong>💡 Tip:</strong> Leave color settings empty to use theme defaults, or customize them for better readability in your gaming setup.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Overlay -->
+            <div class="category" id="overlay-settings">
+                <div class="category-header" onclick="toggleCategory('overlay-settings')">
+                    <h2 class="category-title">📺 Real-time Overlay Configuration</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Enable Overlay</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>ENABLE_OVERLAY</code><br>
+                                    <strong>Default:</strong> <code>false</code><br>
+                                    <strong>Purpose:</strong> Shows real-time statistics and events over your game
+                                </div>
+                                
+                                <p>The overlay displays important information while you play Star Citizen, including:</p>
+                                <ul>
+                                    <li>Kill/death notifications</li>
+                                    <li>Achievement unlocks</li>
+                                    <li>Session statistics</li>
+                                    <li>Current K/D ratio</li>
+                                </ul>
+                                
+                                <div class="warning-box">
+                                    <strong>⚠️ Performance Note:</strong> The overlay may impact game performance on lower-end systems. Test with your setup and disable if needed.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Overlay Appearance</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Text Color</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>OVERLAY_TEXT_COLOR</code><br>
+                                    <strong>Default:</strong> <code>"#00FF00"</code> (green)<br>
+                                    <strong>Format:</strong> Hex color code<br>
+                                    <strong>Purpose:</strong> Color of overlay text
+                                </div>
+                                
+                                <h4>Font Settings</h4>
+                                <div class="setting-example">
+                                    <strong>Font Family:</strong> <code>OVERLAY_FONT_FAMILY</code> (Default: <code>"Arial"</code>)<br>
+                                    <strong>Font Size:</strong> <code>OVERLAY_FONT_SIZE</code> (Default: <code>24</code>)<br>
+                                    <strong>Bold:</strong> <code>OVERLAY_FONT_STYLE_BOLD</code> (Default: <code>true</code>)<br>
+                                    <strong>Italic:</strong> <code>OVERLAY_FONT_STYLE_ITALIC</code> (Default: <code>false</code>)<br>
+                                    <strong>Underline:</strong> <code>OVERLAY_FONT_STYLE_UNDERLINE</code> (Default: <code>false</code>)
+                                </div>
+                                
+                                <p><strong>Recommended Font Families:</strong></p>
+                                <ul>
+                                    <li><strong>Arial:</strong> Clean, highly readable</li>
+                                    <li><strong>Helvetica:</strong> Modern, professional look</li>
+                                    <li><strong>Consolas:</strong> Monospace, good for statistics</li>
+                                    <li><strong>Impact:</strong> Bold, high visibility</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Overlay Position & Timing</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Position</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>OVERLAY_POSITION</code><br>
+                                    <strong>Default:</strong> <code>"top-left"</code><br>
+                                    <strong>Options:</strong> <code>"top-left"</code>, <code>"top-right"</code>, <code>"bottom-left"</code>, <code>"bottom-right"</code>, <code>"top-center"</code>, <code>"bottom-center"</code>
+                                </div>
+                                
+                                <h4>Display Duration</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>OVERLAY_DISPLAY_DURATION_MS</code><br>
+                                    <strong>Default:</strong> <code>3000</code> (3 seconds)<br>
+                                    <strong>Purpose:</strong> How long notifications stay visible (in milliseconds)
+                                </div>
+                                
+                                <p><strong>Position Recommendations:</strong></p>
+                                <ul>
+                                    <li><strong>top-left:</strong> Doesn't interfere with HUD elements</li>
+                                    <li><strong>top-right:</strong> Good for monitoring while flying</li>
+                                    <li><strong>bottom-left:</strong> Away from chat area</li>
+                                    <li><strong>bottom-right:</strong> Near minimap, good for quick reference</li>
+                                    <li><strong>bottom-center:</strong> High visibility but may obstruct gameplay</li>
+                                    <li><strong>top-center:</strong> Good for monitoring while flying</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Notifications -->
+            <div class="category" id="audio-settings">
+                <div class="category-header" onclick="toggleCategory('audio-settings')">
+                    <h2 class="category-title">🔊 Audio Notifications</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Notification Sounds Setup</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Enable Sound Notifications</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>ENABLE_NOTIFICATION_SOUNDS</code><br>
+                                    <strong>Default:</strong> <code>true</code><br>
+                                    <strong>Purpose:</strong> Master switch for all audio notifications
+                                </div>
+                                
+                                <h4>Volume Control</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>NOTIFICATION_SOUND_VOLUME</code><br>
+                                    <strong>Default:</strong> <code>50</code><br>
+                                    <strong>Range:</strong> 0-100<br>
+                                    <strong>Purpose:</strong> Controls volume of all notification sounds
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Custom Sound Files</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>CFCMonitor supports custom sound files for different event types:</p>
+                                
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>NOTIFICATION_SOUNDS</code><br>
+                                    <strong>Structure:</strong> Object with sound file paths<br>
+                                    <strong>Supported Events:</strong>
+                                    <ul>
+                                        <li><code>"kill"</code> - PvP kills</li>
+                                        <li><code>"death"</code> - PvP deaths</li>
+                                        <li><code>"achievement"</code> - Achievement unlocks</li>
+                                        <li><code>"pve_kill"</code> - PvE kills</li>
+                                        <li><code>"pve_death"</code> - PvE deaths</li>
+                                        <li><code>"crash"</code> - Game crashes</li>
+                                        <li><code>"suicide"</code> - Self-inflicted deaths</li>
+                                        <li><code>"suffocation"</code> - Environmental deaths</li>
+                                    </ul>
+                                </div>
+                                
+                                <h4>Sound File Requirements</h4>
+                                <ul>
+                                    <li><strong>Supported Formats:</strong> WAV, MP3, OGG</li>
+                                    <li><strong>Recommended Length:</strong> 1-3 seconds</li>
+                                    <li><strong>File Size:</strong> Under 1MB for best performance</li>
+                                    <li><strong>Quality:</strong> 44.1kHz, 16-bit recommended</li>
+                                </ul>
+                                
+                                <div class="info-box">
+                                    <strong>💡 Tips for Custom Sounds:</strong>
+                                    <ul>
+                                        <li>Use short, distinctive sounds that won't interfere with game audio</li>
+                                        <li>Test volume levels during gameplay</li>
+                                        <li>Consider different tones for different event types</li>
+                                        <li>Keep files in a dedicated folder for easy management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Streaming & Integration -->
+            <div class="category" id="streaming-settings">
+                <div class="category-header" onclick="toggleCategory('streaming-settings')">
+                    <h2 class="category-title">📹 Streaming & Integration</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Twitch Bot Integration</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Enable Twitch Bot</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>ENABLE_TWITCH_BOT</code><br>
+                                    <strong>Default:</strong> <code>false</code><br>
+                                    <strong>Purpose:</strong> Enables automatic Twitch chat integration
+                                </div>
+                                
+                                <h4>Twitch Configuration</h4>
+                                <div class="setting-example">
+                                    <strong>Channel:</strong> <code>TWITCH_CHANNEL</code> - Your Twitch channel name<br>
+                                    <strong>Bot Username:</strong> <code>TWITCH_BOT_USERNAME</code> - Bot account name<br>
+                                    <strong>OAuth Token:</strong> <code>TWITCH_OAUTH_TOKEN</code> - Authentication token<br>
+                                    <strong>Auto Connect:</strong> <code>AUTO_CONNECT_TWITCH</code> - Connect on startup
+                                </div>
+                                
+                                <h4>Setting Up Twitch Integration</h4>
+                                <ol>
+                                    <li>Create or use an existing Twitch account for your bot</li>
+                                    <li>Generate an OAuth token at <a href="https://antiscuff.com/oauth/" target="_blank" style="color: var(--secondary-color);">antiscuff.com/oauth/</a></li>
+                                    <li>Enter your channel name (without the #)</li>
+                                    <li>Test the connection before going live</li>
+                                </ol>
+                                
+                                <div class="warning-box">
+                                    <strong>⚠️ Security:</strong> Keep your OAuth token private. Never share it publicly or in screenshots.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Text Labels for OBS</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Enable Text Labels</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>ENABLE_TEXT_LABELS</code><br>
+                                    <strong>Default:</strong> <code>false</code><br>
+                                    <strong>Purpose:</strong> Creates text files for OBS/streaming software to read
+                                </div>
+                                
+                                <h4>Output Path</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>TEXT_LABELS_OUTPUT_PATH</code><br>
+                                    <strong>Default:</strong> <code>""</code> (empty)<br>
+                                    <strong>Purpose:</strong> Folder where text files are created
+                                </div>
+                                
+                                <h4>Available Labels</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>ENABLED_LABELS</code><br>
+                                    <strong>Purpose:</strong> Controls which statistics are written to text files for OBS/streaming software
+                                </div>
+                                
+                                <p><strong>All Available Label Options:</strong></p>
+                                
+                                <h4>📊 Session Statistics</h4>
+                                <ul>
+                                    <li><code>"total_kills_session"</code> - Total PvP kills in current session</li>
+                                    <li><code>"total_pve_kills_session"</code> - PvE kills in current session only</li>
+                                </ul>
+                                
+                                <h4>🎯 Lifetime Statistics</h4>
+                                <ul>
+                                    <li><code>"pvp_kills_total"</code> - Total lifetime PvP kills</li>
+                                    <li><code>"pve_kills_total"</code> - Total lifetime PvE kills</li>
+                                    <li><code>"pvp_deaths_total"</code> - Total lifetime PvP deaths</li>
+                                </ul>
+                                
+                                <h4>👤 Player Information</h4>
+                                <ul>
+                                    <li><code>"last_player_killed"</code> - Name of the last player you killed</li>
+                                    <li><code>"player_who_killed_user_last"</code> - Name of the last player who killed you</li>
+                                </ul>
+                                
+                                <h4>📍 Location Data</h4>
+                                <ul>
+                                    <li><code>"last_kill_location"</code> - Location where your last kill occurred</li>
+                                    <li><code>"last_death_location"</code> - Location where your last death occurred</li>
+                                </ul>
+                                
+                                <h4>🔫 Weapon Information</h4>
+                                <ul>
+                                    <li><code>"last_weapon_used_to_kill_player"</code> - Last weapon you used to kill someone</li>
+                                    <li><code>"last_weapon_used_to_kill_user"</code> - Last weapon used to kill you</li>
+                                </ul>
+                                
+                                <h4>⏰ Timing Data</h4>
+                                <ul>
+                                    <li><code>"time_since_last_pvp_death"</code> - Time elapsed since your last PvP death</li>
+                                    <li><code>"time_since_last_pvp_kill"</code> - Time elapsed since your last PvP kill</li>
+                                </ul>
+                                
+                                <div class="info-box">
+                                    <strong>💡 Usage Tips:</strong>
+                                    <ul>
+                                        <li><strong>Enable only what you need</strong> - Reduces file I/O and improves performance</li>
+                                        <li><strong>Session stats</strong> - Great for stream overlays showing current session progress</li>
+                                        <li><strong>Lifetime stats</strong> - Perfect for persistent achievement displays</li>
+                                        <li><strong>Recent events</strong> - Ideal for showing latest kills, deaths, and weapons used</li>
+                                        <li><strong>Timing data</strong> - Useful for streak tracking and performance analysis</li>
+                                    </ul>
+                                </div>
+                                
+                                <h4>Setting Up OBS Text Sources</h4>
+                                <ol>
+                                    <li>Choose an output folder (e.g., <code>C:\Streaming\CFCLabels\</code>)</li>
+                                    <li>Enable the labels you want to display</li>
+                                    <li>In OBS, add Text (GDI+) sources</li>
+                                    <li>Check "Read from file" and browse to your label files</li>
+                                    <li>Style and position the text elements</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Management -->
+            <div class="category" id="data-settings">
+                <div class="category-header" onclick="toggleCategory('data-settings')">
+                    <h2 class="category-title">💾 Data Management</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Backup Configuration</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Enable Backups</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>ENABLE_BACKUPS</code><br>
+                                    <strong>Default:</strong> <code>false</code><br>
+                                    <strong>Purpose:</strong> Automatically backup your game.log file
+                                </div>
+                                
+                                <h4>Backup Location</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>BACKUP_FOLDER_PATH</code><br>
+                                    <strong>Default:</strong> <code>""</code> (empty)<br>
+                                    <strong>Purpose:</strong> Where backup file is stored
+                                </div>
+                                
+                                <h4>Backup Prompt</h4>
+                                <div class="setting-example">
+                                    <strong>Setting:</strong> <code>BACKUP_PROMPT_SHOWN</code><br>
+                                    <strong>Default:</strong> <code>false</code><br>
+                                    <strong>Purpose:</strong> Tracks if backup setup prompt has been shown
+                                </div>
+                                
+                                <p><strong>What Gets Backed Up:</strong></p>
+                                <ul>
+                                    <li>game.log file</li>
+                                </ul>
+                                <br>
+                                
+                                <div class="info-box">
+                                    <strong>💡 Backup Best Practices:</strong>
+                                    <ul>
+                                        <li>Choose a backup location outside your main drive</li>
+                                        <li>Consider cloud storage for off-site backups</li>
+                                        <li>Regular backups prevent data loss from drive failures</li>
+                                        <li>Test restore procedures periodically</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration Templates -->
+            <div class="category" id="templates">
+                <div class="category-header" onclick="toggleCategory('templates')">
+                    <h2 class="category-title">📋 Configuration Templates</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Casual Player Template</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Optimized for players who want basic monitoring without distractions:</p>
+                                
+                                <div class="config-template">
+                                    <h4>🎮 Casual Player Settings</h4>
+                                    <div class="setting-example">
+                                        <code>ENABLE_OVERLAY: false</code> - No in-game overlay<br>
+                                        <code>ENABLE_NOTIFICATION_SOUNDS: true</code> - Achievement sounds only<br>
+                                        <code>NOTIFICATION_SOUND_VOLUME: 30</code> - Low volume<br>
+                                        <code>THEME: "dark"</code> - Easy on the eyes<br>
+                                        <code>CLOSE_BUTTON_BEHAVIOR: "minimize"</code> - Keep running in background<br>
+                                        <code>START_WITH_WINDOWS: false</code> - Manual startup<br>
+                                        <code>ENABLE_BACKUPS: true</code> - Protect your file
+                                    </div>
+                                    <p><strong>Perfect for:</strong> Solo players, exploration, cargo running, casual gaming sessions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Competitive PvP Template</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>High-performance setup for serious PvP players:</p>
+                                
+                                <div class="config-template">
+                                    <h4>⚔️ Competitive PvP Settings</h4>
+                                    <div class="setting-example">
+                                        <code>ENABLE_OVERLAY: true</code> - Real-time stats<br>
+                                        <code>OVERLAY_POSITION: "top-right"</code> - Out of the way<br>
+                                        <code>OVERLAY_DISPLAY_DURATION_MS: 2000</code> - Quick notifications<br>
+                                        <code>OVERLAY_TEXT_COLOR: "#FF0000"</code> - High visibility red<br>
+                                        <code>OVERLAY_FONT_SIZE: 20</code> - Readable but not intrusive<br>
+                                        <code>ENABLE_NOTIFICATION_SOUNDS: true</code> - Audio feedback<br>
+                                        <code>NOTIFICATION_SOUND_VOLUME: 70</code> - Clear over game audio<br>
+                                        <code>START_WITH_WINDOWS: true</code> - Always ready<br>
+                                        <code>ENABLE_BACKUPS: true</code> - Protect achievements
+                                    </div>
+                                    <p><strong>Perfect for:</strong> Arena Commander, PvP bounty hunting, competitive events</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Streamer Template</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Complete streaming setup with viewer engagement features:</p>
+                                
+                                <div class="config-template">
+                                    <h4>📺 Streamer Settings</h4>
+                                    <div class="setting-example">
+                                        <code>ENABLE_OVERLAY: false</code> - Use OBS text sources instead<br>
+                                        <code>ENABLE_TEXT_LABELS: true</code> - OBS integration<br>
+                                        <code>TEXT_LABELS_OUTPUT_PATH: "C:\Streaming\CFCLabels\"</code><br>
+                                        <code>ENABLE_TWITCH_BOT: true</code> - Chat integration<br>
+                                        <code>AUTO_CONNECT_TWITCH: true</code> - Automatic connection<br>
+                                        <code>ENABLE_NOTIFICATION_SOUNDS: true</code> - Viewer engagement<br>
+                                        <code>NOTIFICATION_SOUND_VOLUME: 60</code> - Audible but not overwhelming<br>
+                                        <code>ENABLE_BACKUPS: true</code> - Protect content<br>
+                                        <code>START_WITH_WINDOWS: true</code> - Ready for streams
+                                    </div>
+                                    <p><strong>Perfect for:</strong> Twitch/YouTube streamers, content creators, community events</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Minimal Performance Template</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Lightweight configuration for maximum game performance:</p>
+                                
+                                <div class="config-template">
+                                    <h4>⚡ Minimal Performance Settings</h4>
+                                    <div class="setting-example">
+                                        <code>ENABLE_OVERLAY: false</code> - No performance impact<br>
+                                        <code>ENABLE_NOTIFICATION_SOUNDS: false</code> - Silent operation<br>
+                                        <code>ENABLE_TEXT_LABELS: false</code> - No file I/O<br>
+                                        <code>ENABLE_TWITCH_BOT: false</code> - No network overhead<br>
+                                        <code>SHOW_DEBUG_TAB: false</code> - Minimal UI<br>
+                                        <code>CONSOLE_FONT_SIZE: 8</code> - Compact display<br>
+                                        <code>CLOSE_BUTTON_BEHAVIOR: "minimize"</code> - Background operation<br>
+                                        <code>ENABLE_BACKUPS: false</code> - Manual backup only
+                                    </div>
+                                    <p><strong>Perfect for:</strong> Lower-end systems, maximum FPS gaming, competitive performance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="category" id="troubleshooting">
+                <div class="category-header" onclick="toggleCategory('troubleshooting')">
+                    <h2 class="category-title">🔧 Troubleshooting Configuration Issues</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Configuration File Problems</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <h4>Common Issues</h4>
+                                
+                                <div class="troubleshooting-step">
+                                    <strong>Problem:</strong> Settings not saving or loading<br>
+                                    <strong>Solution:</strong>
+                                    <ol>
+                                        <li>Check if CFCMonitor has write permissions to the config directory</li>
+                                        <li>Ensure no other instances are running</li>
+                                        <li>Try running as administrator</li>
+                                        <li>Verify config.json is not set to read-only</li>
+                                    </ol>
+                                </div>
+                                <br>
+                                <div class="troubleshooting-step">
+                                    <strong>Problem:</strong> Corrupted configuration file<br>
+                                    <strong>Solution:</strong>
+                                    <ol>
+                                        <li>Close CFCMonitor completely</li>
+                                        <li>Navigate to config directory</li>
+                                        <li>Rename config.json to config_backup.json</li>
+                                        <li>Restart CFCMonitor (will create new config with defaults)</li>
+                                        <li>Reconfigure your settings</li>
+                                    </ol>
+                                </div>
+                                <br>
+                                <div class="troubleshooting-step">
+                                    <strong>Problem:</strong> Settings reset after each restart<br>
+                                    <strong>Solution:</strong>
+                                    <ol>
+                                        <li>Check antivirus software isn't blocking file writes</li>
+                                        <li>Verify Windows User Account Control settings</li>
+                                        <li>Move config directory to a different location</li>
+                                        <li>Check available disk space</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Overlay Not Working</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <div class="troubleshooting-step">
+                                    <strong>Check These Settings:</strong>
+                                    <ol>
+                                        <li>Verify <code>ENABLE_OVERLAY</code> is set to <code>true</code></li>
+                                        <li>Ensure Star Citizen is running in Fullscreen or Windowed mode (not Borderless)</li>
+                                        <li>Check if overlay position is visible on your monitor setup</li>
+                                        <li>Try different overlay positions to test functionality</li>
+                                        <li>Verify overlay color isn't blending with game background</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="troubleshooting-step">
+                                    <strong>Advanced Solutions:</strong>
+                                    <ol>
+                                        <li>Run CFCMonitor as administrator</li>
+                                        <li>Disable fullscreen optimizations for Star Citizen</li>
+                                        <li>Check for conflicts with other overlay software</li>
+                                        <li>Update graphics drivers</li>
+                                        <li>Try running in compatibility mode</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Audio Notifications Not Playing</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <div class="troubleshooting-step">
+                                    <strong>Basic Checks:</strong>
+                                    <ol>
+                                        <li>Verify <code>ENABLE_NOTIFICATION_SOUNDS</code> is <code>true</code></li>
+                                        <li>Check <code>NOTIFICATION_SOUND_VOLUME</code> is above 0</li>
+                                        <li>Ensure sound files exist at specified paths</li>
+                                        <li>Test with default Windows sounds first</li>
+                                        <li>Check system audio mixer for CFCMonitor volume</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="troubleshooting-step">
+                                    <strong>File Path Issues:</strong>
+                                    <ol>
+                                        <li>Use absolute file paths (e.g., <code>C:\Sounds\kill.wav</code>)</li>
+                                        <li>Avoid spaces in file names or use quotes</li>
+                                        <li>Ensure sound files are in supported formats (WAV, MP3, OGG)</li>
+                                        <li>Check file permissions and accessibility</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Text Labels Not Updating</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <div class="troubleshooting-step">
+                                    <strong>Configuration Checks:</strong>
+                                    <ol>
+                                        <li>Verify <code>ENABLE_TEXT_LABELS</code> is <code>true</code></li>
+                                        <li>Check <code>TEXT_LABELS_OUTPUT_PATH</code> is set and valid</li>
+                                        <li>Ensure CFCMonitor has write permissions to output directory</li>
+                                        <li>Verify enabled labels are configured in <code>ENABLED_LABELS</code></li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="troubleshooting-step">
+                                    <strong>OBS Integration Issues:</strong>
+                                    <ol>
+                                        <li>Check that OBS text sources point to correct files</li>
+                                        <li>Ensure "Read from file" is enabled in OBS</li>
+                                        <li>Try refreshing OBS sources</li>
+                                        <li>Verify file update frequency matches OBS refresh rate</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Performance Issues</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <div class="troubleshooting-step">
+                                    <strong>Reduce Resource Usage:</strong>
+                                    <ol>
+                                        <li>Disable overlay if not needed (<code>ENABLE_OVERLAY: false</code>)</li>
+                                        <li>Turn off text labels if not streaming (<code>ENABLE_TEXT_LABELS: false</code>)</li>
+                                        <li>Disable Twitch bot when not streaming (<code>ENABLE_TWITCH_BOT: false</code>)</li>
+                                        <li>Use smaller console font size (<code>CONSOLE_FONT_SIZE: 8</code>)</li>
+                                        <li>Disable debug features (<code>SHOW_DEBUG_TAB: false</code>)</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="troubleshooting-step">
+                                    <strong>System Optimization:</strong>
+                                    <ol>
+                                        <li>Close unnecessary background applications</li>
+                                        <li>Set CFCMonitor to lower CPU priority</li>
+                                        <li>Move config and backup folders to SSD if available</li>
+                                        <li>Increase virtual memory if running low on RAM</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Reset to Defaults</h3>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>If you're experiencing persistent issues, you can reset CFCMonitor to default settings:</p>
+                                
+                                <div class="warning-box">
+                                    <strong>⚠️ Warning:</strong> This will erase all your custom configuration. Your statistics and achievements will be preserved.
+                                </div>
+                                
+                                <div class="troubleshooting-step">
+                                    <strong>Complete Reset Process:</strong>
+                                    <ol>
+                                        <li>Close CFCMonitor completely</li>
+                                        <li>Press <code>Windows + R</code> and type <code>%APPDATA%</code></li>
+                                        <li>Navigate to <code>StarCitizenLogMonitor</code> folder</li>
+                                        <li>Rename <code>config.json</code> to <code>config_old.json</code></li>
+                                        <li>Restart CFCMonitor</li>
+                                        <li>Go through the first-time setup again</li>
+                                        <li>Reconfigure your preferred settings</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="info-box">
+                                    <strong>💡 Pro Tip:</strong> Before resetting, you can copy specific settings from your old config file if you want to preserve certain configurations.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="footer">
+            <p>&copy; 2025 Cosmic Fox Corps. All rights reserved.</p>
+            <p>CFCMonitor is developed by the Cosmic Fox Corps community for Star Citizen players.</p>
+            <p>🌟 Enhancing your Star Citizen experience</p>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ▲
+    </button>
+
+    <script>
+        // Back to Top functionality
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const categories = document.querySelectorAll('.category');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                const isVisible = question.includes(searchTerm) || answer.includes(searchTerm);
+                
+                item.style.display = isVisible ? 'block' : 'none';
+            });
+            
+            // Show/hide categories based on visible items
+            categories.forEach(category => {
+                const visibleItems = category.querySelectorAll('.faq-item[style="display: block"], .faq-item:not([style])');
+                const hasVisibleItems = Array.from(visibleItems).some(item => 
+                    !searchTerm || item.style.display !== 'none'
+                );
+                
+                if (!searchTerm) {
+                    category.style.display = 'block';
+                } else {
+                    category.style.display = hasVisibleItems ? 'block' : 'none';
+                }
+            });
+        });
+
+        // Category toggle functionality - matches FAQ.html exactly
+        function toggleCategory(categoryId) {
+            const category = document.getElementById(categoryId);
+            const isCurrentlyExpanded = category.classList.contains('expanded');
+            
+            // Check if any other category is currently expanded
+            const allCategories = document.querySelectorAll('.category');
+            let hadOtherCategoryOpen = false;
+            
+            allCategories.forEach(cat => {
+                if (cat.classList.contains('expanded') && cat !== category) {
+                    hadOtherCategoryOpen = true;
+                }
+                cat.classList.remove('expanded');
+            });
+            
+            // If the clicked category wasn't expanded, expand it
+            if (!isCurrentlyExpanded) {
+                category.classList.add('expanded');
+                
+                // Always scroll to the newly opened category
+                // Use longer delay if another category was open (to let close animation finish)
+                const scrollDelay = hadOtherCategoryOpen ? 200 : 100;
+                
+                setTimeout(() => {
+                    const headerOffset = 20; // 20px offset from top
+                    const elementPosition = category.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }, scrollDelay);
+            }
+        }
+
+        // FAQ toggle functionality - matches FAQ.html exactly
+        function toggleFAQ(questionElement) {
+            const faqItem = questionElement.parentElement;
+            const isCurrentlyExpanded = faqItem.classList.contains('expanded');
+            
+            // If the clicked item is already expanded, just close it
+            if (isCurrentlyExpanded) {
+                faqItem.classList.remove('expanded');
+                return;
+            }
+            
+            // Close all currently open FAQ items in the same category
+            const parentCategory = faqItem.closest('.category-content');
+            let hadOpenItems = false;
+            let openItems = [];
+            
+            if (parentCategory) {
+                const allFaqItems = parentCategory.querySelectorAll('.faq-item');
+                allFaqItems.forEach(item => {
+                    if (item.classList.contains('expanded') && item !== faqItem) {
+                        hadOpenItems = true;
+                        openItems.push(item);
+                    }
+                });
+            }
+            
+            // Function to scroll FAQ item to top (recalculates position when called)
+            function scrollToFAQ() {
+                // Small delay to let the layout settle after animations
+                setTimeout(() => {
+                    const headerOffset = 20; // 20px offset from top
+                    const elementPosition = faqItem.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 50); // Additional small delay for layout calculations
+            }
+            
+            // Open the clicked item
+            if (hadOpenItems) {
+                // Smooth transition: first close others, then open new one
+                
+                // Step 1: Close other items with a slight delay between each
+                openItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.remove('expanded');
+                    }, index * 50); // Stagger the closing
+                });
+                
+                // Step 2: Wait for all closing animations, then open new item
+                setTimeout(() => {
+                    faqItem.classList.add('expanded');
+                    // Scroll to the FAQ item after both close and open animations complete
+                    // Longer delay to ensure layout has fully updated
+                    setTimeout(() => {
+                        scrollToFAQ();
+                    }, 300); // Wait for expand animation to complete
+                }, openItems.length * 50 + 200); // Wait for closing + buffer
+            } else {
+                // No open items, just open immediately
+                faqItem.classList.add('expanded');
+                // Scroll to the FAQ item after it opens
+                setTimeout(() => {
+                    scrollToFAQ();
+                }, 150); // Wait for expand animation
+            }
+        }
+
+        // Initialize all categories as closed by default (like FAQ page)
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(category => {
+                category.classList.remove('expanded');
+            });
+        });
+    </script>
+</body>
+</html>
