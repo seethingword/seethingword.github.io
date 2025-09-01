@@ -94,6 +94,16 @@
 
                         <div class="toc-section">
                             <div class="toc-main-item" onclick="toggleTocSection(this)">
+                                <a href="#time-based-achievements">⏱️ Time-Based Achievements</a>
+                                <span class="toc-toggle">▼</span>
+                            </div>
+                            <div class="toc-subsections">
+                                <div class="toc-sub-item"><a href="#timebasedkills" onclick="navigateToSection(event, 'timebasedkills')">TIME BASED KILLS</a></div>
+                            </div>
+                        </div>
+
+                        <div class="toc-section">
+                            <div class="toc-main-item" onclick="toggleTocSection(this)">
                                 <a href="#What-You-Can-Use-in-Achievement-Suggestions">📚 What You Can Use in Achievement Suggestions</a>
                                 <span class="toc-toggle">▼</span>
                             </div>
@@ -424,6 +434,42 @@
                         <li>Design achievements that teach players about life support systems</li>
                         <li><strong>Tip</strong>: Perfect for new player education about environmental hazards</li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="category" id="time-based-achievements">
+                <div class="category-header" onclick="toggleCategory('time-based-achievements')">
+                    <h2 class="category-title">⏱️ Time-Based Achievements</h2>
+                    <span class="category-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <p>These achievements reward players for achieving multiple kills within specific time windows, creating exciting moments of rapid action and skill displays.</p>
+
+                    <h3 id="timebasedkills">TIME BASED KILLS</h3>
+                    <p><strong>What it's for</strong>: Rewarding rapid combat skills and creating exciting multi-kill moments<br>
+                        <strong>Achievement ideas</strong>: "Multi-Kill" (3 kills in 60 seconds), "Rampage" (5 kills in 90 seconds), "Unstoppable" (10 kills in 2 minutes)<br>
+                        <strong>Creative uses</strong>:
+                    </p>
+                    <ul>
+                        <li>Create escalating difficulty achievements with different time windows</li>
+                        <li>Build achievements around specific combat scenarios (boarding actions, station defense)</li>
+                        <li>Design achievements for different skill levels - from "Double Kill" to "Legendary Spree"</li>
+                        <li><strong>Tip</strong>: Perfect for highlighting exceptional combat performance and creating shareable moments</li>
+                    </ul>
+                    
+                    <div style="background-color: #2a2a2a; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <h4 style="color: #4CAF50; margin-top: 0;">💡 Time-Based Achievement Examples:</h4>
+                        <ul style="color: #cccccc; margin-bottom: 10px;">
+                            <li><strong>"Double Trouble"</strong> - Get 2 kills within 30 seconds</li>
+                            <li><strong>"Hat Trick"</strong> - Eliminate 3 players in 45 seconds</li>
+                            <li><strong>"Boarding Party"</strong> - Clear 4 defenders within 90 seconds</li>
+                            <li><strong>"Station Defender"</strong> - Stop 5 attackers in 2 minutes</li>
+                            <li><strong>"Combat Ace"</strong> - Achieve 7 kills in 3 minutes</li>
+                        </ul>
+                        <p style="color: #888; font-size: 0.9em; margin-bottom: 0;">
+                            <strong>How to suggest:</strong> "I want an achievement for getting [X] kills within [Y] seconds/minutes" - we'll handle the technical setup!
+                        </p>
+                    </div>
                 </div>
             </div>
 
