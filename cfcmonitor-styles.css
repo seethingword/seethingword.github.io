@@ -35,13 +35,43 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;}
+
 /* Base body styling - sets the foundation for the entire page */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;}
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background slideshow layers */
+.background-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.background-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.background-slide.active {
+    opacity: 1;
+}
 /* Main content container - centers content and adds consistent padding */
 .container {
     max-width: 1250px;
