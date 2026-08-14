@@ -36,10 +36,9 @@
             justify-content: center;
             overflow-x: hidden;
             position: relative;
-            padding-bottom: 250px;
+            padding-bottom: 270px;
         }
 
-        /* CRT Overlay Filter */
         body.crt-mode::after {
             content: " ";
             display: block;
@@ -52,8 +51,7 @@
             pointer-events: none;
         }
 
-        /* Ambient Canvas Backgrounds */
-        #particle-canvas, #matrix-canvas {
+        #particle-canvas, #matrix-canvas, #glow-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -81,7 +79,6 @@
             filter: blur(40px);
         }
 
-        /* Main Container */
         .wrapper {
             position: relative;
             z-index: 10;
@@ -89,17 +86,16 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 1.5rem;
-            max-width: 950px;
-            width: 90%;
+            gap: 1.25rem;
+            max-width: 980px;
+            width: 92%;
             padding: 1rem 0;
         }
 
-        /* Interactive SVG Centerpiece */
         .node-container {
             position: relative;
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -132,11 +128,10 @@
             animation: pulseGlow 3s ease-in-out infinite alternate;
         }
 
-        /* Title */
         .brand-header h1 {
             font-family: 'JetBrains Mono', monospace;
             font-weight: 800;
-            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-size: clamp(2rem, 4.5vw, 3.4rem);
             letter-spacing: -0.03em;
             background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%);
             -webkit-background-clip: text;
@@ -144,10 +139,9 @@
             text-shadow: 0 0 35px rgba(0, 245, 212, 0.3);
         }
 
-        /* Interactive Cards */
         .interactive-grid {
             display: flex;
-            gap: 0.85rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
             justify-content: center;
             width: 100%;
@@ -159,12 +153,12 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 12px;
-            padding: 0.85rem 1rem;
+            padding: 0.75rem 0.85rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.3rem;
-            width: 140px;
+            gap: 0.25rem;
+            width: 135px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             cursor: pointer;
             user-select: none;
@@ -184,12 +178,12 @@
         }
 
         .action-icon {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
         }
 
         .action-title {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: var(--text-main);
         }
@@ -200,7 +194,17 @@
             color: var(--text-muted);
         }
 
-        /* Terminal Display Box */
+        .select-card {
+            position: relative;
+        }
+
+        .select-card select {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
         .terminal-box {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(0, 245, 212, 0.2);
@@ -210,7 +214,7 @@
             font-size: 0.75rem;
             color: var(--cyan);
             width: 100%;
-            max-width: 550px;
+            max-width: 600px;
             text-align: left;
             min-height: 40px;
             display: flex;
@@ -221,7 +225,51 @@
             animation: blink 1s infinite;
         }
 
-        /* --- Synthesizer & Visualizer Fixed Bottom Wrapper --- */
+        .synth-controls {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.2rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .control-btn {
+            background: rgba(18, 22, 33, 0.85);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            padding: 0.35rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .control-btn:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        .control-btn.active {
+            background: rgba(0, 245, 212, 0.15);
+            border-color: var(--cyan);
+            color: var(--cyan);
+            box-shadow: 0 0 10px rgba(0, 245, 212, 0.3);
+        }
+
+        .octave-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--cyan);
+            padding: 0 0.4rem;
+        }
+
         .piano-wrapper {
             position: fixed;
             bottom: 0;
@@ -231,20 +279,21 @@
             border-top: 1px solid var(--card-border);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 0.5rem 1rem 1rem;
+            padding: 0.4rem 1rem 0.8rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.35rem;
             z-index: 100;
             box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+            touch-action: none;
         }
 
         .piano-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
         }
 
@@ -254,21 +303,20 @@
             justify-content: center;
             width: 100%;
             max-width: 900px;
-            height: 130px;
+            height: 125px;
             user-select: none;
+            touch-action: none;
         }
 
-        /* Visualizer Canvas Directly Aligned Above Keys */
         #visualizer-canvas {
             width: 100%;
             max-width: 900px;
-            height: 70px;
+            height: 65px;
             display: none;
             opacity: 0.95;
             margin-bottom: -2px;
         }
 
-        /* White Piano Keys */
         .piano-keys-white {
             display: flex;
             width: 100%;
@@ -282,7 +330,7 @@
             border-radius: 0 0 6px 6px;
             color: #1e293b;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
             display: flex;
             flex-direction: column;
@@ -298,10 +346,10 @@
         .key-white .kb-hint {
             position: absolute;
             top: 8px;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             color: #64748b;
             background: rgba(0, 0, 0, 0.08);
-            padding: 2px 4px;
+            padding: 1px 3px;
             border-radius: 3px;
         }
 
@@ -317,7 +365,6 @@
             transform: translateY(4px);
         }
 
-        /* Black Piano Keys Overlay */
         .key-black {
             position: absolute;
             top: 0;
@@ -328,7 +375,7 @@
             border-radius: 0 0 4px 4px;
             color: #ffffff;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -343,7 +390,7 @@
         .key-black .kb-hint {
             position: absolute;
             top: 6px;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             color: #94a3b8;
         }
 
@@ -360,13 +407,12 @@
 
         footer {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: rgba(255, 255, 255, 0.25);
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
             letter-spacing: 0.05em;
         }
 
-        /* Animations */
         @keyframes rotateClockwise {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -392,11 +438,11 @@
 
     <div class="ambient-glow"></div>
     <canvas id="particle-canvas"></canvas>
+    <canvas id="glow-canvas"></canvas>
     <canvas id="matrix-canvas"></canvas>
 
     <div class="wrapper">
         
-        <!-- Interactive Central Node -->
         <div class="node-container" id="center-node" title="Click to send power pulse">
             <svg class="node-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -431,50 +477,53 @@
             </svg>
         </div>
 
-        <!-- Title -->
         <div class="brand-header">
             <h1>SEETHINGWORD.COM</h1>
         </div>
 
-        <!-- Interactive Grid Cards -->
         <div class="interactive-grid">
             
-            <!-- Matrix Rain Toggle Card -->
             <div class="action-card" id="toggle-matrix">
                 <div class="action-icon">🌧️</div>
                 <div class="action-title">Matrix Rain</div>
                 <div class="action-sub">Toggle Visuals</div>
             </div>
 
-            <!-- Fortune Generator Card -->
             <div class="action-card" id="get-fortune">
                 <div class="action-icon">🔮</div>
                 <div class="action-title">Oracle</div>
                 <div class="action-sub">Transmission</div>
             </div>
 
-            <!-- Frequency Visualizer Card -->
             <div class="action-card" id="toggle-visualizer">
                 <div class="action-icon">📊</div>
                 <div class="action-title">Visualizer</div>
                 <div class="action-sub">Key Spectrum</div>
             </div>
 
-            <!-- Waveform Switcher Card -->
             <div class="action-card" id="cycle-waveform">
                 <div class="action-icon">🎹</div>
                 <div class="action-title">Synth Wave</div>
                 <div class="action-sub" id="wave-label">PIANO</div>
             </div>
 
-            <!-- Song Arpeggiator Card -->
-            <div class="action-card" id="toggle-arpeggio">
+            <div class="action-card select-card" id="song-card">
                 <div class="action-icon">🎵</div>
-                <div class="action-title">Stranger Theme</div>
-                <div class="action-sub" id="arp-status">Song: OFF</div>
+                <div class="action-title">Preset Song</div>
+                <div class="action-sub" id="song-label">Select Track</div>
+                <select id="song-select">
+                    <option value="" selected disabled>-- Select Track --</option>
+                    <option value="stranger">Stranger Things Theme</option>
+                    <option value="stop">⏹ Stop Song</option>
+                </select>
             </div>
 
-            <!-- CRT Screen FX Card -->
+            <div class="action-card active-mode" id="toggle-glow">
+                <div class="action-icon">✨</div>
+                <div class="action-title">Key Glow</div>
+                <div class="action-sub" id="glow-status">Particles: ON</div>
+            </div>
+
             <div class="action-card" id="toggle-crt">
                 <div class="action-icon">📺</div>
                 <div class="action-title">CRT FX</div>
@@ -483,9 +532,8 @@
 
         </div>
 
-        <!-- Interactive Terminal Text Box -->
         <div class="terminal-box">
-            <span id="term-text">> System initialized. Play keyboard or keys below...</span><span class="cursor">_</span>
+            <span id="term-text">> System initialized. Stranger Things preset loaded...</span><span class="cursor">_</span>
         </div>
 
         <footer>
@@ -494,30 +542,31 @@
 
     </div>
 
-    <!-- Synthesizer Piano Bar & Aligned Visualizer -->
     <div class="piano-wrapper">
         
-        <!-- Audio Spectrum Canvas Positioned Directly Above Keys -->
         <canvas id="visualizer-canvas"></canvas>
+
+        <div class="synth-controls">
+            <button class="control-btn" id="oct-down"><span>◀</span> - Octave [Z]</button>
+            <div class="octave-display" id="oct-label">OCT: 0</div>
+            <button class="control-btn" id="oct-up">+ Octave [X] <span>▶</span></button>
+            <button class="control-btn" id="toggle-sustain"><span>🎹</span> Sustain Pedal [SPACE]: <strong id="sus-label">OFF</strong></button>
+        </div>
 
         <div class="piano-label">Synthesizer &bull; White Keys: A-; | Black Keys: W, E, T, Y, U, O, P</div>
         
         <div class="piano-container" id="piano-container">
-            <!-- White Keys Layer -->
-            <div class="piano-keys-white">
-                <div class="key-white" data-note="C4" data-freq="261.63" data-key="a"><span class="kb-hint">A</span>C4</div>
-                <div class="key-white" data-note="D4" data-freq="293.66" data-key="s"><span class="kb-hint">S</span>D4</div>
-                <div class="key-white" data-note="E4" data-freq="329.63" data-key="d"><span class="kb-hint">D</span>E4</div>
-                <div class="key-white" data-note="F4" data-freq="349.23" data-key="f"><span class="kb-hint">F</span>F4</div>
-                <div class="key-white" data-note="G4" data-freq="392.00" data-key="g"><span class="kb-hint">G</span>G4</div>
-                <div class="key-white" data-note="A4" data-freq="440.00" data-key="h"><span class="kb-hint">H</span>A4</div>
-                <div class="key-white" data-note="B4" data-freq="493.88" data-key="j"><span class="kb-hint">J</span>B4</div>
-                <div class="key-white" data-note="C5" data-freq="523.25" data-key="k"><span class="kb-hint">K</span>C5</div>
-                <div class="key-white" data-note="D5" data-freq="587.33" data-key="l"><span class="kb-hint">L</span>D5</div>
-                <div class="key-white" data-note="E5" data-freq="659.25" data-key=";"><span class="kb-hint">;</span>E5</div>
-            </div>
+            <div class="key-white" data-note="C4" data-freq="261.63" data-key="a"><span class="kb-hint">A</span>C4</div>
+            <div class="key-white" data-note="D4" data-freq="293.66" data-key="s"><span class="kb-hint">S</span>D4</div>
+            <div class="key-white" data-note="E4" data-freq="329.63" data-key="d"><span class="kb-hint">D</span>E4</div>
+            <div class="key-white" data-note="F4" data-freq="349.23" data-key="f"><span class="kb-hint">F</span>F4</div>
+            <div class="key-white" data-note="G4" data-freq="392.00" data-key="g"><span class="kb-hint">G</span>G4</div>
+            <div class="key-white" data-note="A4" data-freq="440.00" data-key="h"><span class="kb-hint">H</span>A4</div>
+            <div class="key-white" data-note="B4" data-freq="493.88" data-key="j"><span class="kb-hint">J</span>B4</div>
+            <div class="key-white" data-note="C5" data-freq="523.25" data-key="k"><span class="kb-hint">K</span>C5</div>
+            <div class="key-white" data-note="D5" data-freq="587.33" data-key="l"><span class="kb-hint">L</span>D5</div>
+            <div class="key-white" data-note="E5" data-freq="659.25" data-key=";"><span class="kb-hint">;</span>E5</div>
 
-            <!-- Black Keys Layer -->
             <div class="key-black" style="left: 6.8%;" data-note="C#4" data-freq="277.18" data-key="w"><span class="kb-hint">W</span>C#</div>
             <div class="key-black" style="left: 16.8%;" data-note="D#4" data-freq="311.13" data-key="e"><span class="kb-hint">E</span>D#</div>
             
@@ -532,79 +581,121 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
-
         const termText = document.getElementById('term-text');
 
         function printTerm(msg) {
             termText.textContent = `> ${msg}`;
         }
 
-        // --- AudioContext Synth Engine ---
         let audioCtx;
+        let masterGain;
+        let reverbNode;
         const waveTypes = ['piano', 'triangle', 'sawtooth', 'square', 'sine'];
         let currentWaveIdx = 0;
-        let activePeaks = []; // Active key pulses for visualizer
+        let activePeaks = [];
+        let octaveShift = 0;
+        let sustainActive = false;
+
+        function createReverbBuffer() {
+            const sampleRate = audioCtx.sampleRate;
+            const length = sampleRate * 1.8;
+            const impulse = audioCtx.createBuffer(2, length, sampleRate);
+            for (let channel = 0; channel < 2; channel++) {
+                const channelData = impulse.getChannelData(channel);
+                for (let i = 0; i < length; i++) {
+                    channelData[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 2.5);
+                }
+            }
+            return impulse;
+        }
 
         function setupAudioEngine() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                masterGain = audioCtx.createGain();
+                masterGain.gain.setValueAtTime(0.8, audioCtx.currentTime);
+
+                reverbNode = audioCtx.createConvolver();
+                reverbNode.buffer = createReverbBuffer();
+
+                const dryGain = audioCtx.createGain();
+                const wetGain = audioCtx.createGain();
+                dryGain.gain.value = 0.75;
+                wetGain.gain.value = 0.35;
+
+                masterGain.connect(dryGain);
+                dryGain.connect(audioCtx.destination);
+
+                masterGain.connect(reverbNode);
+                reverbNode.connect(wetGain);
+                wetGain.connect(audioCtx.destination);
             }
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
         }
 
-        function playTone(freq, keyEl = null) {
+        function playTone(baseFreq, keyEl = null, customDecay = null) {
+            if (!baseFreq || baseFreq <= 0) return;
             setupAudioEngine();
 
             const selectedWave = waveTypes[currentWaveIdx];
             const now = audioCtx.currentTime;
-
-            // Soft master volume scaling (reduced overall loudness)
-            const volumeScale = 0.08; 
+            const freq = baseFreq * Math.pow(2, octaveShift);
+            const decayTime = customDecay || (sustainActive ? 3.2 : 1.4);
 
             if (selectedWave === 'piano') {
                 const osc1 = audioCtx.createOscillator();
                 const osc2 = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
+                const osc3 = audioCtx.createOscillator();
+                
+                const noteGain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
 
                 osc1.type = 'triangle';
                 osc2.type = 'sine';
+                osc3.type = 'sine';
 
                 osc1.frequency.setValueAtTime(freq, now);
-                osc2.frequency.setValueAtTime(freq * 2.005, now);
+                osc2.frequency.setValueAtTime(freq * 2.002, now);
+                osc3.frequency.setValueAtTime(freq * 3.005, now);
 
-                gain.gain.setValueAtTime(0.001, now);
-                gain.gain.linearRampToValueAtTime(volumeScale, now + 0.015);
-                gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.0);
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(Math.min( freq * 6, 8000 ), now);
+                filter.frequency.exponentialRampToValueAtTime(120, now + decayTime);
 
-                osc1.connect(gain);
-                osc2.connect(gain);
-                gain.connect(audioCtx.destination);
+                const volumeScale = 0.12;
+                noteGain.gain.setValueAtTime(0.001, now);
+                noteGain.gain.linearRampToValueAtTime(volumeScale, now + 0.012);
+                noteGain.gain.exponentialRampToValueAtTime(0.0001, now + decayTime);
 
-                osc1.start(now);
-                osc2.start(now);
-                osc1.stop(now + 1.0);
-                osc2.stop(now + 1.0);
+                osc1.connect(filter);
+                osc2.connect(filter);
+                osc3.connect(filter);
+                filter.connect(noteGain);
+                noteGain.connect(masterGain);
+
+                osc1.start(now); osc2.start(now); osc3.start(now);
+                osc1.stop(now + decayTime); osc2.stop(now + decayTime); osc3.stop(now + decayTime);
 
             } else {
                 const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
+                const noteGain = audioCtx.createGain();
 
                 osc.type = selectedWave;
                 osc.frequency.setValueAtTime(freq, now);
 
-                gain.gain.setValueAtTime(volumeScale * 0.8, now);
-                gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.0);
+                noteGain.gain.setValueAtTime(0.08, now);
+                noteGain.gain.exponentialRampToValueAtTime(0.0001, now + decayTime);
 
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
+                osc.connect(noteGain);
+                noteGain.connect(masterGain);
 
                 osc.start(now);
-                osc.stop(now + 1.0);
+                osc.stop(now + decayTime);
             }
 
-            // Trigger visualizer peak directly centered above the target key
             if (keyEl && visualizerActive) {
                 const keyRect = keyEl.getBoundingClientRect();
                 const containerRect = pianoContainer.getBoundingClientRect();
@@ -613,10 +704,31 @@
                 activePeaks.push({
                     x: centerX,
                     height: vCanvas.height * 0.95,
-                    decay: 0.92,
+                    decay: sustainActive ? 0.96 : 0.92,
                     isBlack: keyEl.classList.contains('key-black')
                 });
             }
+
+            if (keyEl && glowActive) {
+                const keyRect = keyEl.getBoundingClientRect();
+                const centerX = keyRect.left + keyRect.width / 2;
+                const topY = keyRect.top;
+                spawnGlowParticles(centerX, topY, keyEl.classList.contains('key-black'));
+            }
+        }
+
+        function playChord(freqArray, primaryKey = null, customDecay = null) {
+            if (!Array.isArray(freqArray)) {
+                freqArray = [freqArray];
+            }
+            freqArray.forEach(freq => {
+                const matchingKey = document.querySelector(`[data-freq="${freq.toFixed(2)}"]`);
+                playTone(freq, matchingKey || primaryKey, customDecay);
+                if (matchingKey) {
+                    matchingKey.classList.add('active');
+                    setTimeout(() => matchingKey.classList.remove('active'), 200);
+                }
+            });
         }
 
         function triggerNote(keyEl) {
@@ -627,20 +739,88 @@
             
             keyEl.classList.add('active');
             setTimeout(() => keyEl.classList.remove('active'), 180);
-            printTerm(`Played note: ${note} (${freq}Hz) [${waveTypes[currentWaveIdx].toUpperCase()}]`);
+            printTerm(`Played note: ${note}`);
         }
 
-        // Mouse & Touch Listeners for Keys
-        document.querySelectorAll('.key-white, .key-black').forEach(key => {
-            const handleEvent = (e) => {
-                e.preventDefault();
-                triggerNote(key);
-            };
-            key.addEventListener('mousedown', handleEvent);
-            key.addEventListener('touchstart', handleEvent, { passive: false });
+        const octLabel = document.getElementById('oct-label');
+        
+        document.getElementById('oct-down').addEventListener('click', () => {
+            if (octaveShift > -2) {
+                octaveShift--;
+                octLabel.textContent = `OCT: ${octaveShift > 0 ? '+' : ''}${octaveShift}`;
+                printTerm(`Octave shifted DOWN: ${octaveShift}`);
+            }
         });
 
-        // Map Keys to QWERTY Keyboard
+        document.getElementById('oct-up').addEventListener('click', () => {
+            if (octaveShift < 2) {
+                octaveShift++;
+                octLabel.textContent = `OCT: ${octaveShift > 0 ? '+' : ''}${octaveShift}`;
+                printTerm(`Octave shifted UP: +${octaveShift}`);
+            }
+        });
+
+        const susBtn = document.getElementById('toggle-sustain');
+        const susLabel = document.getElementById('sus-label');
+
+        function toggleSustain() {
+            sustainActive = !sustainActive;
+            susBtn.classList.toggle('active', sustainActive);
+            susLabel.textContent = sustainActive ? 'ON' : 'OFF';
+            printTerm(`Sustain Pedal: ${sustainActive ? 'ENABLED' : 'DISABLED'}`);
+        }
+
+        susBtn.addEventListener('click', toggleSustain);
+
+        const pianoContainer = document.getElementById('piano-container');
+        let isPointerDown = false;
+        let lastPlayedKey = null;
+
+        function getKeyFromPoint(x, y) {
+            const elements = document.elementsFromPoint(x, y);
+            for (let el of elements) {
+                if (el.classList.contains('key-black') || el.classList.contains('key-white')) {
+                    return el;
+                }
+            }
+            return null;
+        }
+
+        function handlePointerStart(e) {
+            isPointerDown = true;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            const key = getKeyFromPoint(clientX, clientY);
+            if (key) {
+                lastPlayedKey = key;
+                triggerNote(key);
+            }
+        }
+
+        function handlePointerMove(e) {
+            if (!isPointerDown) return;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            const key = getKeyFromPoint(clientX, clientY);
+            if (key && key !== lastPlayedKey) {
+                lastPlayedKey = key;
+                triggerNote(key);
+            }
+        }
+
+        function handlePointerEnd() {
+            isPointerDown = false;
+            lastPlayedKey = null;
+        }
+
+        pianoContainer.addEventListener('mousedown', handlePointerStart);
+        window.addEventListener('mousemove', handlePointerMove);
+        window.addEventListener('mouseup', handlePointerEnd);
+
+        pianoContainer.addEventListener('touchstart', handlePointerStart, { passive: true });
+        window.addEventListener('touchmove', handlePointerMove, { passive: true });
+        window.addEventListener('touchend', handlePointerEnd);
+
         const keyMap = {};
         document.querySelectorAll('.key-white, .key-black').forEach(key => {
             const kbChar = key.getAttribute('data-key');
@@ -650,15 +830,21 @@
         document.addEventListener('keydown', (e) => {
             if (e.repeat) return;
             const keyChar = e.key.toLowerCase();
+            
             if (keyMap[keyChar]) {
                 triggerNote(keyMap[keyChar]);
+            } else if (keyChar === 'z') {
+                document.getElementById('oct-down').click();
+            } else if (keyChar === 'x') {
+                document.getElementById('oct-up').click();
+            } else if (e.code === 'Space') {
+                e.preventDefault();
+                toggleSustain();
             }
         });
 
-        // --- Bell-Curve Peak Visualizer Engine ---
         const vCanvas = document.getElementById('visualizer-canvas');
         const vCtx = vCanvas.getContext('2d');
-        const pianoContainer = document.getElementById('piano-container');
         let visualizerActive = false;
         let vAnimId;
 
@@ -673,22 +859,19 @@
             vAnimId = requestAnimationFrame(drawVisualizer);
 
             vCtx.clearRect(0, 0, vCanvas.width, vCanvas.height);
-
             if (activePeaks.length === 0) return;
 
             const barWidth = 6;
             const numBars = Math.floor(vCanvas.width / barWidth);
 
-            // Render spectrum across all bars using Gaussian distribution centered on active key peaks
             for (let i = 0; i < numBars; i++) {
                 const barX = i * barWidth + (barWidth / 2);
                 let barHeight = 0;
                 let primaryColor = 'cyan';
 
                 activePeaks.forEach(peak => {
-                    // Gaussian bell curve equation centered at peak position
                     const distance = Math.abs(barX - peak.x);
-                    const spread = 90; // Width of the curve tapering to sides
+                    const spread = 90; 
                     const contribution = peak.height * Math.exp(-Math.pow(distance, 2) / (2 * Math.pow(spread, 2)));
                     
                     if (contribution > barHeight) {
@@ -707,7 +890,6 @@
                 }
             }
 
-            // Decay active peaks smoothly over time
             for (let i = activePeaks.length - 1; i >= 0; i--) {
                 activePeaks[i].height *= activePeaks[i].decay;
                 if (activePeaks[i].height < 1) {
@@ -726,17 +908,16 @@
                 resizeVisualizer();
                 card.classList.add('active-mode');
                 drawVisualizer();
-                printTerm("Key-Centered Visualizer: ACTIVE");
+                printTerm("Key Spectrum Visualizer: ACTIVE");
             } else {
                 vCanvas.style.display = 'none';
                 card.classList.remove('active-mode');
                 cancelAnimationFrame(vAnimId);
                 activePeaks = [];
-                printTerm("Key-Centered Visualizer: DISABLED");
+                printTerm("Key Spectrum Visualizer: DISABLED");
             }
         });
 
-        // --- Waveform Switcher Engine ---
         document.getElementById('cycle-waveform').addEventListener('click', () => {
             currentWaveIdx = (currentWaveIdx + 1) % waveTypes.length;
             const selectedWave = waveTypes[currentWaveIdx];
@@ -746,47 +927,138 @@
             playTone(440, sampleKey); 
         });
 
-        // --- Song Arpeggiator Engine: "Stranger Things Main Theme" ---
-        let arpInterval = null;
-        
-        // C4 - E4 - G4 - B4 - C5 - B4 - G4 - E4 Arpeggio Loop
-        const strangerTheme = [
-            261.63, 329.63, 392.00, 493.88, 523.25, 493.88, 392.00, 329.63
-        ];
+        // --- Original Stranger Things Arpeggio Loop ---
+        let activeSongTimeout = null;
         let arpStep = 0;
 
-        document.getElementById('toggle-arpeggio').addEventListener('click', (e) => {
-            const statusLabel = document.getElementById('arp-status');
-            const card = e.currentTarget;
-            
-            if (arpInterval) {
-                clearInterval(arpInterval);
-                arpInterval = null;
-                statusLabel.textContent = "Song: OFF";
-                card.classList.remove('active-mode');
-                printTerm("Song playback sequence stopped.");
-            } else {
-                statusLabel.textContent = "Song: PLAYING";
-                card.classList.add('active-mode');
-                printTerm("Playing: Stranger Things Synth Theme");
-                
-                arpInterval = setInterval(() => {
-                    const targetFreq = strangerTheme[arpStep];
-                    const matchingKey = document.querySelector(`[data-freq="${targetFreq.toFixed(2)}"]`);
-                    
-                    playTone(targetFreq, matchingKey);
+        const strangerTheme = [
+			261.63, 329.63, 392.00, 493.88, 523.25, 493.88, 392.00, 329.63,
+			261.63, 329.63, 392.00, 493.88, 587.33, 493.88, 392.00, 329.63,
+			220.00, 293.66, 349.23, 440.00, 466.16, 440.00, 349.23, 293.66
+		];
 
-                    if (matchingKey) {
-                        matchingKey.classList.add('active');
-                        setTimeout(() => matchingKey.classList.remove('active'), 200);
-                    }
-
-                    arpStep = (arpStep + 1) % strangerTheme.length;
-                }, 280);
+        const songPresets = {
+            stranger: {
+                title: "Stranger Things Theme",
+                sequence: strangerTheme.map(freq => ({ freq: freq, d: 280 }))
             }
+        };
+
+        const songSelect = document.getElementById('song-select');
+        const songLabel = document.getElementById('song-label');
+        const songCard = document.getElementById('song-card');
+
+        function stopSong() {
+            if (activeSongTimeout) {
+                clearTimeout(activeSongTimeout);
+                activeSongTimeout = null;
+            }
+            songLabel.textContent = "Select Track";
+            songCard.classList.remove('active-mode');
+            songSelect.value = "";
+            printTerm("Song playback stopped.");
+        }
+
+        function playNextSongStep(preset) {
+            if (!preset || !preset.sequence || preset.sequence.length === 0) return;
+
+            const stepObj = preset.sequence[arpStep];
+            const freq = stepObj.freq;
+            const delay = stepObj.d;
+
+            if (freq > 0) {
+                const matchingKey = document.querySelector(`[data-freq="${freq.toFixed(2)}"]`);
+                playTone(freq, matchingKey, (delay / 1000) * 1.5);
+                if (matchingKey) {
+                    matchingKey.classList.add('active');
+                    setTimeout(() => matchingKey.classList.remove('active'), 150);
+                }
+            }
+
+            arpStep = (arpStep + 1) % preset.sequence.length;
+
+            activeSongTimeout = setTimeout(() => {
+                playNextSongStep(preset);
+            }, delay);
+        }
+
+        songSelect.addEventListener('change', (e) => {
+            const trackKey = e.target.value;
+            stopSong();
+
+            if (trackKey === 'stop' || !trackKey) return;
+
+            const preset = songPresets[trackKey];
+            if (!preset) return;
+
+            songLabel.textContent = preset.title;
+            songCard.classList.add('active-mode');
+            printTerm(`Playing Track: ${preset.title}`);
+            arpStep = 0;
+
+            playNextSongStep(preset);
         });
 
-        // --- CRT Overlay Filter ---
+        const gCanvas = document.getElementById('glow-canvas');
+        const gCtx = gCanvas.getContext('2d');
+        let glowActive = true;
+        let glowParticles = [];
+
+        function resizeGlowCanvas() {
+            gCanvas.width = window.innerWidth;
+            gCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeGlowCanvas);
+        resizeGlowCanvas();
+
+        function spawnGlowParticles(x, y, isBlack) {
+            for (let i = 0; i < 6; i++) {
+                glowParticles.push({
+                    x: x + (Math.random() - 0.5) * 20,
+                    y: y,
+                    size: Math.random() * 4 + 2,
+                    speedX: (Math.random() - 0.5) * 1.5,
+                    speedY: -Math.random() * 3 - 1,
+                    alpha: 1.0,
+                    color: isBlack ? '#9d4edd' : '#00f5d4'
+                });
+            }
+        }
+
+        function animateGlowParticles() {
+            gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+            for (let i = glowParticles.length - 1; i >= 0; i--) {
+                const p = glowParticles[i];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.alpha -= 0.025;
+
+                if (p.alpha <= 0) {
+                    glowParticles.splice(i, 1);
+                } else {
+                    gCtx.save();
+                    gCtx.globalAlpha = p.alpha;
+                    gCtx.fillStyle = p.color;
+                    gCtx.shadowColor = p.color;
+                    gCtx.shadowBlur = 10;
+                    gCtx.beginPath();
+                    gCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    gCtx.fill();
+                    gCtx.restore();
+                }
+            }
+            requestAnimationFrame(animateGlowParticles);
+        }
+        animateGlowParticles();
+
+        document.getElementById('toggle-glow').addEventListener('click', (e) => {
+            glowActive = !glowActive;
+            e.currentTarget.classList.toggle('active-mode', glowActive);
+            document.getElementById('glow-status').textContent = `Particles: ${glowActive ? 'ON' : 'OFF'}`;
+            printTerm(`Active Key Glow Particles: ${glowActive ? 'ENABLED' : 'DISABLED'}`);
+        });
+
         document.getElementById('toggle-crt').addEventListener('click', (e) => {
             document.body.classList.toggle('crt-mode');
             const isCrt = document.body.classList.contains('crt-mode');
@@ -794,7 +1066,6 @@
             printTerm(`CRT Scanline Filter: ${isCrt ? 'ENABLED' : 'DISABLED'}`);
         });
 
-        // --- Oracle Transmission Generator ---
         const fortunes = [
             "Signal strength optimal. Proceed with curiosity.",
             "You were not brought here by accident.",
@@ -808,16 +1079,14 @@
             printTerm(randomMsg);
         });
 
-        // --- Core Node Pulse Effect ---
         let pulseCount = 0;
         document.getElementById('center-node').addEventListener('click', () => {
             pulseCount++;
-            const nodeKey = document.querySelector('[data-freq="587.33"]');
-            playTone(587.33, nodeKey);
-            printTerm(`Power pulse #${pulseCount} emitted from core node.`);
+            const chord = [293.66, 369.99, 440.00, 587.33];
+            playChord(chord, null, 2.5);
+            printTerm(`Harmonic power pulse #${pulseCount} emitted from core node.`);
         });
 
-        // --- Matrix Rain Canvas Engine ---
         const pCanvas = document.getElementById('particle-canvas');
         const mCanvas = document.getElementById('matrix-canvas');
         const mCtx = mCanvas.getContext('2d');
@@ -872,7 +1141,6 @@
             }
         });
 
-        // --- Ambient Background Particles Engine ---
         const pCtx = pCanvas.getContext('2d');
         let particles = [];
 
