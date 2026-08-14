@@ -1,5 +1,919 @@
 <!DOCTYPE html>
-<html>
-<head><title>Seething Word</title></head>
-<body><h1>Coming Soon - seethingword.com</h1></body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEETHINGWORD.COM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #090a0f;
+            --card-bg: rgba(18, 22, 33, 0.75);
+            --card-border: rgba(0, 245, 212, 0.15);
+            --cyan: #00f5d4;
+            --purple: #9d4edd;
+            --text-main: #f8f9fa;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 250px;
+        }
+
+        /* CRT Overlay Filter */
+        body.crt-mode::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 999;
+            background-size: 100% 3px, 6px 100%;
+            pointer-events: none;
+        }
+
+        /* Ambient Canvas Backgrounds */
+        #particle-canvas, #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #matrix-canvas {
+            display: none;
+            opacity: 0.85;
+        }
+
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(157, 78, 221, 0.15) 0%, rgba(0, 245, 212, 0.08) 40%, transparent 70%);
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: none;
+            filter: blur(40px);
+        }
+
+        /* Main Container */
+        .wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+            max-width: 950px;
+            width: 90%;
+            padding: 1rem 0;
+        }
+
+        /* Interactive SVG Centerpiece */
+        .node-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .node-container:hover {
+            transform: scale(1.05);
+        }
+
+        .node-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 15px rgba(0, 245, 212, 0.4)) drop-shadow(0 0 30px rgba(157, 78, 221, 0.3));
+        }
+
+        .outer-ring {
+            transform-origin: center;
+            animation: rotateClockwise 20s linear infinite;
+        }
+
+        .inner-ring {
+            transform-origin: center;
+            animation: rotateCounter 14s linear infinite;
+        }
+
+        .core-pulse {
+            transform-origin: center;
+            animation: pulseGlow 3s ease-in-out infinite alternate;
+        }
+
+        /* Title */
+        .brand-header h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 35px rgba(0, 245, 212, 0.3);
+        }
+
+        /* Interactive Cards */
+        .interactive-grid {
+            display: flex;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .action-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            width: 140px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.25s ease;
+        }
+
+        .action-card:hover {
+            border-color: rgba(0, 245, 212, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0, 245, 212, 0.15);
+        }
+
+        .action-card.active-mode {
+            border-color: var(--cyan);
+            background: rgba(0, 245, 212, 0.12);
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.3);
+        }
+
+        .action-icon {
+            font-size: 1.3rem;
+        }
+
+        .action-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .action-sub {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+
+        /* Terminal Display Box */
+        .terminal-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 245, 212, 0.2);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            width: 100%;
+            max-width: 550px;
+            text-align: left;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        /* --- Synthesizer & Visualizer Fixed Bottom Wrapper --- */
+        .piano-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            background: rgba(10, 12, 18, 0.95);
+            border-top: 1px solid var(--card-border);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0.5rem 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            z-index: 100;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .piano-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .piano-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            height: 130px;
+            user-select: none;
+        }
+
+        /* Visualizer Canvas Directly Aligned Above Keys */
+        #visualizer-canvas {
+            width: 100%;
+            max-width: 900px;
+            height: 70px;
+            display: none;
+            opacity: 0.95;
+            margin-bottom: -2px;
+        }
+
+        /* White Piano Keys */
+        .piano-keys-white {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .key-white {
+            flex: 1;
+            background: linear-gradient(180deg, #e2e8f0 0%, #ffffff 100%);
+            border: 1px solid #000;
+            border-radius: 0 0 6px 6px;
+            color: #1e293b;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 8px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.15), 0 4px 6px rgba(0,0,0,0.3);
+            transition: all 0.08s ease;
+        }
+
+        .key-white .kb-hint {
+            position: absolute;
+            top: 8px;
+            font-size: 0.6rem;
+            color: #64748b;
+            background: rgba(0, 0, 0, 0.08);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .key-white:hover {
+            background: #00f5d4;
+            color: #000;
+        }
+
+        .key-white:active, .key-white.active {
+            background: #00f5d4;
+            color: #000;
+            box-shadow: 0 0 25px #00f5d4;
+            transform: translateY(4px);
+        }
+
+        /* Black Piano Keys Overlay */
+        .key-black {
+            position: absolute;
+            top: 0;
+            width: 5.5%;
+            height: 60%;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            border: 1px solid rgba(0, 245, 212, 0.4);
+            border-radius: 0 0 4px 4px;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 6px;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.8);
+            transition: all 0.08s ease;
+        }
+
+        .key-black .kb-hint {
+            position: absolute;
+            top: 6px;
+            font-size: 0.55rem;
+            color: #94a3b8;
+        }
+
+        .key-black:hover {
+            background: #9d4edd;
+            border-color: #ffffff;
+        }
+
+        .key-black:active, .key-black.active {
+            background: #9d4edd;
+            box-shadow: 0 0 20px #9d4edd;
+            transform: translateY(3px);
+        }
+
+        footer {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.25);
+            margin-top: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Animations */
+        @keyframes rotateClockwise {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateCounter {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.6; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1.08); }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+    <canvas id="particle-canvas"></canvas>
+    <canvas id="matrix-canvas"></canvas>
+
+    <div class="wrapper">
+        
+        <!-- Interactive Central Node -->
+        <div class="node-container" id="center-node" title="Click to send power pulse">
+            <svg class="node-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00f5d4" />
+                        <stop offset="100%" stop-color="#9d4edd" />
+                    </linearGradient>
+                    <linearGradient id="purpleGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#9d4edd" />
+                        <stop offset="100%" stop-color="#00f5d4" />
+                    </linearGradient>
+                </defs>
+
+                <g class="outer-ring">
+                    <polygon points="100,20 170,60 170,140 100,180 30,140 30,60" 
+                             stroke="url(#cyanGrad)" stroke-width="1.5" stroke-dasharray="8 4" fill="none" opacity="0.6"/>
+                    <circle cx="100" cy="20" r="3" fill="#00f5d4" />
+                    <circle cx="170" cy="140" r="3" fill="#9d4edd" />
+                    <circle cx="30" cy="140" r="3" fill="#00f5d4" />
+                </g>
+
+                <g class="inner-ring">
+                    <rect x="55" y="55" width="90" height="90" rx="6" 
+                          stroke="url(#purpleGrad)" stroke-width="2" fill="none" opacity="0.8" />
+                </g>
+
+                <g class="core-pulse">
+                    <circle cx="100" cy="100" r="24" fill="url(#cyanGrad)" opacity="0.25" />
+                    <circle cx="100" cy="100" r="12" fill="#00f5d4" />
+                    <circle cx="100" cy="100" r="4" fill="#ffffff" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Title -->
+        <div class="brand-header">
+            <h1>SEETHINGWORD.COM</h1>
+        </div>
+
+        <!-- Interactive Grid Cards -->
+        <div class="interactive-grid">
+            
+            <!-- Matrix Rain Toggle Card -->
+            <div class="action-card" id="toggle-matrix">
+                <div class="action-icon">🌧️</div>
+                <div class="action-title">Matrix Rain</div>
+                <div class="action-sub">Toggle Visuals</div>
+            </div>
+
+            <!-- Fortune Generator Card -->
+            <div class="action-card" id="get-fortune">
+                <div class="action-icon">🔮</div>
+                <div class="action-title">Oracle</div>
+                <div class="action-sub">Transmission</div>
+            </div>
+
+            <!-- Frequency Visualizer Card -->
+            <div class="action-card" id="toggle-visualizer">
+                <div class="action-icon">📊</div>
+                <div class="action-title">Visualizer</div>
+                <div class="action-sub">Key Spectrum</div>
+            </div>
+
+            <!-- Waveform Switcher Card -->
+            <div class="action-card" id="cycle-waveform">
+                <div class="action-icon">🎹</div>
+                <div class="action-title">Synth Wave</div>
+                <div class="action-sub" id="wave-label">PIANO</div>
+            </div>
+
+            <!-- Song Arpeggiator Card -->
+            <div class="action-card" id="toggle-arpeggio">
+                <div class="action-icon">🎵</div>
+                <div class="action-title">Stranger Theme</div>
+                <div class="action-sub" id="arp-status">Song: OFF</div>
+            </div>
+
+            <!-- CRT Screen FX Card -->
+            <div class="action-card" id="toggle-crt">
+                <div class="action-icon">📺</div>
+                <div class="action-title">CRT FX</div>
+                <div class="action-sub">Scanline Filter</div>
+            </div>
+
+        </div>
+
+        <!-- Interactive Terminal Text Box -->
+        <div class="terminal-box">
+            <span id="term-text">> System initialized. Play keyboard or keys below...</span><span class="cursor">_</span>
+        </div>
+
+        <footer>
+            &copy; <span id="year"></span> SEETHINGWORD.COM &bull; ALL SYSTEMS OPERATIONAL
+        </footer>
+
+    </div>
+
+    <!-- Synthesizer Piano Bar & Aligned Visualizer -->
+    <div class="piano-wrapper">
+        
+        <!-- Audio Spectrum Canvas Positioned Directly Above Keys -->
+        <canvas id="visualizer-canvas"></canvas>
+
+        <div class="piano-label">Synthesizer &bull; White Keys: A-; | Black Keys: W, E, T, Y, U, O, P</div>
+        
+        <div class="piano-container" id="piano-container">
+            <!-- White Keys Layer -->
+            <div class="piano-keys-white">
+                <div class="key-white" data-note="C4" data-freq="261.63" data-key="a"><span class="kb-hint">A</span>C4</div>
+                <div class="key-white" data-note="D4" data-freq="293.66" data-key="s"><span class="kb-hint">S</span>D4</div>
+                <div class="key-white" data-note="E4" data-freq="329.63" data-key="d"><span class="kb-hint">D</span>E4</div>
+                <div class="key-white" data-note="F4" data-freq="349.23" data-key="f"><span class="kb-hint">F</span>F4</div>
+                <div class="key-white" data-note="G4" data-freq="392.00" data-key="g"><span class="kb-hint">G</span>G4</div>
+                <div class="key-white" data-note="A4" data-freq="440.00" data-key="h"><span class="kb-hint">H</span>A4</div>
+                <div class="key-white" data-note="B4" data-freq="493.88" data-key="j"><span class="kb-hint">J</span>B4</div>
+                <div class="key-white" data-note="C5" data-freq="523.25" data-key="k"><span class="kb-hint">K</span>C5</div>
+                <div class="key-white" data-note="D5" data-freq="587.33" data-key="l"><span class="kb-hint">L</span>D5</div>
+                <div class="key-white" data-note="E5" data-freq="659.25" data-key=";"><span class="kb-hint">;</span>E5</div>
+            </div>
+
+            <!-- Black Keys Layer -->
+            <div class="key-black" style="left: 6.8%;" data-note="C#4" data-freq="277.18" data-key="w"><span class="kb-hint">W</span>C#</div>
+            <div class="key-black" style="left: 16.8%;" data-note="D#4" data-freq="311.13" data-key="e"><span class="kb-hint">E</span>D#</div>
+            
+            <div class="key-black" style="left: 36.8%;" data-note="F#4" data-freq="369.99" data-key="t"><span class="kb-hint">T</span>F#</div>
+            <div class="key-black" style="left: 46.8%;" data-note="G#4" data-freq="415.30" data-key="y"><span class="kb-hint">Y</span>G#</div>
+            <div class="key-black" style="left: 56.8%;" data-note="A#4" data-freq="466.16" data-key="u"><span class="kb-hint">U</span>A#</div>
+
+            <div class="key-black" style="left: 76.8%;" data-note="C#5" data-freq="554.37" data-key="o"><span class="kb-hint">O</span>C#</div>
+            <div class="key-black" style="left: 86.8%;" data-note="D#5" data-freq="622.25" data-key="p"><span class="kb-hint">P</span>D#</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const termText = document.getElementById('term-text');
+
+        function printTerm(msg) {
+            termText.textContent = `> ${msg}`;
+        }
+
+        // --- AudioContext Synth Engine ---
+        let audioCtx;
+        const waveTypes = ['piano', 'triangle', 'sawtooth', 'square', 'sine'];
+        let currentWaveIdx = 0;
+        let activePeaks = []; // Active key pulses for visualizer
+
+        function setupAudioEngine() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playTone(freq, keyEl = null) {
+            setupAudioEngine();
+
+            const selectedWave = waveTypes[currentWaveIdx];
+            const now = audioCtx.currentTime;
+
+            // Soft master volume scaling (reduced overall loudness)
+            const volumeScale = 0.08; 
+
+            if (selectedWave === 'piano') {
+                const osc1 = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc1.type = 'triangle';
+                osc2.type = 'sine';
+
+                osc1.frequency.setValueAtTime(freq, now);
+                osc2.frequency.setValueAtTime(freq * 2.005, now);
+
+                gain.gain.setValueAtTime(0.001, now);
+                gain.gain.linearRampToValueAtTime(volumeScale, now + 0.015);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.0);
+
+                osc1.connect(gain);
+                osc2.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc1.start(now);
+                osc2.start(now);
+                osc1.stop(now + 1.0);
+                osc2.stop(now + 1.0);
+
+            } else {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = selectedWave;
+                osc.frequency.setValueAtTime(freq, now);
+
+                gain.gain.setValueAtTime(volumeScale * 0.8, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.0);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 1.0);
+            }
+
+            // Trigger visualizer peak directly centered above the target key
+            if (keyEl && visualizerActive) {
+                const keyRect = keyEl.getBoundingClientRect();
+                const containerRect = pianoContainer.getBoundingClientRect();
+                const centerX = (keyRect.left - containerRect.left) + (keyRect.width / 2);
+                
+                activePeaks.push({
+                    x: centerX,
+                    height: vCanvas.height * 0.95,
+                    decay: 0.92,
+                    isBlack: keyEl.classList.contains('key-black')
+                });
+            }
+        }
+
+        function triggerNote(keyEl) {
+            if (!keyEl) return;
+            const freq = parseFloat(keyEl.getAttribute('data-freq'));
+            const note = keyEl.getAttribute('data-note');
+            playTone(freq, keyEl);
+            
+            keyEl.classList.add('active');
+            setTimeout(() => keyEl.classList.remove('active'), 180);
+            printTerm(`Played note: ${note} (${freq}Hz) [${waveTypes[currentWaveIdx].toUpperCase()}]`);
+        }
+
+        // Mouse & Touch Listeners for Keys
+        document.querySelectorAll('.key-white, .key-black').forEach(key => {
+            const handleEvent = (e) => {
+                e.preventDefault();
+                triggerNote(key);
+            };
+            key.addEventListener('mousedown', handleEvent);
+            key.addEventListener('touchstart', handleEvent, { passive: false });
+        });
+
+        // Map Keys to QWERTY Keyboard
+        const keyMap = {};
+        document.querySelectorAll('.key-white, .key-black').forEach(key => {
+            const kbChar = key.getAttribute('data-key');
+            if (kbChar) keyMap[kbChar] = key;
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.repeat) return;
+            const keyChar = e.key.toLowerCase();
+            if (keyMap[keyChar]) {
+                triggerNote(keyMap[keyChar]);
+            }
+        });
+
+        // --- Bell-Curve Peak Visualizer Engine ---
+        const vCanvas = document.getElementById('visualizer-canvas');
+        const vCtx = vCanvas.getContext('2d');
+        const pianoContainer = document.getElementById('piano-container');
+        let visualizerActive = false;
+        let vAnimId;
+
+        function resizeVisualizer() {
+            vCanvas.width = pianoContainer.offsetWidth;
+            vCanvas.height = vCanvas.offsetHeight;
+        }
+        window.addEventListener('resize', resizeVisualizer);
+
+        function drawVisualizer() {
+            if (!visualizerActive) return;
+            vAnimId = requestAnimationFrame(drawVisualizer);
+
+            vCtx.clearRect(0, 0, vCanvas.width, vCanvas.height);
+
+            if (activePeaks.length === 0) return;
+
+            const barWidth = 6;
+            const numBars = Math.floor(vCanvas.width / barWidth);
+
+            // Render spectrum across all bars using Gaussian distribution centered on active key peaks
+            for (let i = 0; i < numBars; i++) {
+                const barX = i * barWidth + (barWidth / 2);
+                let barHeight = 0;
+                let primaryColor = 'cyan';
+
+                activePeaks.forEach(peak => {
+                    // Gaussian bell curve equation centered at peak position
+                    const distance = Math.abs(barX - peak.x);
+                    const spread = 90; // Width of the curve tapering to sides
+                    const contribution = peak.height * Math.exp(-Math.pow(distance, 2) / (2 * Math.pow(spread, 2)));
+                    
+                    if (contribution > barHeight) {
+                        barHeight = contribution;
+                        if (peak.isBlack) primaryColor = 'purple';
+                    }
+                });
+
+                if (barHeight > 2) {
+                    const alpha = Math.min(1, barHeight / vCanvas.height + 0.2);
+                    vCtx.fillStyle = primaryColor === 'purple' 
+                        ? `rgba(157, 78, 221, ${alpha})` 
+                        : `rgba(0, 245, 212, ${alpha})`;
+                    
+                    vCtx.fillRect(barX - barWidth / 2, vCanvas.height - barHeight, barWidth - 1, barHeight);
+                }
+            }
+
+            // Decay active peaks smoothly over time
+            for (let i = activePeaks.length - 1; i >= 0; i--) {
+                activePeaks[i].height *= activePeaks[i].decay;
+                if (activePeaks[i].height < 1) {
+                    activePeaks.splice(i, 1);
+                }
+            }
+        }
+
+        document.getElementById('toggle-visualizer').addEventListener('click', (e) => {
+            setupAudioEngine();
+            visualizerActive = !visualizerActive;
+            const card = e.currentTarget;
+
+            if (visualizerActive) {
+                vCanvas.style.display = 'block';
+                resizeVisualizer();
+                card.classList.add('active-mode');
+                drawVisualizer();
+                printTerm("Key-Centered Visualizer: ACTIVE");
+            } else {
+                vCanvas.style.display = 'none';
+                card.classList.remove('active-mode');
+                cancelAnimationFrame(vAnimId);
+                activePeaks = [];
+                printTerm("Key-Centered Visualizer: DISABLED");
+            }
+        });
+
+        // --- Waveform Switcher Engine ---
+        document.getElementById('cycle-waveform').addEventListener('click', () => {
+            currentWaveIdx = (currentWaveIdx + 1) % waveTypes.length;
+            const selectedWave = waveTypes[currentWaveIdx];
+            document.getElementById('wave-label').textContent = selectedWave.toUpperCase();
+            printTerm(`Sound Engine changed to: ${selectedWave.toUpperCase()}`);
+            const sampleKey = document.querySelector('[data-freq="440.00"]');
+            playTone(440, sampleKey); 
+        });
+
+        // --- Song Arpeggiator Engine: "Stranger Things Main Theme" ---
+        let arpInterval = null;
+        
+        // C4 - E4 - G4 - B4 - C5 - B4 - G4 - E4 Arpeggio Loop
+        const strangerTheme = [
+            261.63, 329.63, 392.00, 493.88, 523.25, 493.88, 392.00, 329.63
+        ];
+        let arpStep = 0;
+
+        document.getElementById('toggle-arpeggio').addEventListener('click', (e) => {
+            const statusLabel = document.getElementById('arp-status');
+            const card = e.currentTarget;
+            
+            if (arpInterval) {
+                clearInterval(arpInterval);
+                arpInterval = null;
+                statusLabel.textContent = "Song: OFF";
+                card.classList.remove('active-mode');
+                printTerm("Song playback sequence stopped.");
+            } else {
+                statusLabel.textContent = "Song: PLAYING";
+                card.classList.add('active-mode');
+                printTerm("Playing: Stranger Things Synth Theme");
+                
+                arpInterval = setInterval(() => {
+                    const targetFreq = strangerTheme[arpStep];
+                    const matchingKey = document.querySelector(`[data-freq="${targetFreq.toFixed(2)}"]`);
+                    
+                    playTone(targetFreq, matchingKey);
+
+                    if (matchingKey) {
+                        matchingKey.classList.add('active');
+                        setTimeout(() => matchingKey.classList.remove('active'), 200);
+                    }
+
+                    arpStep = (arpStep + 1) % strangerTheme.length;
+                }, 280);
+            }
+        });
+
+        // --- CRT Overlay Filter ---
+        document.getElementById('toggle-crt').addEventListener('click', (e) => {
+            document.body.classList.toggle('crt-mode');
+            const isCrt = document.body.classList.contains('crt-mode');
+            e.currentTarget.classList.toggle('active-mode', isCrt);
+            printTerm(`CRT Scanline Filter: ${isCrt ? 'ENABLED' : 'DISABLED'}`);
+        });
+
+        // --- Oracle Transmission Generator ---
+        const fortunes = [
+            "Signal strength optimal. Proceed with curiosity.",
+            "You were not brought here by accident.",
+            "404: Normalcy not found on this domain.",
+            "All subdomains are nominal and operational.",
+            "You have discovered the quiet corner of the internet."
+        ];
+
+        document.getElementById('get-fortune').addEventListener('click', () => {
+            const randomMsg = fortunes[Math.floor(Math.random() * fortunes.length)];
+            printTerm(randomMsg);
+        });
+
+        // --- Core Node Pulse Effect ---
+        let pulseCount = 0;
+        document.getElementById('center-node').addEventListener('click', () => {
+            pulseCount++;
+            const nodeKey = document.querySelector('[data-freq="587.33"]');
+            playTone(587.33, nodeKey);
+            printTerm(`Power pulse #${pulseCount} emitted from core node.`);
+        });
+
+        // --- Matrix Rain Canvas Engine ---
+        const pCanvas = document.getElementById('particle-canvas');
+        const mCanvas = document.getElementById('matrix-canvas');
+        const mCtx = mCanvas.getContext('2d');
+        let matrixActive = false;
+        let matrixInterval;
+
+        function resizeMatrix() {
+            mCanvas.width = window.innerWidth;
+            mCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeMatrix);
+        resizeMatrix();
+
+        const chars = "0110100101010101010SEETHINGWORD01010101";
+        const fontSize = 14;
+        let columns = Math.floor(mCanvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            mCtx.fillStyle = 'rgba(9, 10, 15, 0.08)';
+            mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
+            mCtx.fillStyle = '#00f5d4';
+            mCtx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                mCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > mCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        document.getElementById('toggle-matrix').addEventListener('click', (e) => {
+            matrixActive = !matrixActive;
+            const card = e.currentTarget;
+            if (matrixActive) {
+                mCanvas.style.display = 'block';
+                pCanvas.style.display = 'none';
+                card.classList.add('active-mode');
+                columns = Math.floor(mCanvas.width / fontSize);
+                drops = Array(columns).fill(1);
+                matrixInterval = setInterval(drawMatrix, 33);
+                printTerm("Matrix rain visual filter: ACTIVE");
+            } else {
+                mCanvas.style.display = 'none';
+                pCanvas.style.display = 'block';
+                card.classList.remove('active-mode');
+                clearInterval(matrixInterval);
+                printTerm("Matrix rain visual filter: DISABLED");
+            }
+        });
+
+        // --- Ambient Background Particles Engine ---
+        const pCtx = pCanvas.getContext('2d');
+        let particles = [];
+
+        function resizeParticles() {
+            pCanvas.width = window.innerWidth;
+            pCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeParticles);
+        resizeParticles();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * pCanvas.width;
+                this.y = Math.random() * pCanvas.height;
+                this.size = Math.random() * 1.8 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > pCanvas.width || this.y < 0 || this.y > pCanvas.height) this.reset();
+            }
+            draw() {
+                pCtx.fillStyle = `rgba(0, 245, 212, ${this.alpha})`;
+                pCtx.beginPath();
+                pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                pCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
 </html>
